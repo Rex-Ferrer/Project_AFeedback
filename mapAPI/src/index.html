@@ -7,8 +7,29 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Leaflet Link to access api-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
 </head>
 <body>
   <app-root></app-root>
+  <div id="mapid"></div>
+  <script type="text/javascript">
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=sk.eyJ1IjoicmF5am9uZXMyMTcwIiwiYSI6ImNqbjNyeXBoNDJmbWIzcXRudHJ2Z3BteWsifQ.VbnaWyIwe0Y0yGC3OiAmSA', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'sk.eyJ1IjoicmF5am9uZXMyMTcwIiwiYSI6ImNqbjNyeXBoNDJmbWIzcXRudHJ2Z3BteWsifQ.VbnaWyIwe0Y0yGC3OiAmSA'
+}).addTo(mymap);
+
+
+  </script>
+
 </body>
 </html>
