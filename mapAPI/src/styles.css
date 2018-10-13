@@ -1,1 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+#mapid { 
+  height: 400px; 
+  width: 575px; 
+  float: right;
+  margin-right: 50px;
+  margin-top: 40px;
+  margin-left: 80px;
+
+}
+
+#searchBar {
+    width: 600px;
+    margin-left: 50px;
+    margin-bottom:25px;
+    padding-top:40px;
+  }
+
+  #accordion{
+    margin-left:50px;
+    width: 600px;
+    float:left;
+  }
+
+  #panelHeading{
+    background-color:hsl(209, 100%, 30%);
+  }
+  .panel-heading{
+    background-color: hsl(209, 100%, 30%); /*idk why class .panel-heading does not work and id panelHeading does*/
+  }
+
+  #title{
+    margin: 50px;
+    font-family: 'helvetica neue', sans-serif;
+    font-size: 65px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    text-align: center;
+    color: white;
+  }
+  #wrapper{
+    
+    background-color: hsl(24, 100%, 40%,80%);
+    display:inline-block;
+    width:100%;
+    padding-bottom: 35px;
+  }
+  body{
+    background:#f2f2f2;;
+  }
+
+  #titleWrapper{
+    background-color: hsl(209, 100%, 30%);
+  }
+
+  .panel-title{
+    color:white;
+  }
+  
