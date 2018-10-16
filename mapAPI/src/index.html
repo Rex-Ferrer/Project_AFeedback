@@ -8,8 +8,12 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Leaflet Link to access api-->
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin=""/>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,83 +21,93 @@
 
 </head>
 <body>
-    <div id ="titleWrapper">
-        <h1 style="text-align:center" id = "title">
-          Gator Placer
-        </h1>
-    </div>
+  <app-root></app-root>
+
+  <div id ="titleWrapper">
+      <h1 style="text-align:center" id = "title">
+        Gator Placer
+      </h1>
+  </div>
   <!--<app-root></app-root> on line 21 now-->
   <div id = wrapper> <!--wraps map, search bar, and accordion-->
-    <div id="mapid"></div>
-    <div class="input-group" id="searchBar"><!--search bar-->
-        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-        <input type="text" class="form-control" placeholder="Search" ng-model="query">
-    </div><!--end of search bar-->
-    <div class="panel-group" id="accordion"> <!--accordion menu-->
-        <div class="panel panel-default"> <!--ng repeat line should be here I think -->
-          <div class="panel-heading" id = "panelHeading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-              Professor 1</a>
-            </h4>
-          </div>
-          <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body">
-              Courses
-              <ul><!--ng repeat line should be here I think -->
-                <li>(course)</li>
-              </ul>
-              Office Hours
-              <ul><!--ng repeat line should be here I think -->
-                <li>(officeHour)</li>
-              </ul>
-              Future Courses
-              <ul><!--ng repeat line should be here I think -->
-                <li>(futureCourse)</li>
-              </ul>
-              Research Areas
-              <ul><!--ng repeat line should be here I think -->
-                <li>(researchArea)</li>
-              </ul>
-              Rate My Professor: (rateMyProfessorScore)
-            </div>
-          </div>
+  <div id="mapid"></div>
+  <div class="input-group" id="searchBar"><!--search bar-->
+      <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+      <input type="text" class="form-control" placeholder="Search" ng-model="query">
+  </div><!--end of search bar-->
+  <div class="panel-group" id="accordion"> <!--accordion menu-->
+      <div class="panel panel-default"> <!--ng repeat line should be here I think -->
+        <div class="panel-heading" id = "panelHeading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+            Professor 1</a>
+          </h4>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-              Professor 2</a>
-            </h4>
-          </div>
-          <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.</div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-              Professor 3</a>
-            </h4>
-          </div>
-          <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.</div>
+        <div id="collapse1" class="panel-collapse collapse in">
+          <div class="panel-body">
+            Courses
+            <ul><!--ng repeat line should be here I think -->
+              <li>(course)</li>
+            </ul>
+            Office Hours
+            <ul><!--ng repeat line should be here I think -->
+              <li>(officeHour)</li>
+            </ul>
+            Future Courses
+            <ul><!--ng repeat line should be here I think -->
+              <li>(futureCourse)</li>
+            </ul>
+            Research Areas
+            <ul><!--ng repeat line should be here I think -->
+              <li>(researchArea)</li>
+            </ul>
+            <br>
+            Rate My Professor: (rateMyProfessorScore)
+            <br>
+            <br>
+            <a href="#" class="fa fa-linkedin"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-slack"></a>
           </div>
         </div>
       </div>
-      <!--end of accordion menu-->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+            Professor 2</a>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+          <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat.</div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+            Professor 3</a>
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+          <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat.</div>
+        </div>
+      </div>
+    </div>
+    <!--end of accordion menu-->
   </div><!--end of wrapper-->
 
-  <app-root></app-root>
+
   <!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+    crossorigin=""></script>
 
   <script type="text/javascript">
     var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
@@ -105,15 +119,6 @@
         L.marker([29.648, -82.3440]).addTo(mymap)
     .bindPopup('Professor Keesling. Marston')
     .openPopup();
-/*
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicmF5am9uZXMyMTcwIiwiYSI6ImNqbjFxaGZjZTFrcjUzb3Vta2QxNW94aGEifQ.dzr5wCc3ZdiBPojDrGcxdw', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoicmF5am9uZXMyMTcwIiwiYSI6ImNqbjFxaGZjZTFrcjUzb3Vta2QxNW94aGEifQ.dzr5wCc3ZdiBPojDrGcxdw'
-}).addTo(mymap);
-        */
-
 
   </script>
 
