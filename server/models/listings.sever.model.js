@@ -21,8 +21,8 @@ var buildingSchema = new Schema({
       updated_at: Date
 
 });
-//Gonna try to implement some kind of roles situation here, will have to look for it elsewher
-var userSchema = new Schema({
+//Gonna try to implement some kind of roles situation here, will have to look for it elsewhere
+var userSchema = new Schema({//Both of these will have to be compared with regex validation with the argument @(\w){0,10}(?:\.)?ufl\.edu
     username: {
         type: String,
         required: true,
@@ -37,10 +37,13 @@ var userSchema = new Schema({
 });
 
 var adminSchema = new Schema({
-    username: {
+    username: {//Both of these will have to be compared with regex validation with the argument @(\w){0,10}(?:\.)?ufl\.edu
         type: String,
         required: true,
         unique: true,
+        validate: {
+            validator : function(v)
+        }
     },
     password: {
         type: String,
