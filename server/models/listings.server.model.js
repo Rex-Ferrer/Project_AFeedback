@@ -46,6 +46,17 @@ var adminSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    slack : {
+        type: String,//Link to slack workspace
+        //TODO: Add slack workspace validation
+    },
+    twitter : {
+        type : String
+        //TODO: Add twitter valdiation
+    },
+    ratemyprofessor: {
+        type: Number
     }
 });
 
@@ -67,4 +78,19 @@ var courseTaught = new Schema({
     day: {
         type:String
     }
-})
+});
+
+//TODO: Define models based off of listings
+var Course = mongoose.model("Class", courseTaught);
+var User = mongoose.model("User", userSchema);
+var Admin = mongoose.model("Admin", adminSchema);
+var Building = mongoose.model("Building", buildingSchema);
+
+
+//TODO: Export models to be used by other programs in the folder
+module.exports =  {
+    Course,
+    User,
+    Admin,
+    Building
+}
