@@ -23,9 +23,13 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
-    "express": "^4.16.4",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "body-parser": "^1.14.1",
+    "express": "^4.16.3",
+    "mongoose": "^4.2.9",
+    "morgan": "^1.6.1",
+    "request": "^2.67.0"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.4",
