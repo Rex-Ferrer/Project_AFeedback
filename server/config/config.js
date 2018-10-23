@@ -1,6 +1,6 @@
 module.exports = {
     db: {
-      uri: 'mongodb://<dbuser>:<dbpassword>@ds251632.mlab.com:51632/oneuflistings', //place the URI of your mongo database here.
+      uri: 'mongodb://gatorplacer:gatorplacer1@ds137703.mlab.com:37703/gatorplacer', //place the URI of your mongo database here.
     }, 
-    port: process.env.PORT || 4200
+    port: process.env.PORT || 8080
   };

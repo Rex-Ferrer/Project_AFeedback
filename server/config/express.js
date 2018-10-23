@@ -3,23 +3,31 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes');
+    config = require('./config');
 
-modules.exports.inti = function() {
-    mongoose.connect(config.db.uri);
+module.exports.init = function() {
+  //connect to database
+  mongoose.connect(config.db.uri);
 
-    var app = express();
+  //initialize app
+  var app = express();
 
-    app.use(morgan('dev'));
+  //enable request logging for development debugging
+  app.use(morgan('dev'));
 
-    app.use(bodyParser.json());
+  //body parsing middleware 
+  app.use(bodyParser.json());
 
-    app.use(express.static('client'))
+  
+  /**TODO
+  Serve static files */
+  app.use(express.static('src'))
 
-    app.get('*', function(req,res) {
-        res.redirect('/');
-    });
+  /**TODO 
+  Go to homepage for all routes not specified */ 
+  app.get('*' , function(req,res) {
+    res.redirect('/');
+  });
 
-    return app;
-}
+  return app;
+};  
