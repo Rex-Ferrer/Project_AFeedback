@@ -8,33 +8,33 @@
 <div id = wrapper> <!--wraps map, search bar, and accordion-->
 <div class="input-group" id="accordion_search"><!--search bar-->
     <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-    <input type="text" class="form-control" placeholder="Search" ng-model="query">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
 </div><!--end of search bar-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
-    <div class="panel panel-default" ng-repeat="filter: query"> <!--ng repeat line should be here I think -->
+    <div class="panel panel-default" *ngFor = "let professor of professors | filter: searchText"> 
       <div class="panel-heading" id = "panelHeading" >
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-          Professor 1</a>
+          <a data-toggle="collapse" data-parent="#accordion" href= #{{professor.name}}> <!--should use a unique identifier (name is not good enough)-->
+          {{professor.name}}</a>
         </h4>
       </div>
-      <div id="collapse1" class="panel-collapse collapse in">
+      <div id = {{professor.name}} class="panel-collapse collapse">
         <div class="panel-body">
           Courses
-          <ul><!--ng repeat line should be here I think -->
-            <li>(course)</li>
+          <ul *ngFor = "let course of professor.courses" >
+            <li>{{course}}</li>
           </ul>
           Office Hours
-          <ul><!--ng repeat line should be here I think -->
-            <li>(officeHour)</li>
+          <ul *ngFor = "let officeHour of professor.officeHours">
+            <li>{{officeHour}}</li>
           </ul>
           Future Courses
-          <ul><!--ng repeat line should be here I think -->
-            <li>(futureCourse)</li>
+          <ul *ngFor = "let futureCourse of professor.futureCourses"><!--ng repeat line should be here I think -->
+            <li>{{futureCourse}}</li>
           </ul>
           Research Areas
-          <ul><!--ng repeat line should be here I think -->
-            <li>(researchArea)</li>
+          <ul *ngFor = "let research of professor.research"><!--ng repeat line should be here I think -->
+            <li>{{research}}</li>
           </ul>
           Rate My Professor: (rateMyProfessorScore)<br><br>
           <a href="#" class="fa fa-linkedin"></a>
