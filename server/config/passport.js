@@ -1,6 +1,7 @@
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../app/models/user');
+var User = require('../models/user');
 
 module.exports = function(passport) {
 
@@ -20,34 +21,41 @@ module.exports = function(passport) {
         });
     });
 
+    //This is for the local signup function
+
     passport.use('local-signup', new LocalStrategy({
-        usernameField : 'email',
-        passwordFile : 'password',
+        usernameField : 'username',
+        passwordField : 'password',
         passReqToCallback : true
     },
-    function(req, email, password, done) {
+    function(req, username, password, done) {
+
         process.nextTick(function() {
             //Find the user whose email was passed into the function
-            User.findOne({'local.email' : email }, function(err,user) {
-                if(err)
-                    return done(err);
+        User.findOne({ 'username' : username }, function(err, user) {
+            if(err){
+                console.log(err);
+                return done(err,req.flash('please'));
+            }
+            if(user) {
+                console.log(user);
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+                console.log('got to actually saving it')
+                //if there is no user with that email
+                var newUser = new User();
 
-                if(user) {
-                    return done(null, flase, req.flash('signupMessage', 'That email is already taken.'));
-                } else {
-                    //if there is no user with that email
-                    var newUser = new User();
-
-                    newUser.local.email = email;
-                    newUser.local.password = newUser.generateHash(password);
-
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, newUser);
-                    });
-                }
-            });
+                newUser.username = username;
+                newUser.password = newUser.generateHash(password);
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
+        });
         });
     }));
+
+    //TODO: Add local login function
 };

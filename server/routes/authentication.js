@@ -1,4 +1,4 @@
-modules.exports = function(app, passport){
+module.exports = function(app, passport){
 
     //================= 
     //LOGIN
@@ -15,14 +15,14 @@ modules.exports = function(app, passport){
     //SIGNUP
     //====================
     app.get('/signup', function(req,res) {
-        res.render('signup.ejs', {message: req.flash('signupMessage')})
+        res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/', //redirect back to the front page but with login
         failureRedirect : '/signup', //go back to signup page
         failureFlash: true //allows for flash messages
-    }))
+    }));
 
     //Process signup
     app.post('/profile', isLoggedIn, function(req, res) {

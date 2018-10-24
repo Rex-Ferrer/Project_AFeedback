@@ -5,14 +5,16 @@ var path = require('path');
     bodyParser = require('body-parser'),
     config = require('./config'),
     passport = require('passport'),
-    flash = require('connect-flash');
+    flash = require('connect-flash'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser');
 
 module.exports.init = function() {
   //connect to database
   mongoose.connect(config.db.uri);
 
   //Configure passport
-  //require('./config/passport')(passport)//passes passport for configuration
+  require('./passport')(passport)//passes passport for configuration
 
   //initialize app
   var app = express();
@@ -21,19 +23,21 @@ module.exports.init = function() {
   app.use(morgan('dev'));
   //body parsing middleware 
   app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.use(cookieParser()); // read cookies (needed for auth)
 
  // Serve static files */
   app.use(express.static('src'))
 
 //Paspport configuration
 
-app.use(session({ secret : thisisasecretsession}));//Not sure what having a secret session does yet but we will see
+app.use(session({ secret : 'thisisasecretsession' , resave: true, saveUninitialized: true}));//Not sure what having a secret session does yet but we will see
 app.use(passport.initialize());
-app.use(passprt.session()); //Persistent login sessions
+app.use(passport.session()); //Persistent login sessions
 app.use(flash());// message storing in session?
 
-
-require('./routes')(app, passport);//Adds in routing folder
+require('../routes/authentication.js')(app, passport);//Adds in routing folder
 
 //Redirects to static page for all routes not specified
   app.get('*' , function(req,res) {

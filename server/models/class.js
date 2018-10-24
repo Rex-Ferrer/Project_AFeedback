@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    Building = require('./building'),
+    ObjectID = Schema.Types.ObjectId;
 
 var courseTaught = new Schema({
     code: {
@@ -12,7 +14,8 @@ var courseTaught = new Schema({
         required: true,
     },
     location: {
-        type: ListingSchema,
+        type: ObjectID,
+        ref: "Building",
         required: true
     },
     //Gonna have to figure a way to have recurring dates 
@@ -22,4 +25,5 @@ var courseTaught = new Schema({
 });
 
 var Class = mongoose.model("Class", courseTaught);
-module.exports = Class;
+
+module.exports = Class, courseTaught;
