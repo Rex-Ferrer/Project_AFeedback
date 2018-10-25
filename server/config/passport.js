@@ -35,21 +35,23 @@ module.exports = function(passport) {
         User.findOne({ 'username' : username }, function(err, user) {
             if(err){
                 console.log(err);
-                return done(err,req.flash('please'));
+                return done(err,req.flash(err));//Sends the error thta occured as a flash message
             }
-            if(user) {
-                console.log(user);
+            if(user) {//If the user already exists
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
-                console.log('got to actually saving it')
-                //if there is no user with that email
+            } else {//Create the new User
                 var newUser = new User();
 
-                newUser.username = username;
-                newUser.password = newUser.generateHash(password);
+                newUser.username = username;//From passport authenticate function
+                newUser.password = newUser.generateHash(password);//Uses bcrypt to hash a password
+                newUser.firstname = req.body.firstname;//Gets the firstname field from the request
+                newUser.lastname = req.body.lastname;//Gets the lastname field from the request
                 newUser.save(function(err) {
-                    if (err)
-                        throw err;
+                    if (err){
+                        console.log(err);
+                        return done(null, false, req.flash('signupMessage', 'You must sign up with a ufl email'));//Have to edit it so signup message actually reflects error
+                        //Right now only sends message for invalid UF email, even if the issue is in not filling out a username or password
+                    }
                     return done(null, newUser);
                 });
             }

@@ -13,7 +13,9 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
 
     },
     password: {type: String, required: true},
-    name: {type: String}
+    firstname: {type: String, required: true},
+    lastname: {type : String, required: true}
+
     /*classes: {
         type: [courseTaught],
         default: undefined
