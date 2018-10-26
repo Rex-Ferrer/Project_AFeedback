@@ -60,4 +60,29 @@ module.exports = function(passport) {
     }));
 
     //TODO: Add local login function
+    // =========================================================================
+    // LOCAL LOGIN =============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
+    passport.use('local-login', new LocalStrategy({
+        usernameField : 'username',
+        passwordField : 'password',
+        passReqToCallback : true
+    },
+    function(req, username, password, done) {
+        User.findOne({'username' : username}, function(err, user) {
+            if (err){
+                console.log(err);
+                return done(err);
+            }
+            if(!user){
+                return done(null, false, req.flash('loginMessage' , 'No user found.'));
+            }
+            if(!user.validPassword(password)){
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password'));
+            }
+            return done(null, user);
+        });
+    }));
 };
