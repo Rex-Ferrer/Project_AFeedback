@@ -1,0 +1,33 @@
+<<!-- LOGIN FORM -->
+
+
+
+    <form #signupForm="ngForm">
+      <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username"
+          required
+          [(ngModel)] = "model.username">
+      </div>
+      <div class="form-group">
+          <label>Password</label>
+          <input type="text" class="form-control" name="password"
+          required
+          [(ngModel)] = "model.password">
+      </div>
+      <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" name="firstName"
+          required
+          [(ngModel)] = "model.firstName">
+      </div>
+      <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" name="lastName"
+          required
+          [(ngModel)] = "model.lastName">
+      </div>
+  
+      <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+    </form>
+    
