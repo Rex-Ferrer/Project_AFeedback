@@ -28,7 +28,7 @@ module.exports.init = function() {
   app.use(cookieParser()); // read cookies (needed for auth)
 
  // Serve static files */
-  app.use(express.static('src'))
+ app.use(express.static('dist'));
 
 //Paspport configuration
 
@@ -40,9 +40,9 @@ app.use(flash());// message storing in session?
 require('../routes/authentication.js')(app, passport);//Adds in routing folder
 
 //Redirects to static page for all routes not specified
-  app.get('*' , function(req,res) {
-    res.redirect('/');
-  });
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
 
   return app;
 };  
