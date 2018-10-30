@@ -1,27 +1,29 @@
-<body> <!--ng-app here-->
+<body>
   <div id ="titleWrapper">
     <h1 style="text-align:center" id = "title">
       Gator Placer
     </h1>
 </div>
-<!--<app-root></app-root> on line 94 now-->
-<div id = wrapper> <!--wraps map, search bar, and accordion-->
+
+<div id = wrapper> <!--wraps search bar and accordion-->
 <div class="input-group" id="accordion_search"><!--search bar-->
     <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
+    <input type="text" class="form-control" placeholder="Only dummy data is on Keesling and Small" [(ngModel)]="searchText">
 </div><!--end of search bar-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
-    <div class="panel panel-default" *ngFor = "let professor of professors | filter: searchText"> 
+  <ng-container *ngFor = "let professor of professors">
+  <div class="panel panel-default" showSearch = professor.name.toLowerCase().includes(searchText.toLowerCase()) *ngIf= "professor.name.toLowerCase().includes(searchText.toLowerCase()) && searchText" >
       <div class="panel-heading" id = "panelHeading" >
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href= #{{professor.name}}> <!--should use a unique identifier (name is not good enough)-->
+          <a data-toggle="collapse" data-parent="#accordion" href= #{{professor.name}}> <!--needs a unique identifier without spaces(name is not good enough)-->
           {{professor.name}}</a>
         </h4>
       </div>
       <div id = {{professor.name}} class="panel-collapse collapse">
         <div class="panel-body">
+            <input [(ngModel)]="search" placeholder="testing filter w/ courses"><br>
           Courses
-          <ul *ngFor = "let course of professor.courses" >
+          <ul *ngFor = "let course of professor.courses | filter: search" >
             <li>{{course}}</li>
           </ul>
           Office Hours
@@ -43,34 +45,10 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" id ="panelHeading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-          Professor 2</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.</div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" id = "panelHeading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-          Professor 3</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.</div>
-      </div>
-    </div>
+    </ng-container>
+
+
   </div>
+
   <!--end of accordion menu-->
 </div><!--end of wrapper-->
