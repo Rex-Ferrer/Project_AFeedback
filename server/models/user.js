@@ -14,12 +14,12 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
     },
     password: {type: String, required: true},
     firstname: {type: String, required: true},
-    lastname: {type : String, required: true}
+    lastname: {type : String, required: true},
 
     /*classes: {
         type: [courseTaught],
         default: undefined
-    },*/
+    }*/
 });
     //Makes a super cool hash
 userSchema.methods.generateHash = function(password) {
