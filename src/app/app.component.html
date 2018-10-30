@@ -12,7 +12,7 @@
 </div><!--end of search bar-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
   <ng-container *ngFor = "let professor of professors">
-  <div class="panel panel-default" showSearch = professor.name.toLowerCase().includes(searchText) *ngIf= "professor.name.toLowerCase().includes(searchText) && searchText" >
+  <div class="panel panel-default" showSearch = professor.name.toLowerCase().includes(searchText.toLowerCase()) *ngIf= "professor.name.toLowerCase().includes(searchText.toLowerCase()) && searchText" >
       <div class="panel-heading" id = "panelHeading" >
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href= #{{professor.name}}> <!--needs a unique identifier without spaces(name is not good enough)-->
