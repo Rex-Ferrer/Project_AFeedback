@@ -1,19 +1,54 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-        <h1>
-          Welcome to {{ title }}!
-        </h1>
-        <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<body>
+  <div id ="titleWrapper">
+    <h1 style="text-align:center" id = "title">
+      Gator Placer
+    </h1>
+</div>
+
+<div id = wrapper> <!--wraps search bar and accordion-->
+<div class="input-group" id="accordion_search"><!--search bar-->
+    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+    <input type="text" class="form-control" placeholder="Only dummy data is on Keesling and Small" [(ngModel)]="searchText">
+</div><!--end of search bar-->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
+  <ng-container *ngFor = "let professor of professors">
+  <div class="panel panel-default" showSearch = professor.name.toLowerCase().includes(searchText.toLowerCase()) *ngIf= "professor.name.toLowerCase().includes(searchText.toLowerCase()) && searchText" >
+      <div class="panel-heading" id = "panelHeading" >
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href= #{{professor.name}}> <!--needs a unique identifier without spaces(name is not good enough)-->
+          {{professor.name}}</a>
+        </h4>
       </div>
-      <h2>Here are some links to help you start: </h2>
-      <ul>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-        </li>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-        </li>
-        <li>
-          <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-        </li>
-      </ul>
+      <div id = {{professor.name}} class="panel-collapse collapse">
+        <div class="panel-body">
+            <input [(ngModel)]="search" placeholder="testing filter w/ courses"><br>
+          Courses
+          <ul *ngFor = "let course of professor.courses | filter: search" >
+            <li>{{course}}</li>
+          </ul>
+          Office Hours
+          <ul *ngFor = "let officeHour of professor.officeHours">
+            <li>{{officeHour}}</li>
+          </ul>
+          Future Courses
+          <ul *ngFor = "let futureCourse of professor.futureCourses"><!--ng repeat line should be here I think -->
+            <li>{{futureCourse}}</li>
+          </ul>
+          Research Areas
+          <ul *ngFor = "let research of professor.research"><!--ng repeat line should be here I think -->
+            <li>{{research}}</li>
+          </ul>
+          Rate My Professor: (rateMyProfessorScore)<br><br>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-slack"></a>
+        </div>
+      </div>
+    </div>
+    </ng-container>
+
+
+  </div>
+
+  <!--end of accordion menu-->
+</div><!--end of wrapper-->
