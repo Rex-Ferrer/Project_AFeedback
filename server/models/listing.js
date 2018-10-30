@@ -18,5 +18,8 @@ var adminListing = new Schema({
     },
     officeHours : {
         type : []
-    }
+    },
+    twitter : {String},
+    slack : {String},
+    linkedin : {String}
 })
