@@ -4,7 +4,6 @@ module.exports = function(app, passport){
     //LOGIN
     //================= 
     app.get('/login', function(req, res) {
-
         res.render('login.ejs', {message: req.flash('loginMessage')});
     });
 

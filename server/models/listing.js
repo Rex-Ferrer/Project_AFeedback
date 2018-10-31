@@ -13,12 +13,7 @@ var adminListing = new Schema({
         enum : ['professor' , 'TA'],//Right now there are only TAs and professors for simplicity
         required : true
     },
-    classes: {
-        type : [courseTaught]//Array of class schema from class.js
-    },
-    officeHours : {
-        type : []
-    },
+    classes: [Schema.Types.ObjectId], //Will take in a reference to another item in the database, used for ordering
     twitter : {String},
     slack : {String},
     linkedin : {String}

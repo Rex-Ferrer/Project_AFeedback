@@ -4,6 +4,45 @@
       Gator Placer
     </h1>
 </div>
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sign Up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/signup" method="post">
+          <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" name="username">
+          </div>
+          <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name="password">
+          </div>
+          <div class="form-group">
+              <label>First Name</label>
+              <input type="text" class="form-control" name="firstname">
+          </div>
+          <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-control" name="lastname">
+          </div>
+  
+          <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+      </form>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id = wrapper> <!--wraps search bar and accordion-->
 <div class="input-group" id="accordion_search"><!--search bar-->

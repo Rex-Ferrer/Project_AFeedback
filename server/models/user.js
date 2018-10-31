@@ -16,10 +16,8 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
     firstname: {type: String, required: true},
     lastname: {type : String, required: true},
 
-    /*classes: {
-        type: [courseTaught],
-        default: undefined
-    }*/
+    classes : [Schema.Types.ObjectId]
+
 });
     //Makes a super cool hash
 userSchema.methods.generateHash = function(password) {
