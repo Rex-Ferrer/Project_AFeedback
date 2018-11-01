@@ -1,5 +1,5 @@
 var path = require('path');
-    express = require('express'), 
+    express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
@@ -21,14 +21,14 @@ module.exports.init = function() {
 
   //enable request logging for development debugging
   app.use(morgan('dev'));
-  //body parsing middleware 
+  //body parsing middleware
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use(cookieParser()); // read cookies (needed for auth)
 
  // Serve static files */
- app.use(express.static('dist'));
+ app.use(express.static('client'));
 
 //Paspport configuration
 
@@ -45,4 +45,4 @@ app.get('*', (req, res) => {
 });
 
   return app;
-};  
+};
