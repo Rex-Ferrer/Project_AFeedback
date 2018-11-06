@@ -17,7 +17,8 @@ var adminListing = new Schema({
     twitter : {String},
     slack : {String},
     linkedin : {String},
-    email : {String}
+    email : {String},
+    information: {String}
 })
 
 module.exports = mongoose.model('Listing', adminListing);

@@ -1,5 +1,6 @@
+var path = require('path');
 module.exports = function(app, passport){
-
+    app.get('/', isLoggedIn);
     //================= 
     //LOGIN
     //================= 
@@ -43,6 +44,6 @@ module.exports = function(app, passport){
         if(req.isAuthenticated())
             return next();
 
-            res.redirect('/');
+            res.redirect('/login');
     }
 }

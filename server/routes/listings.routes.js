@@ -9,7 +9,7 @@ var listings = require('../controllers/listing.server.controller.js'),
  */
 router.route('/')
   .get(listings.list)
-  .post(listings.create);
+  //.post(listings.create);
 
 
 /*

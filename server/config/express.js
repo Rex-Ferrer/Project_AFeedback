@@ -27,9 +27,7 @@ module.exports.init = function() {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use(cookieParser()); // read cookies (needed for auth)
-
- // Serve static files */
- app.use(express.static('client'));
+  
 
 //Paspport configuration
 
@@ -42,9 +40,10 @@ app.use("/api/listings", listingsRouter);
 require('../routes/authentication.routes.js')(app, passport);//Adds in routing folder
 
 //Redirects to static page for all routes not specified
+app.use("/", express.static('client'));
+
 app.get('*', (req, res) => {
   res.redirect('/');
 });
-
   return app;
 };
