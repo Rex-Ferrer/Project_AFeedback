@@ -20,4 +20,6 @@ var adminListing = new Schema({
     email : {String}
 })
 
-module.exports = mongoose.model('Listing', adminListing);
+var Listing = mongoose.model('Listing', adminListing);
+
+module.exports = Listing;
