@@ -46,6 +46,7 @@ module.exports = function(passport) {
                 newUser.password = newUser.generateHash(password);//Uses bcrypt to hash a password
                 newUser.firstname = req.body.firstname;//Gets the firstname field from the request
                 newUser.lastname = req.body.lastname;//Gets the lastname field from the request
+                newUser.role = req.body.role;
                 newUser.save(function(err) {
                     if (err){
                         console.log(err);

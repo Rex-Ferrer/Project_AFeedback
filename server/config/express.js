@@ -7,7 +7,8 @@ var path = require('path');
     passport = require('passport'),
     flash = require('connect-flash'),
     session = require('express-session'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    listingsRouter = require('../routes/listings.routes');
 
 module.exports.init = function() {
   //connect to database
@@ -37,7 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session()); //Persistent login sessions
 app.use(flash());// message storing in session?
 
-require('../routes/authentication.js')(app, passport);//Adds in routing folder
+app.use("/api/listings", listingsRouter);
+require('../routes/authentication.routes.js')(app, passport);//Adds in routing folder
 
 //Redirects to static page for all routes not specified
 app.get('*', (req, res) => {

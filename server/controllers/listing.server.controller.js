@@ -30,7 +30,7 @@ exports.read = function(req, res) {
 /* Update a listing */
 exports.update = function(req, res) {
   var listing = req.listing;
-  Listing.findOneAndUpdate({code : listing.name} ,req.body, {new: true}, function(err, listing) {
+  Listing.findOneAndUpdate({name : listing.name} ,req.body, {new: true}, function(err, listing) {
     if(err) throw err;
     res.json(listing);
     console.log("Listing updated!")
@@ -55,7 +55,6 @@ exports.delete = function(req, res) {
 
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
-  /** TODO **/
   Listing.find({}, function(err,listings) {
     if(err) throw err;
     res.json(listings);

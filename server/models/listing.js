@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    courseTaught = require('./course');
+    courseTaught = require('./class');
 
 var adminListing = new Schema({
     name: {
@@ -16,5 +16,8 @@ var adminListing = new Schema({
     classes: [Schema.Types.ObjectId], //Will take in a reference to another item in the database, used for ordering
     twitter : {String},
     slack : {String},
-    linkedin : {String}
+    linkedin : {String},
+    email : {String}
 })
+
+module.exports = mongoose.model('Listing', adminListing);
