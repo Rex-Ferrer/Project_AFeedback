@@ -17,7 +17,7 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
     lastname: {type : String, required: true},
     role :{
         type : String,
-        enum : ['Professor', 'Student', 'developer'],
+        enum : ['Professor', 'Student', 'Developer'],
         required : [true, "Need a role"]
     },
 

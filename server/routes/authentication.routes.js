@@ -1,6 +1,12 @@
 var path = require('path');
 module.exports = function(app, passport){
-    app.get('/', isLoggedIn);
+    app.get('/', isLoggedIn, function(req, res, next){
+        if(req.user.role == "Professor"){
+            res.redirect('./signup');//TODO: Change to professor view
+        }
+        return next();
+        
+    });
     //================= 
     //LOGIN
     //================= 
