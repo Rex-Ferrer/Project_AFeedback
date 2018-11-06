@@ -2,14 +2,14 @@ var path = require('path');
 module.exports = function(app, passport){
     app.get('/', isLoggedIn, function(req, res, next){
         if(req.user.role == "Professor"){
-            res.redirect('./signup');//TODO: Change to professor view
+            res.redirect('/professor');//TODO: Change to professor view
         }
         return next();
-        
+
     });
-    //================= 
+    //=================
     //LOGIN
-    //================= 
+    //=================
     app.get('/login', function(req, res) {
         res.render('login.ejs', {message: req.flash('loginMessage')});
     });
@@ -19,7 +19,12 @@ module.exports = function(app, passport){
         failureRedirect : '/login',
         failureFlash : true
     }));
-
+    //====================
+    //PROFESSOR
+    //====================
+    app.get('/professor', function(req,res) {
+        res.sendFile(path.resolve('client/professor.html'));
+    });
 
     //====================
     //SIGNUP
