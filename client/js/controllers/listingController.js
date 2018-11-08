@@ -1,5 +1,9 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
+    $scope.detailedInfo = undefined;
+    $scope.latitude = undefined;
+    $scope.longitude = undefined;
+    $scope.profCourses = undefined;
     /* Get all the listings, then bind it to the scope */
     Listings.getAll().then(function(response) {
       $scope.listings = response.data;
@@ -7,8 +11,17 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 
-    $scope.detailedInfo = undefined;
+    $scope.editInfo = function(profTwitter, profInfo, profSlack, profLinked, profCourses) {
+      var newProfessor = {
+        "twitter": profTwitter,
+        "information": profInfo,
+        "slack": profSlack,
+        "linkedin" : profLinked,
+        "classes" : profCourses
+      }
+    };
 
+    /*
     $scope.addListing = function() {
       var obj = {
         "code": $scope.newListing.code,
@@ -19,13 +32,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.listings.push(obj);
 
       Listings.create(obj);
+      */
 
 
 	  /**TODO
 	  *Save the article using the Listings factory. If the object is successfully
 	  saved redirect back to the list page. Otherwise, display the error
 	 */
-    };
 
     $scope.deleteListing = function(index) {
 	   /**TODO
