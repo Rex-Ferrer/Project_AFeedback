@@ -19,29 +19,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         "linkedin" : profLinked,
         "classes" : profCourses
       }
+    //  $scope.listings.push(newProfessor);
+    //  Listings.create(newProfessor);
     };
+
+    //Adds marker to map given coordinates
     $scope.addMarker = function(latitude,longitude){
       var marker = L.marker([latitude, longitude]).addTo(mymap);
     };
+    // TODO Extract Latitude and Longitude from a building object and add to map
 
-    /*
-    $scope.addListing = function() {
-      var obj = {
-        "code": $scope.newListing.code,
-        "name": $scope.newListing.name,
-        "address": $scope.newListing.adress
-      }
-
-      $scope.listings.push(obj);
-
-      Listings.create(obj);
-      */
-
-
-	  /**TODO
-	  *Save the article using the Listings factory. If the object is successfully
-	  saved redirect back to the list page. Otherwise, display the error
-	 */
 
     $scope.deleteListing = function(index) {
 	   /**TODO
