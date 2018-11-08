@@ -20,6 +20,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         "classes" : profCourses
       }
     };
+    $scope.addMarker = function(latitude,longitude){
+      var marker = L.marker([latitude, longitude]).addTo(mymap);
+    };
 
     /*
     $scope.addListing = function() {

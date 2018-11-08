@@ -75,6 +75,11 @@
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
+        <input type="text" class="form-control" placeholder="Latitude" id = "lat"ng-model = "latitude">
+        <!-- 29.6499  -82.3486 -->
+        <input type="text" class="form-control" placeholder="Longitude" id = "long"ng-model = "longitude">
+        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(latitude,longitude) >Add Marker</button>
+
           <script type="text/javascript">
             var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -83,12 +88,23 @@
                 L.marker([29.648, -82.3440]).addTo(mymap)
             .bindPopup('Professor Keesling. Marston')
             .openPopup();
+ /* Not needed
+            $("#click").click(function(){
+              var latitude = parseInt($('#lat').val());
+              var longitude = parseInt($('#long').val());
+              var marker = L.marker([latitude, longitude]).addTo(mymap);
+            });
+            */
           </script>
 
-          
+
           <!--end of accordion menu-->
         </div><!--end of wrapper of search bar and accordion-->
     </div><!--row-->
+
+
+
+
   <div class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
