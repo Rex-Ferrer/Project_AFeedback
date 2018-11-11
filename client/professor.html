@@ -27,7 +27,7 @@
   <body ng-app = "directoryApp">
       <div id ="titleWrapper">
         <h1 style="text-align:center" id = "title">
-          Gator Placer
+          Gator Placer {{test[0].name}}
         </h1>
       </div>
       <a role = "button" class="btn btn-success" href = "forms.html">Edit</a>
@@ -52,6 +52,7 @@
                       <li>{{class}}</li>
                     </ul><br>
                     Email
+
                     <ul >
                       <li>{{listing.email}}</li>
                     </ul>
@@ -75,11 +76,9 @@
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
-        <input type="text" class="form-control" placeholder="Latitude" id = "lat"ng-model = "latitude">
+        <input type="text" class="form-control" placeholder="Building Name" id = "lat"ng-model = "buildingName">
         <!-- 29.6499  -82.3486 -->
-        <input type="text" class="form-control" placeholder="Longitude" id = "long"ng-model = "longitude">
-        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(latitude,longitude) >Add Marker</button>
-
+        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(buildingName) >Add Marker</button>
           <script type="text/javascript">
             var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
