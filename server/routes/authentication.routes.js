@@ -3,7 +3,9 @@ module.exports = function(app, passport){
 
     app.get('/', isLoggedIn, function(req, res, next){//Checks if user is logged in and then...
         if(req.user.role == "Professor"){//Redirects based off of user roles
-            res.redirect('./professor.html');//TODO: Change to professor view
+            if(isLoggedIn){
+                res.redirect(professor.html);
+            };//TODO: Change to professor view
         }
         return next();
 

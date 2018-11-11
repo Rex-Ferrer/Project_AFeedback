@@ -1,128 +1,128 @@
 <!--src is the same as client from bootcamp-->
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Gator Placer</title>
-  <base href="/">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Leaflet Link to access api-->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
-    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/factories/listingFactory.js"></script>
-  <script src="js/controllers/listingController.js"></script>
-   <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-    crossorigin=""></script>
- </head>
- <body ng-app = "directoryApp">
-     <div id ="titleWrapper">
-      <h1 style="text-align:center" id = "title">
-        Gator Placer
-      </h1>
-    </div>
-    <div class = "row" id = wrapper ng-controller ="ListingsController"><!--wraps search bar, accordion, and map-->
-      <div class = "col-md-6"> <!--search bar and accordion on the left-->
-        <div class="input-group" id="accordion_search"><!--search bar-->
-            <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Only dummy data is on Keesling and Small" ng-model="searchText">
-        </div><!--end of search bar-->
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
-          <div class="panel panel-default" ng-repeat = "listing in listings | orderBy: 'name'" ng-show= "searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase());">
-              <div class="panel-heading" id = "panelHeading" >
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}}> <!--needs a unique identifier without spaces(name is not good enough)-->
-                  {{listing.name}}<div style = "float: right">{{listing.role}}</div></a>
-                 </h4>
+  <head>
+    <meta charset="utf-8">
+    <title>Gator Placer</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Leaflet Link to access api-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/factories/listingFactory.js"></script>
+    <script src="js/controllers/listingController.js"></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+      integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+      crossorigin=""></script>
+  </head>
+  <body ng-app = "directoryApp">
+      <div id ="titleWrapper">
+        <h1 style="text-align:center" id = "title">
+          Gator Placer
+        </h1>
+      </div>
+      <div class = "row" id = wrapper ng-controller ="ListingsController"><!--wraps search bar, accordion, and map-->
+        <div class = "col-md-6"> <!--search bar and accordion on the left-->
+          <div class="input-group" id="accordion_search"><!--search bar-->
+              <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+              <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+          </div><!--end of search bar-->
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
+            <div class="panel panel-default" ng-repeat = "listing in listings | orderBy: 'name'" ng-show= "searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase());">
+                <div class="panel-heading" id = "panelHeading" >
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}}> <!--needs a unique identifier without spaces(name is not good enough)-->
+                    {{listing.name}}<div style = "float: right">{{listing.role}}</div></a>
+                  </h4>
+                </div>
+                <div id = {{listing._id}} class="panel-collapse collapse">
+                  <div class="panel-body">
+                    Courses
+                    <ul ng-repeat = "class in listing.classes">
+                      <li>{{class}}</li>
+                    </ul><br>
+                    Email
+                    <ul >
+                      <li>{{listing.email}}</li>
+                    </ul>
+                    <!--Future Courses
+                    <ul>
+                      <li>{{futureCourse}}</li>
+                    </ul>-->
+                    <!--Research Areas
+                    <ul>
+                      <li>{{research}}</li>
+                    </ul>-->
+                    <a href={{listing.linkedin}} class="fa fa-linkedin"></a>
+                    <a href={{listing.twitter}} class="fa fa-twitter"></a>
+                    <a href={{listing.slack}} class="fa fa-slack"></a>
+                  </div><!--panel body-->
+                </div><!--panel collapse-->
+            </div><!--panel default-->
+          </div><!--panel group-->
+        </div><!--col md left-->
+        <div class = "col-md-6">
+          <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <div id="mapid"></div>
+          <script type="text/javascript">
+            var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mymap);
+                L.marker([29.648, -82.3440]).addTo(mymap)
+            .bindPopup('Professor Keesling. Marston')
+            .openPopup();
+          </script>
+          <!--end of accordion menu-->
+        </div><!--end of wrapper of search bar and accordion-->
+    </div><!--row-->
+  <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sign Up</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/signup" method="post">
+              <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" class="form-control" name="username">
               </div>
-              <div id = {{listing._id}} class="panel-collapse collapse">
-                <div class="panel-body">
-                   Courses
-                  <ul ng-repeat = "class in listing.classes">
-                    <li>{{class}}</li>
-                  </ul><br>
-                  Email
-                  <ul >
-                    <li>{{listing.email}}</li>
-                  </ul>
-                  <!--Future Courses
-                  <ul>
-                    <li>{{futureCourse}}</li>
-                  </ul>-->
-                  <!--Research Areas
-                  <ul>
-                    <li>{{research}}</li>
-                  </ul>-->
-                  <a href={{listing.linkedin}} class="fa fa-linkedin"></a>
-                  <a href={{listing.twitter}} class="fa fa-twitter"></a>
-                  <a href={{listing.slack}} class="fa fa-slack"></a>
-                </div><!--panel body-->
-              </div><!--panel collapse-->
-          </div><!--panel default-->
-        </div><!--panel group-->
-      </div><!--col md left-->
-      <div class = "col-md-6">
-        <!-- Make sure you put this AFTER Leaflet's CSS -->
-      <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-       <div id="mapid"></div>
-         <script type="text/javascript">
-          var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
-           L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              }).addTo(mymap);
-               L.marker([29.648, -82.3440]).addTo(mymap)
-          .bindPopup('Professor Keesling. Marston')
-          .openPopup();
-         </script>
-        <!--end of accordion menu-->
-      </div><!--end of wrapper of search bar and accordion-->
-  </div><!--row-->
- <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Sign Up</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/signup" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" name="firstname">
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" name="lastname">
-            </div>
-             <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-        </form>
-         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" class="form-control" name="password">
+              </div>
+              <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="firstname">
+              </div>
+              <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" name="lastname">
+              </div>
+              <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
