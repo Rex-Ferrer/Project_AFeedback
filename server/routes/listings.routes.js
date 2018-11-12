@@ -1,6 +1,7 @@
 /* Dependencies */
 var listings = require('../controllers/listing.server.controller.js'),
     users = require('../controllers/user.server.controller.js'),
+    building = require('../controllers/building.server.controller.js'),
     express = require('express'), 
     router = express.Router();
 
@@ -35,4 +36,9 @@ router.param('listingId', listings.listingByID);
 
 router.route('/users/getCurrentUser')
   .get(users.currentUser);
+
+
+router.route('/buildings/getBuildings')
+  .get(building.AllBuildings);
+
 module.exports = router;
