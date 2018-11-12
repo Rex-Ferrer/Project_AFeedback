@@ -38,7 +38,7 @@ router.route('/users/getCurrentUser')
   .get(users.currentUser);
 
 
-router.route('/buildings/getBuildings')
+router.route('/buildings')
   .get(building.AllBuildings);
 
 module.exports = router;
