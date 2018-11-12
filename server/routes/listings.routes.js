@@ -1,5 +1,6 @@
 /* Dependencies */
-var listings = require('../controllers/listing.server.controller.js'), 
+var listings = require('../controllers/listing.server.controller.js'),
+    users = require('../controllers/user.server.controller.js'),
     express = require('express'), 
     router = express.Router();
 
@@ -7,15 +8,15 @@ var listings = require('../controllers/listing.server.controller.js'),
   These method calls are responsible for routing requests to the correct request handler.
   Take note that it is possible for different controller functions to handle requests to the same route.
  */
-router.route('/')
+router.route('/listings')
   .get(listings.list)
-  //.post(listings.create);
+  .post(listings.create);
 
 
 /*
   The ':' specifies a URL parameter. 
  */
-router.route('/:listingId')
+router.route('/listing/:listingId')
   .get(listings.read)
   .put(listings.update)
   .delete(listings.delete);
@@ -32,4 +33,6 @@ router.route('/:listingId')
  */
 router.param('listingId', listings.listingByID);
 
+router.route('/users/getCurrentUser')
+  .get(users.currentUser);
 module.exports = router;

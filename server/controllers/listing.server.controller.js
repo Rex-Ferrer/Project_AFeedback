@@ -61,6 +61,7 @@ exports.list = function(req, res) {
   })
 };
 
+
 /* 
   Middleware: find a listing by its ID, then pass it to the next request handler. 
 

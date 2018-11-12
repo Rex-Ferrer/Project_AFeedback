@@ -17,6 +17,9 @@ angular.module('listings', []).factory('Listings', function($http) {
       });
     });
     return $http.delete('127.0.0.1/api/listings/' + id);
+  },
+  getCurrentUser:function() {
+    return $htttp.get("127.0.0.1/api/users/getCurrentUser")
   }
 };
 
