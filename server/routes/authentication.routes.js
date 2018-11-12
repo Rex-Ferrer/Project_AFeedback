@@ -28,7 +28,7 @@ module.exports = function(app, passport){
     //====================
     app.get('/professor', isLoggedIn, function(req,res, next) {
         if(req.user.role == "Professor"){
-            res.sendFile(path.resolve('client/professor.html'));//This is a bad idea
+            res.sendFile(path.resolve('client/professor.html'), req.user.username);//This is a bad idea
         }else{
             res.send("You must be a professor to access this page!")
         }
