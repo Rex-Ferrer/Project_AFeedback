@@ -4,7 +4,7 @@ module.exports = function(app, passport){
     app.get('/', isLoggedIn, function(req, res, next){//Checks if user is logged in and then...
         if(req.user.role == "Professor"){//Redirects based off of user roles
             if(isLoggedIn){
-                res.redirect(professor.html);
+                res.redirect('/professor');
             };//TODO: Change to professor view
         }
         return next();
@@ -26,8 +26,12 @@ module.exports = function(app, passport){
     //====================
     //PROFESSOR
     //====================
-    app.get('/professor', function(req,res) {
-        res.sendFile(path.resolve('client/professor.html'));
+    app.get('/professor', isLoggedIn, function(req,res, next) {
+        if(req.user.role == "Professor"){
+            res.sendFile(path.resolve('client/professor.html'));//This is a bad idea
+        }else{
+            res.send("You must be a professor to access this page!")
+        }
     });
 
     //====================
@@ -42,13 +46,6 @@ module.exports = function(app, passport){
         failureRedirect : '/signup', //go back to signup page
         failureFlash: true //allows for flash messages
     }));
-
-    //Process signup
-    app.post('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user: req.user
-        });
-    });
 
     app.get('/logout', function(req,res) {
         req.logout();
