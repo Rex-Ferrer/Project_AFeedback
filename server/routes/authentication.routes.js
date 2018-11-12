@@ -1,4 +1,5 @@
-var path = require('path');
+var path = require('path'),
+    listingsRouter = require('../routes/listings.routes');
 module.exports = function(app, passport){
 
     app.get('/', isLoggedIn, function(req, res, next){//Checks if user is logged in and then...
@@ -51,6 +52,8 @@ module.exports = function(app, passport){
         req.logout();
         res.redirect('/');
     });
+
+    app.use("/api", isLoggedIn, listingsRouter);//Must be logged in for any request to the API
 
     function isLoggedIn(req,res,next) {//USE THIS TO CHECK IF THERE IS A LOGIN
         if(req.isAuthenticated())

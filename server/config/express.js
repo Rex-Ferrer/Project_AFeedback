@@ -36,8 +36,8 @@ app.use(passport.initialize());
 app.use(passport.session()); //Persistent login sessions
 app.use(flash());// message storing in session?
 
-app.use("/api", listingsRouter);
-require('../routes/authentication.routes.js')(app, passport);//Adds in routing folder
+require('../routes/authentication.routes.js')(app, passport);//Adds in routing file for routing users that have been authenticated
+
 
 //Redirects to static page for all routes not specified
 app.use("/", express.static('client'));

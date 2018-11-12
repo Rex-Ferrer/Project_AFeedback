@@ -2,6 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+var Listing = require('../models/listing');
 
 module.exports = function(passport) {
 
@@ -48,10 +49,21 @@ module.exports = function(passport) {
                 newUser.lastname = req.body.lastname;//Gets the lastname field from the request
                 newUser.role = req.body.role;
                 newUser.save(function(err) {
+                    
                     if (err){
                         console.log(err);
                         return done(null, false, req.flash('signupMessage', 'You must sign up with a ufl email'));//Have to edit it so signup message actually reflects error
                         //Right now only sends message for invalid UF email, even if the issue is in not filling out a username or password
+                    }
+                    if (newUser.role = 'Professor'){
+                        var newListing = new Listing();
+                        newListing.name = req.body.firstname + " " + req.body.lastname;
+                        newListing.role = req.body.role;
+                        newListing.save(function(err){
+                            if(err){
+                                console.log(err);
+                            }
+                        })
                     }
                     return done(null, newUser);
                 });
