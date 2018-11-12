@@ -29,10 +29,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 
-//Functions to grab listings from API site and store into array
-    Listings.getBuildings().then(function(response) {
-      console.log($scope.listings);
-      $scope.test = response.data;
+//Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
+    Listings.getUser().then(function(response) {
+      $scope.user = response.data;
+      console.log($scope.test);
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
