@@ -28,11 +28,15 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 //Creates a new professor with inputted user info
-    $scope.editInfo = function(profTwitter, profInfo, profSlack, profLinked, profCourses) {
-      var newProfessor = {
-        "name": $scope.user.firstname + $scope.user.lastname,
+    $scope.addTA = function(tEmail) {
+      $scope.ta = User.findByEmail();
+      console.log($scope.ta);
+      /*
+      var newTA = {
+        "name":
         //"email": $scope.user.username,
-        "role": $scope.user.role,
+        "role": 'TA',
+        "createdBy": $scope.user.firstname + $scope.user.lastname,
         "classes": $scope.profCourses,
       //  "twitter": profTwitter,
         //"slack": profSlack,
@@ -42,6 +46,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.listings.push(newProfessor);
     //Use Listings.update to apply changes to old professor
       Listings.createProf(newProfessor);
+      */
     };
 
     //Adds marker to map given coordinates
@@ -84,6 +89,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
 
+    $scope.canEdit = function(listing){
+      console.log($scope.user.username);
+      //console.log(JSON.stringify(user.username));
+     // console.log(listing.email);
+
+      return ($scope.user.username == listing.email);//is causing error
+
+    };
 
     $scope.editClicked = false;
     $scope.newListing = {};
@@ -131,6 +144,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log(id);
       console.log("list " + list);
       Listings.update(id._id, list);
+      window.location.replace('/');
    };
 
 
