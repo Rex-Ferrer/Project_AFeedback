@@ -18,16 +18,14 @@ angular.module('listings', []).factory('Listings', function($http) {
     createProf: function(newProfessor) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },
-  delete: function(id) {
-
-    Listings.findById(id, function(err,listing){
-      if(err) throw err;
-
-      listing.remove(function(err){
-        if (err) throw err;
+    delete: function(id) {
+      Listings.findById(id, function(err,listing){
+        if(err) throw err;
+        listing.remove(function(err){
+          if (err) throw err;
+        });
       });
-    });
-    return $http.delete('127.0.0.1/api/listings/' + id);
+      return $http.delete('127.0.0.1/api/listings/' + id);
   },
 
   getCurrentUser:function() {

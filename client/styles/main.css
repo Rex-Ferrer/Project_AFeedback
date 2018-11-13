@@ -26,7 +26,6 @@
   }
   .panel-heading{
     background-color: white;
-    hsl(209, 100%, 30%); /*idk why class .panel-heading does not work and id panelHeading does*/
   }
 
   #title{
@@ -67,7 +66,7 @@
     text-align: center;
     text-decoration: none;
     margin: 5px 2px;
-    } .
+    }
   .fa:hover {
     opacity: 0.7;
   }

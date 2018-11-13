@@ -7,16 +7,16 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
 
   /* Instantiate a Listing */
-  var listing = new Listing(req.body);
+  var newClass = new Class(req.body);
 
 
   /* Then save the listing */
-  listing.save(function(err) {
+  newClass.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(listing);
+      res.json(classes);
     }
   });
 };
