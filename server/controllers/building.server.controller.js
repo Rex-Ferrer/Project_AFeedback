@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 exports.AllBuildings = function(req, res) {
   Building.find({}, function(err, buildingList) {
     if(err) throw err;
-    console.log(buildingList);
     res.json(buildingList);
   })
 };
