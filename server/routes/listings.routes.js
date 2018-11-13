@@ -17,7 +17,7 @@ router.route('/listings')
 /*
   The ':' specifies a URL parameter. 
  */
-router.route('/listing/:listingId')
+router.route('/listings/:listingId')
   .get(listings.read)
   .put(listings.update)
   .delete(listings.delete);
