@@ -19,9 +19,7 @@ var courseTaught = new Schema({
         required: true
     },
     //Gonna have to figure a way to have recurring dates 
-    day: {
-        type:String
-    }
+    time: [String]//This will be of the type Day + Start Time + End Time
 });
 
 var Class = mongoose.model("Class", courseTaught);

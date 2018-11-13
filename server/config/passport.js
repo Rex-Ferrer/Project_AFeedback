@@ -60,7 +60,7 @@ module.exports = function(passport) {
                         newListing.name = req.body.firstname + " " + req.body.lastname;
                         newListing.role = req.body.role;
 
-                        newListing.email = newUser.username; //rudy
+                        newListing.email = req.body.username;
 
                         newListing.save(function(err){
                             if(err){

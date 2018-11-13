@@ -17,8 +17,9 @@ var adminListing = new Schema({
     twitter : String,
     slack : String,
     linkedin : String,
-    email : String,  //rudy- to work with username
+    email : String,  
     information: String
+
 })
 
 var Listing = mongoose.model('Listing', adminListing);

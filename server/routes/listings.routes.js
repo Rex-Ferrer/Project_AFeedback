@@ -2,7 +2,9 @@
 var listings = require('../controllers/listing.server.controller.js'),
     users = require('../controllers/user.server.controller.js'),
     building = require('../controllers/building.server.controller.js'),
-    express = require('express'),
+
+    classes = require('../controllers/class.server.controller.js'),
+    express = require('express'), 
     router = express.Router();
 
 /*
@@ -41,4 +43,13 @@ router.route('/users/getCurrentUser')
 router.route('/buildings')
   .get(building.AllBuildings);
 
+
+router.route('/buildings/:buildingID')
+  .get(building.read);
+
+router.param('buildingID', building.buildingByID);
+
+router.route('/classes')
+  .get(classes.list);
 module.exports = router;
+

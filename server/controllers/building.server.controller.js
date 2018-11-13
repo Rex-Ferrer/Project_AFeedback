@@ -11,6 +11,21 @@ exports.AllBuildings = function(req, res) {
     console.log(buildingList);
     res.json(buildingList);
   })
-
 };
 
+exports.read = function(req, res) {
+  /* send back the listing as json from the request */
+  res.json(req.building);
+};
+
+
+exports.buildingByID = function(req, res, next, id) {
+  Building.findById(id).exec(function(err, building) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.building = building;
+      next();
+    }
+  });
+};
