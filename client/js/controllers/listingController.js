@@ -97,6 +97,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       return ($scope.user.username == listing.email);//is causing error
 
     };
+
     $scope.editClicked = false;
     $scope.newListing = {};
 
