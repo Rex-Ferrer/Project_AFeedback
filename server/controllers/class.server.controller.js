@@ -30,7 +30,7 @@ exports.list = function(req, res) {
 };
 
 exports.read = function(req,res){
-    req.json(req.classes);
+    res.json(req.classes);
 }
 
 
@@ -46,7 +46,7 @@ exports.ClassByID = function(req, res, next, id) {
     if(err) {
       res.status(400).send(err);
     } else {
-      req.listing = listing;
+      req.classes = classes;
       next();
     }
   });

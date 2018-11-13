@@ -11,9 +11,6 @@ angular.module('listings', []).factory('Listings', function($http) {
     update: function(id, listing){
       return $http.put('/api/listings/' + id, listing);
     },
-
-
-
     getBuildings: function() {
       return $http.get('/api/buildings');
     },
