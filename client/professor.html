@@ -74,10 +74,9 @@
                     <a href={{listing.slack}} class="fa fa-slack" ng-show="listing.slack"></a>
 
                     <div ng-show= "canEdit(listing) && editClicked">
-                        <h2>{{listing.role}} {{listing.name}}    <a class="glyphicon glyphicon-edit"></a></h2>
-                        <h3>{{listing.email}}</h3>
-                        {{editClicked}}
-                        <h3>Information: {{listing.information}}</h3>
+                        <h3>{{listing.role}} {{listing.name}}</h3>
+                        <h4>{{listing.email}}</h4>
+                        <h4>Information: {{listing.information}}</h4>
                         <form ng-show = "editClicked" novalidate class="simple-form">
                           Information  <input type="text" class="form-control" ng-model="newListing.information"/>
                           Twitter <input type="text" class="form-control" ng-model="newListing.twitter"/>
