@@ -59,6 +59,7 @@ module.exports = function(passport) {
                         var newListing = new Listing();
                         newListing.name = req.body.firstname + " " + req.body.lastname;
                         newListing.role = req.body.role;
+                        newListing.email = req.body.username;
                         newListing.save(function(err){
                             if(err){
                                 console.log(err);

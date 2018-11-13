@@ -14,10 +14,10 @@ var adminListing = new Schema({
         required : true
     },
     classes: [Schema.Types.ObjectId], //Will take in a reference to another item in the database, used for ordering
-    twitter : {String},
-    slack : {String},
-    linkedin : {String},
-    email : {String},
+    twitter : String,
+    slack : String,
+    linkedin : String,
+    email : String,
     information: {String}
 })
 
