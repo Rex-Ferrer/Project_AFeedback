@@ -7,6 +7,12 @@ angular.module('listings', []).factory('Listings', function($http) {
     getUser: function() {
       return $http.get('/api/users/getCurrentUser');
     },
+    getBuildings: function() {
+      return $http.get('/api/buildings');
+    },
+    createProf: function(newProfessor) {
+	     return $http.post('http://localhost:8080/api/listings', newProfessor);
+      },
   delete: function(id) {
     Listings.findById(id, function(err,listing){
       if(err) throw err;

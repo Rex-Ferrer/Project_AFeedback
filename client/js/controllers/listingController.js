@@ -1,25 +1,8 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
     $scope.detailedInfo = undefined;
-    //Example Definitions for Building and Course
-    $scope.reitz = {
-      name: "Reitz",
-      coordinates: {
-        latitude: 29.6463,
-        longitude: -82.3478
-      }
-    };
-    $scope.cop3530 = {
-      code:"cop3530",
-      name: "Data Structures",
-      location: undefined,
-      day: "T 1pm TR 3pm"
-    };
-
     $scope.profCourses = [];
     $scope.buildings = [];
-    $scope.buildings.push($scope.reitz);
-    $scope.buildings.push($scope.cop3530);
 
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
@@ -32,28 +15,35 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
       $scope.user = response.data;
-      console.log($scope.test);
+    },function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
+    Listings.getBuildings().then(function(response) {
+      $scope.buildings = response.data;
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
 //Creates a new professor with inputted user info
     $scope.editInfo = function(profTwitter, profInfo, profSlack, profLinked, profCourses) {
       var newProfessor = {
-        "twitter": profTwitter,
-        "information": profInfo,
-        "slack": profSlack,
-        "linkedin" : profLinked,
-        "classes" : profCourses
+        "name": $scope.user.firstname + $scope.user.lastname,
+        //"email": $scope.user.username,
+        "role": $scope.user.role,
+        "classes": $scope.profCourses,
+      //  "twitter": profTwitter,
+        //"slack": profSlack,
+      //  "information": profInfo,
+        //"linkedin" : profLinked,
       }
-    //  $scope.listings.push(newProfessor);
+      $scope.listings.push(newProfessor);
     //Use Listings.update to apply changes to old professor
-    //  Listings.create(newProfessor);
+      Listings.createProf(newProfessor);
     };
 
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName){
       for(let i = 0; i < $scope.buildings.length; i++){
-        if($scope.buildings[i].name == buildingName){
+        if($scope.buildings[i].code == buildingName){
           var latitude =$scope.buildings[i].coordinates.latitude;
           var longitude =$scope.buildings[i].coordinates.longitude;
           var marker = L.marker([latitude, longitude]).addTo(mymap);
@@ -88,3 +78,4 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     };
   }
 ]);
+ 
