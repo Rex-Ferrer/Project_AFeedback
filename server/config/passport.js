@@ -49,7 +49,7 @@ module.exports = function(passport) {
                 newUser.lastname = req.body.lastname;//Gets the lastname field from the request
                 newUser.role = req.body.role;
                 newUser.save(function(err) {
-                    
+
                     if (err){
                         console.log(err);
                         return done(null, false, req.flash('signupMessage', 'You must sign up with a ufl email'));//Have to edit it so signup message actually reflects error
@@ -59,6 +59,9 @@ module.exports = function(passport) {
                         var newListing = new Listing();
                         newListing.name = req.body.firstname + " " + req.body.lastname;
                         newListing.role = req.body.role;
+
+                        newListing.email = newUser.username; //rudy
+
                         newListing.save(function(err){
                             if(err){
                                 console.log(err);

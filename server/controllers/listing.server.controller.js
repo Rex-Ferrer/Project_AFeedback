@@ -1,6 +1,6 @@
 
 /* Dependencies */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Listing = require('../models/listing.js');
 
 /* Create a listing */
@@ -27,17 +27,28 @@ exports.read = function(req, res) {
   res.json(req.listing);
 };
 
-/* Update a listing */
+/* Update a listing *///////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.update = function(req, res) {
   var listing = req.listing;
-  Listing.findOneAndUpdate({name : listing.name} ,req.body, {new: true}, function(err, listing) {
-    if(err) throw err;
-    res.json(listing);
-    console.log("Listing updated!")
-  })
-  /** TODO **/
-  /* Replace the article's properties with the new properties found in req.body */
-  /* Save the article */
+  listing.name = req.body.name;
+  listing.role = req.body.role;
+  listing.classes = req.body.classes;
+  listing.twitter = req.body.twitter;
+  listing.slack = req.body.slack;
+  listing.linkedin = req.body.linkedin;
+  listing.email = req.body.email;
+  listing.information = req.body.information;
+
+  // Then save the listing
+  listing.save(function(err) {
+    if(err) {
+      console.log('error is here');
+      console.log(err);
+      res.status(400).send(err);
+    } else {
+      res.json(listing);
+    }
+  });
 };
 
 /* Delete a listing */
@@ -62,11 +73,11 @@ exports.list = function(req, res) {
 };
 
 
-/* 
-  Middleware: find a listing by its ID, then pass it to the next request handler. 
+/*
+  Middleware: find a listing by its ID, then pass it to the next request handler.
 
-  Find the listing using a mongoose query, 
-        bind it to the request object as the property 'listing', 
+  Find the listing using a mongoose query,
+        bind it to the request object as the property 'listing',
         then finally call next
  */
 exports.listingByID = function(req, res, next, id) {

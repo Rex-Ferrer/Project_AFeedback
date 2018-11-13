@@ -18,7 +18,8 @@
   #accordion{
     margin-left:50px;
     width: 600px;
-    float:left;
+    max-height: 400px;
+    overflow: auto;
   }
 
   #panelHeading{
