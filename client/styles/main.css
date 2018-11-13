@@ -26,14 +26,13 @@
   }
   .panel-heading{
     background-color: white;
-    hsl(209, 100%, 30%); /*idk why class .panel-heading does not work and id panelHeading does*/
   }
 
   #title{
     font-family: 'palatino', sans-serif;
     font-size: 40px;
     font-weight: bold;
-    letter-spacing: -2px; 
+    letter-spacing: -2px;
     margin-top: 0px;
     margin-right: 50px;
     margin-bottom: 0px;
@@ -81,7 +80,7 @@
     font-family: 'palatino', sans-serif;
     font-size: 40px;
     font-weight: bold;
-    letter-spacing: -2px; 
+    letter-spacing: -2px;
     margin-top: 0px;
     margin-right: 50px;
     margin-bottom: 0px;

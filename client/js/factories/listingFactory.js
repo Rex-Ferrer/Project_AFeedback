@@ -12,7 +12,7 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.put('/api/listings/' + id, listing);
     },
 
-    delete: function(id) {
+
 
     getBuildings: function() {
       return $http.get('/api/buildings');
