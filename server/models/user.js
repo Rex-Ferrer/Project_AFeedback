@@ -15,6 +15,11 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
     password: {type: String, required: true},
     firstname: {type: String, required: true},
     lastname: {type : String, required: true},
+    role :{
+        type : String,
+        enum : ['Professor', 'Student', 'Developer'],
+        required : [true, "Need a role"]
+    },
 
     classes : [Schema.Types.ObjectId]
 
