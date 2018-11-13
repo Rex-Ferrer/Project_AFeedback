@@ -81,10 +81,10 @@
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
-        <input type="text" class="form-control" placeholder="Latitude" id = "lat"ng-model = "latitude">
+        <input type="text" class="form-control" placeholder="Building Code" id = "lat"ng-model = "buildingName">
         <!-- 29.6499  -82.3486 -->
-        <input type="text" class="form-control" placeholder="Longitude" id = "long"ng-model = "longitude">
-        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(latitude,longitude) >Add Marker</button>
+        <input type="text" class="form-control" placeholder="Description" id = "long"ng-model = "description">
+        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(buildingName,description) >Add Marker</button>
 
           <script type="text/javascript">
             var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
