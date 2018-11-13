@@ -38,6 +38,7 @@ exports.update = function(req, res) {
   listing.linkedin = req.body.linkedin;
   listing.email = req.body.email;
   listing.information = req.body.information;
+  listing.createdBy = req.user.username;//Keeps track of the user who created the listing so that they appear for the professor page where it is edited
 
   // Then save the listing
   listing.save(function(err) {
