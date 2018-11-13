@@ -17,7 +17,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       $scope.user = response.data[0];
 
-      
+
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -51,6 +51,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           var latitude =$scope.buildings[i].coordinates.latitude;
           var longitude =$scope.buildings[i].coordinates.longitude;
           var marker = L.marker([latitude, longitude]).addTo(mymap);
+          .bindPopup(description);
         }
       }
     };
