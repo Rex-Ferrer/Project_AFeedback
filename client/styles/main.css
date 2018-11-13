@@ -12,10 +12,14 @@
     padding-top:40px;
 }
 
-#accordion{
-  margin-left:50px;
-  width: 600px;
-}
+
+  #accordion{
+    margin-left:50px;
+    width: 600px;
+    max-height: 400px;
+    overflow: auto;
+  }
+
 
   #panelHeading{
     background-color: hsl(209, 100%, 30%);

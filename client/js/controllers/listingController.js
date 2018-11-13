@@ -14,12 +14,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
-      $scope.user = response.data;
+
+      $scope.user = response.data[0];
+
+      
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
     Listings.getBuildings().then(function(response) {
       $scope.buildings = response.data;
+
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -76,6 +80,61 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.showDetails = function(index) {
       $scope.detailedInfo = $scope.listings[index];
     };
+
+
+
+
+    $scope.editClicked = false;
+    $scope.newListing = {};
+
+    $scope.updateListing = function(listing){
+      var index = $scope.listings.indexOf(listing);
+      console.log('index: ' + index);
+      var id = $scope.listings[index];
+      console.log('id: ' + id);
+
+      var list = {
+        name: listing.name,
+        role: listing.role,
+        classes: listing.classes,
+        twitter: $scope.newListing.twitter,
+        slack: $scope.newListing.slack,
+        linkedin: $scope.newListing.linkedin,
+        email: listing.email,
+        information: $scope.newListing.information
+      };
+
+      console.log('list.name: ' + list.name);
+
+      if (!list.twitter){
+        list.twitter = listing.twitter;
+      }
+      if (!list.slack){
+        list.slack = listing.slack;
+      }
+      if (!list.linkedin){
+        list.linkedin = listing.linkedin;
+      }
+      if (!list.information){
+        list.information = listing.information;
+      }
+
+
+      console.log('id' + id);
+      listing.twitter = list.twitter,
+      listing.slack = list.slack,
+      listing.linkedin = list.linkedin,
+      listing.information = list.information
+
+      //$scope.listings.push($scope.newListing);
+      console.log(id);
+      console.log("list " + list);
+      Listings.update(id._id, list);
+   };
+
+
+
+
   }
 ]);
  
