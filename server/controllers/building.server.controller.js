@@ -14,3 +14,14 @@ exports.AllBuildings = function(req, res) {
 
 };
 
+
+exports.buildingByID = function(req, res, next, id) {
+  Building.findById(id).exec(function(err, building) {
+    if(err) {
+      res.status(400).send(err);
+    } else {
+      req.building = building;
+      next();
+    }
+  });
+};
