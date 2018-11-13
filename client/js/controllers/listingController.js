@@ -28,10 +28,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log('Unable to retrieve listings:', error);
     });
 //Creates a new professor with inputted user info
+/*
     $scope.addTA = function(tEmail) {
       $scope.ta = User.findByEmail();
       console.log($scope.ta);
-      /*
       var newTA = {
         "name":
         //"email": $scope.user.username,
@@ -46,9 +46,20 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.listings.push(newProfessor);
     //Use Listings.update to apply changes to old professor
       Listings.createProf(newProfessor);
-      */
     };
-
+    */
+  //TODO Add courses and their Meeting times into array to be used by prof object
+    $scope.addCourse = function(courseCode, days, startTime,endTime, location){
+      var newCourse = {
+        "code": courseCode,
+        "name": "test",
+        "location": location,
+        //"time": startTime + endTime + days
+      }
+    //  $scope.profCourses.push(newCourse);
+    //Use Listings.update to apply changes to old professor
+      Listings.createCourse(newCourse);
+    }
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -60,9 +71,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         }
       }
     };
-//TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function(code){
-    }
 //TODO JSON API to store all avaiable classes into an array
 
 //TODO Professor obj has a list of markers for TAs on map
