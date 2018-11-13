@@ -104,7 +104,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         classes: listing.classes,
         twitter: $scope.newListing.twitter,
         slack: $scope.newListing.slack,
-        linkein: $scope.newListing.linkedin,
+        linkedin: $scope.newListing.linkedin,
         email: listing.email,
         information: $scope.newListing.information
       };

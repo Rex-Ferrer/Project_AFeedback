@@ -30,7 +30,7 @@
           Gator Placer
         </h1>
       </div>
-      <div class = "row" id = wrapper ng-show = "user.role == 'Student'"><!--wraps search bar, accordion, and map-->
+      <div class = "row" id = wrapper><!--wraps search bar, accordion, and map-->
         <div class = "col-md-6"> <!--search bar and accordion on the left-->
           <div class="input-group" id="accordion_search"><!--search bar-->
               <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
@@ -102,9 +102,10 @@
         <h3>Information: {{listing.information}}</h3>
         <form ng-show = "editClicked" novalidate class="simple-form">
           Information  <input type="text" class="form-control" ng-model="newListing.information"/>
-          {{newListing.information}}<br>
+          Twitter <input type="text" class="form-control" ng-model="newListing.twitter"/>
+          Slack <input type="text" class="form-control" ng-model="newListing.slack"/>
+          LinkedIn <input type="text" class="form-control" ng-model="newListing.linkedin"/>
           <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
-          {{test}}
         </form>
 
       </div>
