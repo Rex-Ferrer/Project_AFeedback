@@ -51,5 +51,9 @@ router.param('buildingID', building.buildingByID);
 
 router.route('/classes')
   .get(classes.list);
+
+//router.route('classes/:classID');
+
+//router.param('classID', classes.classByID);
 module.exports = router;
 
