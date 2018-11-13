@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 exports.currentUser = function(req, res) {
   User.find({username : req.user.username}, function(err, user) {
     if(err) throw err;
-    console.log(user);
     res.json(user);
   })
 };

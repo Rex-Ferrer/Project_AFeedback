@@ -96,9 +96,9 @@
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
-        <input type="text" class="form-control" placeholder="Building Code" id = "lat"ng-model = "buildingName">
+        <input type="text" class="form-control" placeholder="Building Code" ng-model = "buildingName">
         <!-- 29.6499  -82.3486 -->
-        <input type="text" class="form-control" placeholder="Description" id = "long"ng-model = "description">
+        <input type="text" class="form-control" placeholder="Description" ng-model = "description">
         <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(buildingName,description) >Add Marker</button>
 
           <script type="text/javascript">
@@ -115,6 +115,23 @@
 
         </div><!--col md 6 right side-->
     </div><!--row-->
+    <input type="text" class="form-control" placeholder="TA Email"ng-model = "ta_Email">
+    <button type="button" class="btn btn-primary" id = "click" ng-click = addTA(ta_Email) >Add TA</button>
+    <br> </br>
+    <br> </br>
+    <form class="form-inline">
+      <input type="text" class="form-control" placeholder="Course Code"ng-model = "ta_Email">
+      <input type="text" class="form-control" placeholder="Days"ng-model = "ta_Email">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Possible Times</label>
+      <select class="form-control">
+        <option>7AM</option>
+        <option>8AM</option>
+        <option>9AM</option>
+        <option>10AM</option>
+        <option>11AM</option>
+      </select>
+      <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, Days, Time)" >Add Course</button>
+    </form>
 
 
 
