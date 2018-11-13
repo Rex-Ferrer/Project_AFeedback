@@ -84,7 +84,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
 
+    $scope.canEdit = function(listing){
+      console.log($scope.user.username);
+      //console.log(JSON.stringify(user.username));
+     // console.log(listing.email);
 
+      return ($scope.user.username == listing.email);//is causing error
+
+    };
     $scope.editClicked = false;
     $scope.newListing = {};
 
@@ -131,6 +138,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log(id);
       console.log("list " + list);
       Listings.update(id._id, list);
+      window.location.replace('/');
    };
 
 
