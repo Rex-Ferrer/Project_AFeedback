@@ -29,6 +29,8 @@
         <h1 id = "title">
           Gator Placer
         </h1>
+
+      <button type="button" class="btn btn-primary" id = "click" ng-click = signOut() >Sign Out</button>
       </div>
 
 
@@ -119,17 +121,26 @@
     <br> </br>
     <br> </br>
     <form class="form-inline">
-      <input type="text" class="form-control" placeholder="Course Code"ng-model = "ta_Email">
-      <input type="text" class="form-control" placeholder="Days"ng-model = "ta_Email">
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Possible Times</label>
-      <select class="form-control">
-        <option>7AM</option>
-        <option>8AM</option>
-        <option>9AM</option>
-        <option>10AM</option>
-        <option>11AM</option>
+      <input type="text" class="form-control" placeholder="Course Code"ng-model = "courseCode">
+      <input type="text" class="form-control" placeholder="Days"ng-model = "days">
+      <input type="text" class="form-control" placeholder="Location"ng-model = "location">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Times</label>
+      <select class="form-control" ng-model = "startTime">
+        <option>7:25AM</option>
+        <option>8:30AM</option>
+        <option>9:35AM</option>
+        <option>10:40AM</option>
+        <option>11:45AM</option>
       </select>
-      <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, Days, Time)" >Add Course</button>
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Times</label>
+      <select class="form-control" ng-model = "endTime">
+        <option>7:25AM</option>
+        <option>8:30AM</option>
+        <option>9:35AM</option>
+        <option>10:40AM</option>
+        <option>11:45AM</option>
+      </select>
+      <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, days, startTime,endTime, location)" >Add Course</button>
     </form>
 
 

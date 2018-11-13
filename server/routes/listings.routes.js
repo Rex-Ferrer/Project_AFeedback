@@ -4,7 +4,7 @@ var listings = require('../controllers/listing.server.controller.js'),
     building = require('../controllers/building.server.controller.js'),
 
     classes = require('../controllers/class.server.controller.js'),
-    express = require('express'), 
+    express = require('express'),
     router = express.Router();
 
 /*
@@ -14,7 +14,10 @@ var listings = require('../controllers/listing.server.controller.js'),
 router.route('/listings')
   .get(listings.list)
   .post(listings.create);
-
+  
+router.route('/classes')
+  .get(classes.list)
+  .post(classes.create);
 
 /*
   The ':' specifies a URL parameter.
@@ -54,8 +57,7 @@ router.route('/buildings/:buildingID')
 
 router.param('buildingID', building.buildingByID);
 
-router.route('/classes')
-  .get(classes.list);
+
 
 router.route('classes/:classID')
   .get(classes.read);
@@ -63,4 +65,3 @@ router.route('classes/:classID')
 router.param('classID', classes.ClassByID);
 
 module.exports = router;
-

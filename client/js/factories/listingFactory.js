@@ -18,6 +18,9 @@ angular.module('listings', []).factory('Listings', function($http) {
     createProf: function(newProfessor) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },
+    createCourse: function(newCourse) {
+       return $http.post('http://localhost:8080/api/classes', newCourse);
+      },
 
     findByEmail: function(email) {
       User.findOne({'username' : email}, function(err,user){
