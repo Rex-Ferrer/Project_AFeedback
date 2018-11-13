@@ -11,7 +11,11 @@ exports.AllBuildings = function(req, res) {
     console.log(buildingList);
     res.json(buildingList);
   })
+};
 
+exports.read = function(req, res) {
+  /* send back the listing as json from the request */
+  res.json(req.building);
 };
 
 

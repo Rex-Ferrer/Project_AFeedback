@@ -42,6 +42,11 @@ router.route('/users/getCurrentUser')
 router.route('/buildings')
   .get(building.AllBuildings);
 
+router.route('/buildings/:buildingID')
+  .get(building.read);
+
+router.param('buildingID', building.buildingByID);
+
 router.route('/classes')
   .get(classes.list);
 module.exports = router;
