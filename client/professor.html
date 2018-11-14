@@ -71,9 +71,9 @@
                     <ul>
                       <li>{{research}}</li>
                     </ul>-->
-                    <a href={{listing.linkedin}} class="fa fa-linkedin" ng-show="listing.linkedin"></a>
-                    <a href={{listing.twitter}} class="fa fa-twitter" ng-show="listing.twitter"></a>
-                    <a href={{listing.slack}} class="fa fa-slack" ng-show="listing.slack"></a>
+                    <a href={{listing.linkedin}} target ="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
+                    <a href={{listing.twitter}} target ="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
+                    <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
 
                     <div ng-show= "canEdit(listing) && editClicked">
                         <h3>{{listing.role}} {{listing.name}}</h3>
@@ -81,9 +81,9 @@
                         <h4>Information: {{listing.information}}</h4>
                         <form ng-show = "editClicked" novalidate class="simple-form">
                           Information  <input type="text" class="form-control" ng-model="newListing.information"/>
-                          Twitter <input type="text" class="form-control" ng-model="newListing.twitter"/>
+                          Twitter <input type="text"  class="form-control" ng-model="newListing.twitter"/>
                           Slack <input type="text" class="form-control" ng-model="newListing.slack"/>
-                          LinkedIn <input type="text" class="form-control" ng-model="newListing.linkedin"/>
+                          LinkedIn <input type="text"  class="form-control" ng-model="newListing.linkedin"/>
                           <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
                         </form>
 
