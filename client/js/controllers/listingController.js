@@ -98,7 +98,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     $scope.canEdit = function(listing){
-      console.log($scope.user.username);
+      //console.log($scope.user.username);
       //console.log(JSON.stringify(user.username));
      // console.log(listing.email);
 
