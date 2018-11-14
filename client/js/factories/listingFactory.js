@@ -11,15 +11,15 @@ angular.module('listings', []).factory('Listings', function($http) {
     update: function(id, listing){
       return $http.put('/api/listings/' + id, listing);
     },
-
-
-
     getBuildings: function() {
       return $http.get('/api/buildings');
     },
 
     createProf: function(newProfessor) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
+      },
+    createCourse: function(newCourse) {
+       return $http.post('http://localhost:8080/api/classes', newCourse);
       },
 
     findByEmail: function(email) {
