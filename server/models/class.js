@@ -19,14 +19,14 @@ var courseTaught = new Schema({
         required: true
     },
     //Gonna have to figure a way to have recurring dates 
-    time: [String]//This will be of the type Day + Start Time + End Time
+    //time: [String]//This will be of the type Day + Start Time + End Time
     /*
         time : [
             M:  9:35 - 10:25
             W:  9:35 - 10:25
             F:  9:35 - 10:25
         ]
-    */,
+    *///,
     // classType :{
     //     type : String,
     //     enum : ['Office Hours', 'Lecture', 'Discussion'],
