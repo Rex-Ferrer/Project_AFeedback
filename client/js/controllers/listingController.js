@@ -126,6 +126,7 @@ $scope.signOut = function(){
     $scope.editInfo = false;
     $scope.editSocial = false;
     $scope.editClicked = false;
+    $scope.addCourseForm = false;
     $scope.newListing = {};
 
     $scope.updateListing = function(listing){

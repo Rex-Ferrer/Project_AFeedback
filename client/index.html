@@ -76,7 +76,7 @@
                       <br>
                       <button href= "" class="btn btn-primary btn-sm" ng-click = "editSocial = !editSocial">Edit Social Media </button>
                     </div>
-                    <div ng-show="editSocial">
+                    <div ng-show="editSocial && isUser">
                       <br>
                       <form novalidate class="simple-form">
                         Twitter <input type="text"  placeholder = {{listing.twitter}} class="form-control" ng-model="newListing.twitter"/>
