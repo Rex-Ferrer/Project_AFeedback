@@ -53,10 +53,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
      
      var locationID;
       for(let i = 0; i < $scope.buildings.length; i++){
-        console.log($scope.buildings[i].code);
+        //console.log($scope.buildings[i].code);
         if($scope.buildings[i].code == location){
           locationID = $scope.buildings[i]._id;
-          console.log(locationID);
+          //console.log(locationID);
         }
       }
 
@@ -70,6 +70,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
       Listings.createCourse(newCourse);
+      console.log($scope.user.classes);
+      $scope.user.classes.push(newCourse);
+      console.log($scope.user.classes);
+      $scope.updateListing($scope.user);
     }
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
@@ -109,7 +113,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     $scope.canEdit = function(listing){
-      console.log($scope.user.username);
+      //console.log($scope.user.username);
       //console.log(JSON.stringify(user.username));
      // console.log(listing.email);
 
