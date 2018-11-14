@@ -26,18 +26,13 @@
   </head>
   <body ng-app = "directoryApp" ng-controller ="ListingsController">
       <div id ="titleWrapper">
-        <h1 id = "title">
-          Gator Placer
-        </h1>
-
-      <button type="button" class="btn btn-primary" id = "click" ng-click = signOut() >Sign Out</button>
+        <h1 id = "title">Gator Placer</h1>
+        <button type="button" class="btn btn-primary" id = "click" ng-click = signOut() >Sign Out</button>
       </div>
-
 
       <img src="./images/ufcampus.jpg" style="width:100%;height:400px;">
 
-      <div class = "row" id = wrapper ng-controller ="ListingsController"><!--wraps search bar, accordion, and map-->
-
+      <div class = "row" id = "wrapper"><!--wraps search bar, accordion, and map-->
         <div class = "col-md-6"> <!--search bar and accordion on the left-->
           <div class="input-group" id="accordion_search"><!--search bar-->
               <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
@@ -70,7 +65,7 @@
                       <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
                     </div>
                     <div>
-                    <button href= "" class="btn btn-primary btn-sm" ng-show = "isUser" ng-click = "editSocial = !editSocial">Edit Social Media </button>
+                      <button href= "" class="btn btn-primary btn-sm" ng-show = "isUser" ng-click = "editSocial = !editSocial">Edit Social Media </button>
                     </div>
                     <div>
                       <form ng-show = "editSocial" novalidate class="simple-form">
