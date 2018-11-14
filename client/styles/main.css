@@ -2,20 +2,33 @@
 #mapid {
   height: 600px;
   width: 525px;
-  margin: 40px;
+  margin: 20px;
 }
-
+#mapInput{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 525px;
+}
 #accordion_search {
-    width: 600px;
+    margin-right: 25px;
     margin-left: 50px;
     margin-bottom:25px;
     padding-top:40px;
+}
+#markerButton{
+  margin-left:20px
+}
+#addTaForm{
+  margin-left: 50px;
+  margin-bottom:10px;
+  margin-right: 25px;
 }
 
 
   #accordion{
     margin-left:50px;
-    width: 600px;
+    margin-right: 25px;
     max-height: 600px;
     overflow: auto;
   }

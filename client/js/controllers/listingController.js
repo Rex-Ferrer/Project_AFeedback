@@ -50,7 +50,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     */
   //TODO Add courses and their Meeting times into array to be used by prof object
     $scope.addCourse = function(courseCode, days, startTime,endTime, location){
-     
+
      var locationID;
       for(let i = 0; i < $scope.buildings.length; i++){
         //console.log($scope.buildings[i].code);
@@ -118,6 +118,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     };
 
+    $scope.TaForm = false;
     $scope.editInfo = false;
     $scope.editSocial = false;
     $scope.editClicked = false;

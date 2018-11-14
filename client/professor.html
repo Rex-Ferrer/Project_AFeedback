@@ -63,18 +63,21 @@
                           <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
                       </form>
                     </div>
-                    <br><br>
-                    <div>
+                    <div ng-show = "listing.linkedin || listing.twitter || listing.slack">
+                      <br><br>
                       <a href={{listing.linkedin}} target ="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
                       <a href={{listing.twitter}} target ="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
                       <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
-                      <button href= "" class="btn btn-primary btn-sm" ng-show = "isUser" ng-click = "editSocial = !editSocial">Edit Social Media </button>
+                    </div>
+                    <div>
+                    <button href= "" class="btn btn-primary btn-sm" ng-show = "isUser" ng-click = "editSocial = !editSocial">Edit Social Media </button>
                     </div>
                     <div>
                       <form ng-show = "editSocial" novalidate class="simple-form">
+                        <br>
                         Twitter <input type="text"  placeholder = {{listing.twitter}} class="form-control" ng-model="newListing.twitter"/>
                         Slack <input type="text" placeholder = {{listing.slack}} class="form-control" ng-model="newListing.slack"/>
-                        LinkedIn <input type="text"  placeholder = {{listing.linkedin}} class="form-control" ng-model="newListing.linkedin"/>
+                        LinkedIn <input type="text"  placeholder = {{listing.linkedin}} class="form-control" ng-model="newListing.linkedin"/><br>
                         <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
                       </form>
                     </div>
@@ -83,15 +86,23 @@
                 </div><!--panel collapse-->
             </div><!--panel default-->
           </div><!--panel group-->
+          <div id="addTaForm">
+            <button class="btn btn-primary" ng-click = "TaForm = !TaForm">Add a TA</button><br>
+            <div ng-show= "TaForm">
+              <br>
+              <input type="text" class="form-control" placeholder="TA Email" ng-model = "ta_Email"><br>
+              <button type="button" class="btn btn-primary" id = "click" ng-click = addTA(ta_Email) >Submit</button><br>
+            </div>
+          </div>
         </div><!--col md left-->
         <div class = "col-md-6">
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
-        <input type="text" class="form-control" placeholder="Building Code" ng-model = "buildingName">
+        <input type="text" id = "mapInput" class="form-control" placeholder="Building Code" ng-model = "buildingName">
         <!-- 29.6499  -82.3486 -->
-        <input type="text" class="form-control" placeholder="Description" ng-model = "description">
-        <button type="button" class="btn btn-primary" id = "click" ng-click = addMarker(buildingName,description) >Add Marker</button>
+        <input type="text" id = "mapInput" class="form-control" placeholder="Description" ng-model = "description">
+        <button type="button" class="btn btn-primary" id = "markerButton" ng-click = addMarker(buildingName,description) >Add Marker</button>
 
           <script type="text/javascript">
             var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
