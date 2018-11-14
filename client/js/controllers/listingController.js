@@ -3,7 +3,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.detailedInfo = undefined;
     $scope.profCourses = [];
     $scope.buildings = [];
-
+    $scope.ta = undefined;
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
     Listings.getAll().then(function(response) {
@@ -11,7 +11,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-
 //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
 
@@ -27,27 +26,30 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
+
 //Creates a new professor with inputted user info
-/*
     $scope.addTA = function(tEmail) {
-      $scope.ta = User.findByEmail();
-      console.log($scope.ta);
-      var newTA = {
-        "name":
-        //"email": $scope.user.username,
-        "role": 'TA',
-        "createdBy": $scope.user.firstname + $scope.user.lastname,
-        "classes": $scope.profCourses,
-      //  "twitter": profTwitter,
-        //"slack": profSlack,
-      //  "information": profInfo,
-        //"linkedin" : profLinked,
-      }
-      $scope.listings.push(newProfessor);
-    //Use Listings.update to apply changes to old professor
-      Listings.createProf(newProfessor);
+      Listings.findByEmail(tEmail).then(function(response) {
+        $scope.ta = response.data[0];
+        console.log($scope.ta);
+        var newTA = {
+          "name": $scope.ta.firstname + " " + $scope.ta.lastname,
+          "email": $scope.ta.username,
+          "role": 'TA',
+          "password": $scope.ta.password,
+          "createdBy": $scope.user.username,
+          "classes": $scope.profCourses,
+        }
+        console.log(newTA);
+        $scope.listings.push(newTA);
+        console.log($scope.listings);
+      //Use Listings.update to apply changes to old professor
+        Listings.createProf(newTA);
+      },function(error) {
+        console.log('Unable to retrieve listings:', error);
+      });
+      return;
     };
-    */
   //TODO Add courses and their Meeting times into array to be used by prof object
     $scope.addCourse = function(courseCode, days, startTime,endTime, location){
 
@@ -87,7 +89,9 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 //TODO JSON API to store all avaiable classes into an array
-
+$scope.signOut = function(){
+  Listings.signOut();
+  }
 //TODO Professor obj has a list of markers for TAs on map
 
 

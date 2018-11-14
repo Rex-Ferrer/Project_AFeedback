@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 /* Create a listing */
 exports.create = function(req, res) {
-
+      console.log("ttt");
   /* Instantiate a Listing */
   var listing = new Listing(req.body);
 

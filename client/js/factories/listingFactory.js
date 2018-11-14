@@ -7,6 +7,12 @@ angular.module('listings', []).factory('Listings', function($http) {
     getUser: function() {
       return $http.get('/api/users/getCurrentUser');
     },
+    findByEmail: function(email) {
+      return $http.get('/api/users/'+ email);
+    },
+    signOut: function(){
+      return $http.get('127.0.0.1/logout');
+    },
 
     update: function(id, listing){
       return $http.put('/api/listings/' + id, listing);
@@ -19,15 +25,8 @@ angular.module('listings', []).factory('Listings', function($http) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },
     createCourse: function(newCourse) {
-       return $http.post('http://localhost:8080/api/classes', newCourse);
+       return $http.post('127.0.0.1/api/classes', newCourse);
       },
-
-    findByEmail: function(email) {
-      User.findOne({'username' : email}, function(err,user){
-        if(err) throw err;
-        return user;
-      });
-    },
 
     delete: function(id) {
       Listings.findById(id, function(err,listing){
