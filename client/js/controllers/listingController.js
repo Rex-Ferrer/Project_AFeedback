@@ -98,14 +98,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     $scope.canEdit = function(listing){
-      //console.log($scope.user.username);
-      //console.log(JSON.stringify(user.username));
-     // console.log(listing.email);
-
+      $scope.isUser = $scope.user.username == listing.email;
       return ($scope.user.username == listing.email);//is causing error
 
     };
 
+    $scope.editInfo = false;
+    $scope.editSocial = false;
     $scope.editClicked = false;
     $scope.newListing = {};
 

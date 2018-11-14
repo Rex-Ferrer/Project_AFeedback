@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 #mapid {
-  height: 400px;
+  height: 600px;
   width: 525px;
   margin: 40px;
 }
@@ -16,7 +16,7 @@
   #accordion{
     margin-left:50px;
     width: 600px;
-    max-height: 400px;
+    max-height: 600px;
     overflow: auto;
   }
 
