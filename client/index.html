@@ -27,7 +27,7 @@
   <body ng-app = "directoryApp" ng-controller ="ListingsController">
       <div id = "titleWrapper">
         <h1 id = "title"> Gator Placer </h1>
-        <button type="button" class="btn btn-primary" id = "click" ng-click = signOut() >Sign Out</button>
+        <button type="button" class="btn btn-primary" id = "signOut" ng-click = signOut() >Sign Out</button>
       </div>
 
       <img src="./images/ufcampus.jpg" style="width:100%;height:400px;">
@@ -43,21 +43,48 @@
                 <div class="panel-heading" id = "panelHeading" data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}} >
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}}> <!--needs a unique identifier without spaces(name is not good enough)-->
-                    {{listing.name}}<div style = "float: right">{{listing.role}}</div></a>
+                    {{listing.name}}<span> <a href = "" class="glyphicon glyphicon-edit" ng-show = canEdit(listing)></a></span><div style = "float: right">{{listing.role}}</div></a>
                   </h4>
                 </div>
                 <div id = {{listing._id}} class="panel-collapse collapse">
                   <div class="panel-body">
-                    <div>Email: {{listing.email}}<br><br></div>
+                    <div>Email: {{listing.email}}</div>
+                    <div ng-show = "isUser && !listing.information">
+                      <br><br>
+                      <button href = ""  class="btn btn-primary btn-sm" ng-click = "editInfo = !editInfo">Add Info</button>
+                      <br><br>
+                    </div>
                     <div ng-show = listing.information>
-                        Information: {{listing.information}}
+                      <br><br>
+                      Information: {{listing.information}}
+                      <a href = "" ng-show = "isUser && listing.information" ng-click = "editInfo = !editInfo" class="glyphicon glyphicon-edit"></a>
+                    </div>
+                    <div ng-show = "editInfo && isUser">
+                      <form novalidate class="simple-form">
+                        <br>
+                        <input type="text" class="form-control" ng-model="newListing.information"/>
+                        <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
+                      </form>
                     </div>
                     <div ng-show = "listing.linkedin || listing.twitter || listing.slack">
                         <br><br>
                         <a href={{listing.linkedin}} target ="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
                         <a href={{listing.twitter}} target ="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
                         <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
-                      </div>
+                    </div>
+                    <div ng-show = "isUser">
+                      <br>
+                      <button href= "" class="btn btn-primary btn-sm" ng-click = "editSocial = !editSocial">Edit Social Media </button>
+                    </div>
+                    <div ng-show="editSocial">
+                      <br>
+                      <form novalidate class="simple-form">
+                        Twitter <input type="text"  placeholder = {{listing.twitter}} class="form-control" ng-model="newListing.twitter"/>
+                        Slack <input type="text" placeholder = {{listing.slack}} class="form-control" ng-model="newListing.slack"/>
+                        LinkedIn <input type="text"  placeholder = {{listing.linkedin}} class="form-control" ng-model="newListing.linkedin"/><br>
+                        <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
+                      </form>
+                    </div>
                   </div><!--panel body-->
                 </div><!--panel collapse-->
             </div><!--panel default-->
