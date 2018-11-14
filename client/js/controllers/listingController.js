@@ -30,7 +30,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 //Creates a new professor with inputted user info
     $scope.addTA = function(tEmail) {
       Listings.findByEmail(tEmail).then(function(response) {
-        $scope.ta = response.data;
+        $scope.ta = response.data[0];
         console.log($scope.ta);
         var newTA = {
           "name": $scope.ta.firstname + " " + $scope.ta.lastname,
@@ -40,10 +40,11 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           "createdBy": $scope.user.username,
           "classes": $scope.profCourses,
         }
+        console.log(newTA);
         $scope.listings.push(newTA);
+        console.log($scope.listings);
       //Use Listings.update to apply changes to old professor
         Listings.createProf(newTA);
-        console.log($scope.ta);
       },function(error) {
         console.log('Unable to retrieve listings:', error);
       });
