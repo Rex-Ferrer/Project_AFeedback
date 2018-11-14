@@ -56,7 +56,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         //console.log($scope.buildings[i].code);
         if($scope.buildings[i].code == location){
           locationID = $scope.buildings[i]._id;
-          //console.log(locationID);
+         // console.log(locationID);
         }
       }
 
@@ -73,7 +73,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log($scope.user.classes);
       $scope.user.classes.push(newCourse);
       console.log($scope.user.classes);
-      $scope.updateListing($scope.user);
+      //$scope.updateListing($scope.user);
     }
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){

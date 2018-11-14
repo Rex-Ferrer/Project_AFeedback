@@ -81,7 +81,6 @@
                         <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
                       </form>
                     </div>
-
                   </div><!--panel body-->
                 </div><!--panel collapse-->
             </div><!--panel default-->
@@ -91,7 +90,7 @@
             <div ng-show= "TaForm">
               <br>
               <input type="text" class="form-control" placeholder="TA Email" ng-model = "ta_Email"><br>
-              <button type="button" class="btn btn-primary" id = "click" ng-click = addTA(ta_Email) >Submit</button><br>
+              <button type="button" class="btn btn-primary" id = "click" ng-click = addTA(ta_Email) >Submit TA</button><br>
             </div>
           </div>
         </div><!--col md left-->
@@ -118,15 +117,12 @@
 
         </div><!--col md 6 right side-->
     </div><!--row-->
-    <input type="text" class="form-control" placeholder="TA Email"ng-model = "ta_Email">
-    <button type="button" class="btn btn-primary" id = "click" ng-click = addTA(ta_Email) >Add TA</button>
-    <br> </br>
-    <br> </br>
     <form class="form-inline">
-      <input type="text" class="form-control" placeholder="Course Code"ng-model = "ta_Email">
-      <input type="text" class="form-control" placeholder="Days"ng-model = "ta_Email">
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Time</label>
-      <select class="form-control" id = "timeOptions">
+      <input type="text" class="form-control" placeholder="Course Code"ng-model = "courseCode">
+      <input type="text" class="form-control" placeholder="Days"ng-model = "days">
+      <input type="text" class="form-control" placeholder="Location"ng-model = "location">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Times</label>
+      <select class="form-control" ng-model = "startTime">
         <option>1: 7:25AM</option>
         <option>2: 8:30AM</option>
         <option>3: 9:35AM</option>
@@ -142,9 +138,8 @@
         <option>E2: 8:20PM</option>
         <option>E3: 9:20PM</option>
       </select>
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Time</label>
-      <select class="form-control" id = "timeOptions">
-        <div id = "timeContainer">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Times</label>
+      <select class="form-control" ng-model = "endTime">
         <option>1: 8:15AM</option>
         <option>2: 9:20AM</option>
         <option>3: 10:25AM</option>
@@ -159,15 +154,9 @@
         <option>E1: 8:10PM</option>
         <option>E2: 9:10PM</option>
         <option>E3: 10:10PM</option>
-      </div>
       </select>
       <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, days, startTime,endTime, location)" >Add Course</button>
     </form>
-
-
-
-
-
 
 
   <div class="modal" tabindex="-1" role="dialog">
