@@ -52,15 +52,30 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     };
   //TODO Add courses and their Meeting times into array to be used by prof object
     $scope.addCourse = function(courseCode, days, startTime,endTime, location){
+
+     var locationID;
+      for(let i = 0; i < $scope.buildings.length; i++){
+        //console.log($scope.buildings[i].code);
+        if($scope.buildings[i].code == location){
+          locationID = $scope.buildings[i]._id;
+         // console.log(locationID);
+        }
+      }
+
+
       var newCourse = {
         "code": courseCode,
         "name": "test",
-        "location": location,
+        "location": locationID,
         //"time": startTime + endTime + days
       }
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
       Listings.createCourse(newCourse);
+      console.log($scope.user.classes);
+      $scope.user.classes.push(newCourse);
+      console.log($scope.user.classes);
+      //$scope.updateListing($scope.user);
     }
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
@@ -102,14 +117,14 @@ $scope.signOut = function(){
 
 
     $scope.canEdit = function(listing){
-      //console.log($scope.user.username);
-      //console.log(JSON.stringify(user.username));
-     // console.log(listing.email);
-
+      $scope.isUser = $scope.user.username == listing.email;
       return ($scope.user.username == listing.email);//is causing error
 
     };
 
+    $scope.TaForm = false;
+    $scope.editInfo = false;
+    $scope.editSocial = false;
     $scope.editClicked = false;
     $scope.newListing = {};
 

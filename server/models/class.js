@@ -7,7 +7,6 @@ var courseTaught = new Schema({
     code: {
         type: String,
         required: true,
-        unique: true
     },
     name: {
         type: String,
@@ -27,11 +26,11 @@ var courseTaught = new Schema({
             F:  9:35 - 10:25
         ]
     */,
-    classType :{
+    /*classType :{
         type : String,
         enum : ['Office Hours', 'Lecture', 'Discussion'],
         required : [true, "Need a role"]
-    }
+    }*/
 });
 
 var Class = mongoose.model("Class", courseTaught);
