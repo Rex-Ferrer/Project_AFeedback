@@ -74,9 +74,6 @@
                     <a href={{listing.slack}} class="fa fa-slack" ng-show="listing.slack"></a>
 
                     <div ng-show= "canEdit(listing) && editClicked">
-                        <h3>{{listing.role}} {{listing.name}}</h3>
-                        <h4>{{listing.email}}</h4>
-                        <h4>Information: {{listing.information}}</h4>
                         <form ng-show = "editClicked" novalidate class="simple-form">
                           Information  <input type="text" class="form-control" ng-model="newListing.information"/>
                           Twitter <input type="text" class="form-control" ng-model="newListing.twitter"/>
@@ -121,13 +118,41 @@
     <form class="form-inline">
       <input type="text" class="form-control" placeholder="Course Code"ng-model = "ta_Email">
       <input type="text" class="form-control" placeholder="Days"ng-model = "ta_Email">
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Possible Times</label>
-      <select class="form-control">
-        <option>7AM</option>
-        <option>8AM</option>
-        <option>9AM</option>
-        <option>10AM</option>
-        <option>11AM</option>
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Time</label>
+      <select class="form-control" id = "timeOptions">
+        <option>1: 7:25AM</option>
+        <option>2: 8:30AM</option>
+        <option>3: 9:35AM</option>
+        <option>4: 10:40AM</option>
+        <option>5: 11:45AM</option>
+        <option>6: 12:50PM</option>
+        <option>7: 1:55PM</option>
+        <option>8: 3:00PM</option>
+        <option>9: 4:05PM</option>
+        <option>10: 5:10PM</option>
+        <option>11: 6:15PM</option>
+        <option>E1: 7:20PM</option>
+        <option>E2: 8:20PM</option>
+        <option>E3: 9:20PM</option>
+      </select>
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Time</label>
+      <select class="form-control" id = "timeOptions">
+        <div id = "timeContainer">
+        <option>1: 8:15AM</option>
+        <option>2: 9:20AM</option>
+        <option>3: 10:25AM</option>
+        <option>4: 11:30AM</option>
+        <option>5: 12:35AM</option>
+        <option>6: 1:40PM</option>
+        <option>7: 2:45PM</option>
+        <option>8: 3:50PM</option>
+        <option>9: 4:55PM</option>
+        <option>10: 6:00PM</option>
+        <option>11: 7:05PM</option>
+        <option>E1: 8:10PM</option>
+        <option>E2: 9:10PM</option>
+        <option>E3: 10:10PM</option>
+      </div>
       </select>
       <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, Days, Time)" >Add Course</button>
     </form>

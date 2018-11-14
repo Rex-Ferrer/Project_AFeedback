@@ -20,6 +20,11 @@
     overflow: auto;
   }
 
+  #timeContainer{
+    max-height: 50px;
+    overflow: auto;
+  }
+
 
   #panelHeading{
     background-color: hsl(209, 100%, 30%);
