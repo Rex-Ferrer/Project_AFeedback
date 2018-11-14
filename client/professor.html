@@ -53,32 +53,41 @@
                 </div><!--panel-heading-->
                 <div id = {{listing._id}} class="panel-collapse collapse">
                   <div class="panel-body">
+                      <a href = "" ng-show = canEdit(listing) ng-click= "editClicked = !editClicked">Edit Profile</a>
                     <div>Email: {{listing.email}}<br><br></div>
                     <div ng-show = listing.information>
                       Information: {{listing.information}}
-                      <a href = "" ng-show = "isUser && listing.information" ng-click = "editInfo = !editInfo" class="glyphicon glyphicon-edit"></a>
-                      <button href = "" ng-show = "isUser && !listing.information" class="btn btn-primary btn-sm" ng-click = "editInfo = !editInfo">Add Info</button>
-                      <form ng-show = "editInfo && isUser" novalidate class="simple-form">
-                          <input type="text" class="form-control" ng-model="newListing.information"/>
-                          <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
-                      </form>
                     </div>
-                    <br><br>
-                    <div>
-                      <a href={{listing.linkedin}} target ="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
-                      <a href={{listing.twitter}} target ="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
-                      <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
-                      <button href= "" class="btn btn-primary btn-sm" ng-show = "isUser" ng-click = "editSocial = !editSocial">Edit Social Media </button>
-                    </div>
-                    <div>
-                      <form ng-show = "editSocial" novalidate class="simple-form">
-                        Twitter <input type="text"  placeholder = {{listing.twitter}} class="form-control" ng-model="newListing.twitter"/>
-                        Slack <input type="text" placeholder = {{listing.slack}} class="form-control" ng-model="newListing.slack"/>
-                        LinkedIn <input type="text"  placeholder = {{listing.linkedin}} class="form-control" ng-model="newListing.linkedin"/>
-                        <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
-                      </form>
+                    <div ng-show = "showEditForm(user,listing)">
+                      Information
+                      <input type="text" class="form-control" />
                     </div>
 
+                    <!--Future Courses
+                    <ul>
+                      <li>{{futureCourse}}</li>
+                    </ul>-->
+                    <!--Research Areas
+                    <ul>
+                      <li>{{research}}</li>
+                    </ul>-->
+                    <a href={{listing.linkedin}} target ="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
+                    <a href={{listing.twitter}} target ="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
+                    <a href={{listing.slack}} target ="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
+
+                    <div ng-show= "canEdit(listing) && editClicked">
+                        <h3>{{listing.role}} {{listing.name}}</h3>
+                        <h4>{{listing.email}}</h4>
+                        <h4>Information: {{listing.information}}</h4>
+                        <form ng-show = "editClicked" novalidate class="simple-form">
+                          Information  <input type="text" class="form-control" ng-model="newListing.information"/>
+                          Twitter <input type="text"  class="form-control" ng-model="newListing.twitter"/>
+                          Slack <input type="text" class="form-control" ng-model="newListing.slack"/>
+                          LinkedIn <input type="text"  class="form-control" ng-model="newListing.linkedin"/>
+                          <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
+                        </form>
+
+                      </div>
                   </div><!--panel body-->
                 </div><!--panel collapse-->
             </div><!--panel default-->
@@ -114,8 +123,9 @@
     <form class="form-inline">
       <input type="text" class="form-control" placeholder="Course Code"ng-model = "courseCode">
       <input type="text" class="form-control" placeholder="Days"ng-model = "days">
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Time</label>
-      <select class="form-control" id = "timeOptions">
+      <input type="text" class="form-control" placeholder="Location"ng-model = "location">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Start Times</label>
+      <select class="form-control" ng-model = "startTime">
         <option>1: 7:25AM</option>
         <option>2: 8:30AM</option>
         <option>3: 9:35AM</option>
@@ -131,9 +141,8 @@
         <option>E2: 8:20PM</option>
         <option>E3: 9:20PM</option>
       </select>
-      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Time</label>
-      <select class="form-control" id = "timeOptions">
-        <div id = "timeContainer">
+      <label class="my-1 mr-2" for="inlineFormCustomSelectPref">End Times</label>
+      <select class="form-control" ng-model = "endTime">
         <option>1: 8:15AM</option>
         <option>2: 9:20AM</option>
         <option>3: 10:25AM</option>
@@ -148,15 +157,9 @@
         <option>E1: 8:10PM</option>
         <option>E2: 9:10PM</option>
         <option>E3: 10:10PM</option>
-      </div>
       </select>
       <button type="button" class="btn btn-primary" id = "click" ng-click = "addCourse(courseCode, days, startTime,endTime, location)" >Add Course</button>
     </form>
-
-
-
-
-
 
 
   <div class="modal" tabindex="-1" role="dialog">

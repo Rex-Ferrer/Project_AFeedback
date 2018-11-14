@@ -9,11 +9,13 @@ exports.create = function(req, res) {
 
   /* Instantiate a Listing */
   var newClass = new Class(req.body);
-  buildingID = building
-  req.body.location = Building.find({code : req.body.code}, function(err, building) {
-    if(err) throw err;
-    return building;
-  }).id;
+
+  //WHY THIS HERE
+  // buildingID = building
+  // req.body.location = Building.find({code : req.body.code}, function(err, building) {
+  //   if(err) throw err;
+  //   return building;
+  // }).id;
 
 
   /* Then save the listing */
