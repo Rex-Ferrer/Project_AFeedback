@@ -1,22 +1,30 @@
 
 /* Dependencies */
 var mongoose = require('mongoose'), 
-    Class = require('../models/class.js');
+    Class = require('../models/class.js'),
+    Building = require('../models/building')
 
 /* Create a listing */
 exports.create = function(req, res) {
 
   /* Instantiate a Listing */
-  var listing = new Listing(req.body);
+  var newClass = new Class(req.body);
+
+  //WHY THIS HERE
+  // buildingID = building
+  // req.body.location = Building.find({code : req.body.code}, function(err, building) {
+  //   if(err) throw err;
+  //   return building;
+  // }).id;
 
 
   /* Then save the listing */
-  listing.save(function(err) {
+  newClass.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(listing);
+      //res.json(classes);
     }
   });
 };
@@ -29,6 +37,10 @@ exports.list = function(req, res) {
   })
 };
 
+exports.read = function(req,res){
+    res.json(req.classes);
+}
+
 
 /* 
   Middleware: find a listing by its ID, then pass it to the next request handler. 
@@ -37,12 +49,12 @@ exports.list = function(req, res) {
         bind it to the request object as the property 'listing', 
         then finally call next
  */
-exports.listingByID = function(req, res, next, id) {
+exports.ClassByID = function(req, res, next, id) {
   Class.findById(id).exec(function(err, classes) {
     if(err) {
       res.status(400).send(err);
     } else {
-      req.listing = listing;
+      req.classes = classes;
       next();
     }
   });

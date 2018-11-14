@@ -8,7 +8,6 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
     username: {
         type: String,
         required: true,
-        unique: true,
         match: /@(\w){0,10}(?:\.)?ufl\.edu/g //Valdiates that email is either a @<something>.ufl.edu or @ufl.edu email address
 
     },

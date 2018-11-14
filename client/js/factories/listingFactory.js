@@ -7,27 +7,35 @@ angular.module('listings', []).factory('Listings', function($http) {
     getUser: function() {
       return $http.get('/api/users/getCurrentUser');
     },
+    findByEmail: function(email) {
+      return $http.get('/api/users/'+ email);
+    },
+    signOut: function(){
+      return $http.get('127.0.0.1/logout');
+    },
 
     update: function(id, listing){
       return $http.put('/api/listings/' + id, listing);
     },
-
     getBuildings: function() {
       return $http.get('/api/buildings');
     },
+
     createProf: function(newProfessor) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },
-  delete: function(id) {
+    createCourse: function(newCourse) {
+       return $http.post('127.0.0.1/api/classes', newCourse);
+      },
 
-    Listings.findById(id, function(err,listing){
-      if(err) throw err;
-
-      listing.remove(function(err){
-        if (err) throw err;
+    delete: function(id) {
+      Listings.findById(id, function(err,listing){
+        if(err) throw err;
+        listing.remove(function(err){
+          if (err) throw err;
+        });
       });
-    });
-    return $http.delete('127.0.0.1/api/listings/' + id);
+      return $http.delete('127.0.0.1/api/listings/' + id);
   },
 
   getCurrentUser:function() {

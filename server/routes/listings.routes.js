@@ -4,7 +4,7 @@ var listings = require('../controllers/listing.server.controller.js'),
     building = require('../controllers/building.server.controller.js'),
 
     classes = require('../controllers/class.server.controller.js'),
-    express = require('express'), 
+    express = require('express'),
     router = express.Router();
 
 /*
@@ -14,15 +14,20 @@ var listings = require('../controllers/listing.server.controller.js'),
 router.route('/listings')
   .get(listings.list)
   .post(listings.create);
-
+  
+router.route('/classes')
+  .get(classes.list)
+  .post(classes.create);
 
 /*
   The ':' specifies a URL parameter.
  */
 router.route('/listings/:listingId')
   .get(listings.read)
-  .put(listings.update)/////////////////////////////////////////////////////////////////////////////////////
+  .put(listings.update)
   .delete(listings.delete);
+
+router.param('listingId', listings.listingByID);
 
 /*
   The 'router.param' method allows us to specify middleware we would like to use to handle
@@ -34,11 +39,14 @@ router.route('/listings/:listingId')
   It will then pass control to the routing function specified above, where it will either
   get, update, or delete that specific listing (depending on the HTTP verb specified)
  */
-router.param('listingId', listings.listingByID);
 
 router.route('/users/getCurrentUser')
   .get(users.currentUser);
 
+router.route('/users/:userEmail')
+    .get(users.read);
+
+router.param('userEmail', users.UserByEmail);
 
 router.route('/buildings')
   .get(building.AllBuildings);
@@ -49,7 +57,11 @@ router.route('/buildings/:buildingID')
 
 router.param('buildingID', building.buildingByID);
 
-router.route('/classes')
-  .get(classes.list);
-module.exports = router;
 
+
+router.route('classes/:classID')
+  .get(classes.read);
+
+router.param('classID', classes.ClassByID);
+
+module.exports = router;

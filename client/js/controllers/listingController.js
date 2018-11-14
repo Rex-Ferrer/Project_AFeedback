@@ -3,7 +3,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.detailedInfo = undefined;
     $scope.profCourses = [];
     $scope.buildings = [];
-
+    $scope.ta = undefined;
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
     Listings.getAll().then(function(response) {
@@ -11,7 +11,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-
 //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
 
@@ -27,23 +26,57 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-//Creates a new professor with inputted user info
-    $scope.editInfo = function(profTwitter, profInfo, profSlack, profLinked, profCourses) {
-      var newProfessor = {
-        "name": $scope.user.firstname + $scope.user.lastname,
-        //"email": $scope.user.username,
-        "role": $scope.user.role,
-        "classes": $scope.profCourses,
-      //  "twitter": profTwitter,
-        //"slack": profSlack,
-      //  "information": profInfo,
-        //"linkedin" : profLinked,
-      }
-      $scope.listings.push(newProfessor);
-    //Use Listings.update to apply changes to old professor
-      Listings.createProf(newProfessor);
-    };
 
+//Creates a new professor with inputted user info
+    $scope.addTA = function(tEmail) {
+      Listings.findByEmail(tEmail).then(function(response) {
+        $scope.ta = response.data[0];
+        console.log($scope.ta);
+        var newTA = {
+          "name": $scope.ta.firstname + " " + $scope.ta.lastname,
+          "email": $scope.ta.username,
+          "role": 'TA',
+          "password": $scope.ta.password,
+          "createdBy": $scope.user.username,
+          "classes": $scope.profCourses,
+        }
+        console.log(newTA);
+        $scope.listings.push(newTA);
+        console.log($scope.listings);
+      //Use Listings.update to apply changes to old professor
+        Listings.createProf(newTA);
+      },function(error) {
+        console.log('Unable to retrieve listings:', error);
+      });
+      return;
+    };
+  //TODO Add courses and their Meeting times into array to be used by prof object
+    $scope.addCourse = function(courseCode, days, startTime,endTime, location){
+
+     var locationID;
+      for(let i = 0; i < $scope.buildings.length; i++){
+        //console.log($scope.buildings[i].code);
+        if($scope.buildings[i].code == location){
+          locationID = $scope.buildings[i]._id;
+         // console.log(locationID);
+        }
+      }
+
+
+      var newCourse = {
+        "code": courseCode,
+        "name": "test",
+        "location": locationID,
+        //"time": startTime + endTime + days
+      }
+    //  $scope.profCourses.push(newCourse);
+    //Use Listings.update to apply changes to old professor
+      Listings.createCourse(newCourse);
+      console.log($scope.user.classes);
+      $scope.user.classes.push(newCourse);
+      console.log($scope.user.classes);
+      //$scope.updateListing($scope.user);
+    }
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -55,11 +88,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         }
       }
     };
-//TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function(code){
-    }
 //TODO JSON API to store all avaiable classes into an array
-
+$scope.signOut = function(){
+  Listings.signOut();
+  }
 //TODO Professor obj has a list of markers for TAs on map
 
 
@@ -84,7 +116,15 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
 
+    $scope.canEdit = function(listing){
+      $scope.isUser = $scope.user.username == listing.email;
+      return ($scope.user.username == listing.email);//is causing error
 
+    };
+
+    $scope.TaForm = false;
+    $scope.editInfo = false;
+    $scope.editSocial = false;
     $scope.editClicked = false;
     $scope.newListing = {};
 
@@ -131,6 +171,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log(id);
       console.log("list " + list);
       Listings.update(id._id, list);
+      window.location.replace('/');
    };
 
 
