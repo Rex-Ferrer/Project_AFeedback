@@ -19,7 +19,7 @@ var adminListing = new Schema({
     slack : String,
     linkedin : String,
     email : String,  
-    information: String
+    information: String//Add thing to stuff
 
 });
 
