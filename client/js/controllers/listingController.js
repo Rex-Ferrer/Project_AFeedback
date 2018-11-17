@@ -91,6 +91,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 //TODO JSON API to store all avaiable classes into an array
 $scope.signOut = function(){
   Listings.signOut();
+  window.location.replace('/login');
   }
 //TODO Professor obj has a list of markers for TAs on map
 
@@ -131,9 +132,9 @@ $scope.signOut = function(){
 
     $scope.updateListing = function(listing){
       var index = $scope.listings.indexOf(listing);
-      console.log('index: ' + index);
+      //console.log('index: ' + index);
       var id = $scope.listings[index];
-      console.log('id: ' + id);
+      //console.log('id: ' + id);
 
       var list = {
         name: listing.name,
@@ -146,7 +147,7 @@ $scope.signOut = function(){
         information: $scope.newListing.information
       };
 
-      console.log('list.name: ' + list.name);
+      //console.log('list.name: ' + list.name);
 
       if (!list.twitter){
         list.twitter = listing.twitter;
@@ -162,15 +163,15 @@ $scope.signOut = function(){
       }
 
 
-      console.log('id' + id);
+     // console.log('id' + id);
       listing.twitter = list.twitter,
       listing.slack = list.slack,
       listing.linkedin = list.linkedin,
       listing.information = list.information
 
       //$scope.listings.push($scope.newListing);
-      console.log(id);
-      console.log("list " + list);
+      //console.log(id);
+      //console.log("list " + list);
       Listings.update(id._id, list);
       window.location.replace('/');
    };
