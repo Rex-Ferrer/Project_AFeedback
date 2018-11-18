@@ -11,7 +11,7 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.get('/api/users/'+ email);
     },
     signOut: function(){
-      return $http.get('127.0.0.1/logout');
+      return $http.get('/logout');
     },
 
     update: function(id, listing){
