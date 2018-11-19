@@ -91,7 +91,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 //TODO JSON API to store all avaiable classes into an array
 $scope.signOut = function(){
   Listings.signOut();
-  window.location.replace('/login');
+  window.location.replace('/logout');
   }
 //TODO Professor obj has a list of markers for TAs on map
 
