@@ -48,8 +48,19 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       },function(error) {
         console.log('Unable to retrieve listings:', error);
       });
+
+      window.location.replace('/professor');
       return;
     };
+
+
+
+
+
+
+
+
+
   //TODO Add courses and their Meeting times into array to be used by prof object
     $scope.addCourse = function(courseCode, days, startTime,endTime, location){
 
@@ -77,6 +88,15 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       console.log($scope.user.classes);
       //$scope.updateListing($scope.user);
     }
+
+
+
+
+
+
+
+
+
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
       for(let i = 0; i < $scope.buildings.length; i++){
