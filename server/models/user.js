@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Class = require('./class'),
     courseTaught = require('./class');
+    ObjectID = Schema.Types.ObjectId;
 
 var userSchema = new Schema({//Both of these will have to be compared with regex validation with the argument @(\w){0,10}(?:\.)?ufl\.edu
     username: {
@@ -20,7 +21,8 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
         required : [true, "Need a role"]
     },
 
-    classes : [Schema.Types.ObjectId]
+    //classes : [Schema.Types.ObjectId]
+    class: [{type: ObjectID, ref: "courseTaught"}]
 
 });
     //Makes a super cool hash

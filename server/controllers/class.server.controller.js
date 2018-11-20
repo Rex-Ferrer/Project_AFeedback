@@ -1,6 +1,6 @@
 
 /* Dependencies */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Class = require('../models/class.js'),
     Building = require('../models/building')
 
@@ -24,7 +24,7 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      //res.json(classes);
+      res.json(newClass);
     }
   });
 };
@@ -42,11 +42,11 @@ exports.read = function(req,res){
 }
 
 
-/* 
-  Middleware: find a listing by its ID, then pass it to the next request handler. 
+/*
+  Middleware: find a listing by its ID, then pass it to the next request handler.
 
-  Find the listing using a mongoose query, 
-        bind it to the request object as the property 'listing', 
+  Find the listing using a mongoose query,
+        bind it to the request object as the property 'listing',
         then finally call next
  */
 exports.ClassByID = function(req, res, next, id) {
