@@ -67,7 +67,7 @@
                           <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
                       </form>
                     </div>
-                    <div ng-show = "listing.classes > 0 ">
+                    <div ng-show = "listing.classes.length > 0 ">
                       <br>
                       Courses Taught
                       <div ng-repeat = "class in listing.classes">
@@ -164,11 +164,12 @@
           <!-- Make sure you put this AFTER Leaflet's CSS -->
         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
         <div id="mapid"></div>
-        <input type="text" id = "mapInput1" class="form-control" placeholder="Building Code" ng-model = "buildingName">
-        <!-- 29.6499  -82.3486 -->
-        <input type="text" id = "mapInput2" class="form-control" placeholder="Description" ng-model = "description">
-        <button type="button" class="btn btn-primary" id = "markerButton" ng-click = addMarker(buildingName,description) >Add Marker</button>
-
+        <div id="mapInput">
+          <input type="text" id = "mapInput1" class="form-control" placeholder="Building Code" ng-model = "buildingName">
+          <!-- 29.6499  -82.3486 -->
+          <input type="text" id = "mapInput2" class="form-control" placeholder="Description" ng-model = "description">
+          <button type="button" class="btn btn-primary" ng-click = addMarker(buildingName,description) >Add Marker</button>
+        </div>
           <script type="text/javascript">
             var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
