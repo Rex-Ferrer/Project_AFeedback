@@ -21,6 +21,10 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.get('/api/buildings');
     },
 
+    getClasses: function() {
+      return $http.get('/api/classes');
+    },
+
     createProf: function(newProfessor) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },

@@ -20,8 +20,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
+
     Listings.getBuildings().then(function(response) {
       $scope.buildings = response.data;
+
+    },function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
+
+    Listings.getClasses().then(function(response) {
+      $scope.classes = response.data;
 
     },function(error) {
       console.log('Unable to retrieve listings:', error);

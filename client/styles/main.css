@@ -98,6 +98,10 @@
     margin-top: 5%;
   }
 
+  body{
+    font-family: 'Ubuntu';
+   }
+
     #formTitle{
     font-family: 'palatino', sans-serif;
     font-size: 40px;
