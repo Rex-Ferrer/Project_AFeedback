@@ -14,7 +14,7 @@ var adminListing = new Schema({
         required : true
     },
     classes: [Schema.Types.ObjectId], //Will take in a reference to another item in the database, used for ordering
-    createdBy: String, //This adds in who created the listings so that only listings a professor created will pop up when they go to edit them
+    createdBy: [String], //This adds in who created the listings so that only listings a professor created will pop up when they go to edit them
     twitter : String,
     slack : String,
     linkedin : String,

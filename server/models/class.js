@@ -7,6 +7,7 @@ var courseTaught = new Schema({
     code: {
         type: String,
         required: true,
+        unique: false
     },
     name: {
         type: String,

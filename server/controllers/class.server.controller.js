@@ -24,7 +24,7 @@ exports.create = function(req, res) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      //res.json(classes);
+      res.json(newClass._id);
     }
   });
 };

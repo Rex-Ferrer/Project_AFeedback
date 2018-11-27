@@ -25,7 +25,7 @@ angular.module('listings', []).factory('Listings', function($http) {
 	     return $http.post('http://localhost:8080/api/listings', newProfessor);
       },
     createCourse: function(newCourse) {
-       return $http.post('127.0.0.1/api/classes', newCourse);
+       return $http.post('/api/classes', newCourse);
       },
 
     delete: function(id) {

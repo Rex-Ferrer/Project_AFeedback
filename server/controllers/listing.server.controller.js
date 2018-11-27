@@ -8,7 +8,7 @@ exports.create = function(req, res) {
       console.log("ttt");
   /* Instantiate a Listing */
   var listing = new Listing(req.body);
-
+  listing.createdBy.push(req.user.username);
 
   /* Then save the listing */
   listing.save(function(err) {
@@ -38,8 +38,9 @@ exports.update = function(req, res) {
   listing.linkedin = req.body.linkedin;
   listing.email = req.body.email;
   listing.information = req.body.information;
-  listing.createdBy = req.user.username;//Keeps track of the user who created the listing so that they appear for the professor page where it is edited
-
+  if(!listing.createdBy.includes(req.user.username)){
+    lisitngs.createdBy.push(req.user.username);
+  }
   // Then save the listing
   listing.save(function(err) {
     if(err) {

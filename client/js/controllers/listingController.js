@@ -37,8 +37,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           "email": $scope.ta.username,
           "role": 'TA',
           "password": $scope.ta.password,
-          "createdBy": $scope.user.username,
-          "classes": $scope.profCourses,
+          //"createdBy": $scope.user.username,
+          "classes": $scope.profCourses
         }
         console.log(newTA);
         $scope.listings.push(newTA);
@@ -83,6 +83,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
       Listings.createCourse(newCourse);
+      
       console.log($scope.user.classes);
       $scope.user.classes.push(newCourse);
       console.log($scope.user.classes);
