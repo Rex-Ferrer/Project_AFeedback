@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 #mapid {
   height: 600px;
-  width: 525px;
   margin: 20px;
 }
+#mapInput1, #mapInput2{
+  margin-bottom: 20px;
+}
+
 #mapInput{
   margin-left: 20px;
   margin-right: 20px;
-  margin-bottom: 20px;
-  width: 525px;
 }
+
 #accordion_search {
     margin-right: 25px;
     margin-left: 50px;
     margin-bottom:25px;
     padding-top:40px;
 }
-#markerButton{
-  margin-left:20px
-}
+
 #addTaForm{
   margin-left: 50px;
   margin-bottom:10px;
@@ -97,6 +97,10 @@
     margin-left: 15%;
     margin-top: 5%;
   }
+
+  body{
+    font-family: 'Ubuntu';
+   }
 
     #formTitle{
     font-family: 'palatino', sans-serif;

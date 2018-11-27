@@ -20,8 +20,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
+
     Listings.getBuildings().then(function(response) {
       $scope.buildings = response.data;
+
+    },function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
+
+    Listings.getClasses().then(function(response) {
+      $scope.classes = response.data;
 
     },function(error) {
       console.log('Unable to retrieve listings:', error);
@@ -56,13 +64,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
 
-
-
-
-
-
   //TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function(courseCode, days, startTime,endTime, location){
+    $scope.addCourse = function(courseCode, days, startTime,endTime, location,listing){
 
      var locationID;
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -82,17 +85,15 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
-      Listings.createCourse(newCourse);
-      
-      console.log($scope.user.classes);
-      $scope.user.classes.push(newCourse);
-      console.log($scope.user.classes);
-      //$scope.updateListing($scope.user);
+    Listings.createCourse(newCourse).then(function(response){
+      console.log(response)
+      console.log(response.data)
+      $scope.user.classes.push(response.data)
+      listing.classes.push(response.data)
+      $scope.newListing.classes = listing.classes;
+      $scope.updateListing(listing);
+    });
     }
-
-
-
-
 
 
 
