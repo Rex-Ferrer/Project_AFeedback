@@ -45,6 +45,9 @@ testem.log
 Thumbs.db
 node_modules
 
+#For storing the buildings in the database
+/JSONtoMongo.js
+/mapdata.json
 
 
 
