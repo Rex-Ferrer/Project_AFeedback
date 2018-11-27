@@ -26,7 +26,7 @@ angular.module('listings', []).factory('Listings', function($http) {
     },
 
     createProf: function(newProfessor) {
-	     return $http.post('http://localhost:8080/api/listings', newProfessor);
+	     return $http.post('/api/listings', newProfessor);
       },
     createCourse: function(newCourse) {
        return $http.post('/api/classes', newCourse);
@@ -39,11 +39,11 @@ angular.module('listings', []).factory('Listings', function($http) {
           if (err) throw err;
         });
       });
-      return $http.delete('127.0.0.1/api/listings/' + id);
+      return $http.delete('/api/listings/' + id);
   },
 
   getCurrentUser:function() {
-    return $htttp.get("127.0.0.1/api/users/getCurrentUser")
+    return $htttp.get("/api/users/getCurrentUser")
   }
 };
 
