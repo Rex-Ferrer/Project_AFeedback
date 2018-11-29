@@ -38,8 +38,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 //Creates a new professor with inputted user info
     $scope.addTA = function(tEmail, course) {
-      console.log($scope.user);
-      console.log("test");
       Listings.findByEmail(tEmail).then(function(response) {
        var student = {"username": response.data[0].username,
                       "firstname": response.data[0].firstname,
@@ -59,9 +57,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           }
           Listings.createProf(newTA).then(function(response){
             newTA.createdBy.push($scope.user.username);
-            console.log($scope.user);
             newTA.class.push(course);
-            console.log(course);
             $scope.updateListing(newTA);
           });
         }
