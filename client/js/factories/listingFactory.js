@@ -3,9 +3,17 @@ angular.module('listings', []).factory('Listings', function($http) {
     getAll: function() {
       return $http.get('/api/listings');
     },
+
+    getAllUsers: function() {
+      return $http.get('/api/users');
+    },
+
     //Gets current user info from site page
     getUser: function() {
       return $http.get('/api/users/getCurrentUser');
+    },
+    findListingByEmail: function(email) {
+      return $http.get('/api/listings/'+ email);//its not working
     },
     findByEmail: function(email) {
       return $http.get('/api/users/'+ email);
@@ -15,7 +23,7 @@ angular.module('listings', []).factory('Listings', function($http) {
     },
 
     updateUser: function(id, user){
-      return $http.put('/api/users/' + id, user);//unfinished, needed to change user role from student to TA
+      return $http.put('/api/users/' + id, user);
     },
 
     update: function(id, listing){
