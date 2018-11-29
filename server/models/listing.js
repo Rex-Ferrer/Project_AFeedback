@@ -19,7 +19,7 @@ var adminListing = new Schema({
       type: ObjectID,
       ref: "courseTaught"
       }],
-    createdBy: String, //This adds in who created the listings so that only listings a professor created will pop up when they go to edit them
+    createdBy: [String], //This adds in who created the listings so that only listings a professor created will pop up when they go to edit them
     twitter : String,
     slack : String,
     linkedin : String,

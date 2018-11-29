@@ -17,6 +17,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       $scope.user = response.data[0];
 
 
+
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -36,29 +37,41 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     });
 
 //Creates a new professor with inputted user info
-    $scope.addTA = function(tEmail) {
+    $scope.addTA = function(tEmail, course) {
       Listings.findByEmail(tEmail).then(function(response) {
-        $scope.ta = response.data[0];
-        console.log($scope.ta);
-        var newTA = {
-          "name": $scope.ta.firstname + " " + $scope.ta.lastname,
-          "email": $scope.ta.username,
-          "role": 'TA',
-          "password": $scope.ta.password,
-          //"createdBy": $scope.user.username,
-          "classes": $scope.profCourses
-        }
-        console.log(newTA);
-        $scope.listings.push(newTA);
-        console.log($scope.listings);
-      //Use Listings.update to apply changes to old professor
-        Listings.createProf(newTA);
-      },function(error) {
-        console.log('Unable to retrieve listings:', error);
-      });
+       var student = {"username": response.data[0].username,
+                      "firstname": response.data[0].firstname,
+                      "lastname": response.data[0].lastname,
+                      "password": response.data[0].password
+                    }
 
+
+        if (student.role != 'TA'){//is always true because user isnt changed to ta
+          var newTA = {
+            "name": student.firstname + " " + student.lastname,
+            "email": student.username,
+            "role": 'TA',
+            "password": student.password,
+            "createdBy": [],
+            "class": []
+          }
+          Listings.createProf(newTA).then(function(response){
+            newTA.createdBy.push($scope.user.username)
+            newTA.class.push(course)
+            $scope.updateListing(newTA);
+          });
+        }
+        else{
+
+        newTA.createdBy.push($scope.user.username)
+        newTA.classes.push(course)
+        $scope.updateListing(newTA);
+
+      }
       window.location.replace('/professor');
-      return;
+    },function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
     };
 
 
@@ -88,7 +101,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     Listings.createCourse(newCourse).then(function(response){
       console.log(response)
       console.log(response.data)
-      $scope.user.classes.push(response.data)
+      //$scope.user.classes.push(response.data) needs update User function
       listing.classes.push(response.data)
       $scope.newListing.classes = listing.classes;
       $scope.updateListing(listing);
@@ -140,8 +153,9 @@ $scope.signOut = function(){
 
 
     $scope.canEdit = function(listing){
-      $scope.isUser = $scope.user.username == listing.email;
-      return ($scope.user.username == listing.email);//is causing error
+      var username = $scope.user.username;
+      $scope.isUser = username == listing.email;
+      return (username == listing.email);//is causing error
 
     };
 
@@ -166,7 +180,8 @@ $scope.signOut = function(){
         slack: $scope.newListing.slack,
         linkedin: $scope.newListing.linkedin,
         email: listing.email,
-        information: $scope.newListing.information
+        information: $scope.newListing.information,
+        createdBy: listing.createdBy
       };
 
       //console.log('list.name: ' + list.name);

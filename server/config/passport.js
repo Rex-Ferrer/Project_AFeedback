@@ -61,6 +61,7 @@ module.exports = function(passport) {
                         newListing.role = req.body.role;
 
                         newListing.email = req.body.username;
+                        newListing.createdBy.push(req.body.username);//rudy test
 
                         newListing.save(function(err){
                             if(err){

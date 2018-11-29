@@ -14,6 +14,10 @@ angular.module('listings', []).factory('Listings', function($http) {
       return $http.get('/logout');
     },
 
+    updateUser: function(id, user){
+      return $http.put('/api/users/' + id, user);//unfinished, needed to change user role from student to TA
+    },
+
     update: function(id, listing){
       return $http.put('/api/listings/' + id, listing);
     },
@@ -30,21 +34,9 @@ angular.module('listings', []).factory('Listings', function($http) {
       },
     createCourse: function(newCourse) {
        return $http.post('/api/classes', newCourse);
-      },
+      }
 
-    delete: function(id) {
-      Listings.findById(id, function(err,listing){
-        if(err) throw err;
-        listing.remove(function(err){
-          if (err) throw err;
-        });
-      });
-      return $http.delete('/api/listings/' + id);
-  },
 
-  getCurrentUser:function() {
-    return $htttp.get("/api/users/getCurrentUser")
-  }
 };
 
   return methods;

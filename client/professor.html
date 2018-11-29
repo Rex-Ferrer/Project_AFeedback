@@ -155,8 +155,9 @@
             <button class="btn btn-primary" ng-click = "TaForm = !TaForm">Add a TA</button><br>
             <div ng-show= "TaForm"><!--add ta form-->
               <br>
-              <input type="text" class="form-control" placeholder="TA Email" ng-model = "ta_Email"><br>
-              <button type="button" class="btn btn-primary" ng-click = addTA(ta_Email) >Submit TA</button><br>
+              <input type="text" class="form-control" placeholder="TA Email" ng-model = "ta_Email">
+              <input type="text" class="form-control" placeholder="course" ng-model = "course"><br>
+              <button type="button" class="btn btn-primary" ng-click = addTA(ta_Email,course) >Submit TA</button><br>
             </div>
           </div>
         </div><!--col md left-->
