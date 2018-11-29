@@ -38,6 +38,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 //Creates a new professor with inputted user info
     $scope.addTA = function(tEmail, course) {
+      console.log($scope.user);
+      console.log("test");
       Listings.findByEmail(tEmail).then(function(response) {
        var student = {"username": response.data[0].username,
                       "firstname": response.data[0].firstname,
@@ -56,8 +58,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
             "class": []
           }
           Listings.createProf(newTA).then(function(response){
-            newTA.createdBy.push($scope.user.username)
-            newTA.class.push(course)
+            newTA.createdBy.push($scope.user.username);
+            console.log($scope.user);
+            newTA.class.push(course);
+            console.log(course);
             $scope.updateListing(newTA);
           });
         }
@@ -68,7 +72,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         $scope.updateListing(newTA);
 
       }
-      window.location.replace('/professor');
+      //window.location.replace('/professor');
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -108,10 +112,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     });
     }
 
-
-
-
-
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -123,32 +123,56 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         }
       }
     };
-//TODO JSON API to store all avaiable classes into an array
-$scope.signOut = function(){
-  Listings.signOut();
-  window.location.replace('/logout');
-  }
-//TODO Professor obj has a list of markers for TAs on map
+
+          //Adds marker to map given coordinates
+          $scope.addMark = function(id,description){
+            for(let i = 0; i < $scope.buildings.length; i++){
+              if($scope.buildings[i]._id == id){
+                var latitude =$scope.buildings[i].coordinates.latitude;
+                var longitude =$scope.buildings[i].coordinates.longitude;
+                var marker = L.marker([latitude, longitude]).addTo(mymap)
+                .bindPopup(description);
+              }
+            }
+          };
+        //TODO JSON API to store all avaiable classes into an array
+        $scope.signOut = function(){
+          Listings.signOut();
+          window.location.replace('/logout');
+          }
 
 
+          $scope.deleteListing = function(index) {
+             Listings.delete($scope.listings[index]._id);
+          };
 
-    $scope.deleteListing = function(index) {
-	   /**TODO
-        Delete the article using the Listings factory. If the removal is successful,
-		navigate back to 'listing.list'. Otherwise, display the error.
-       */
-       console.log($scope.listings[index]._id);
-
-       Listings.delete($scope.listings[index]._id);
-
-      console.log($scope.listings[index]._id);
-
-
-    };
-
-    $scope.showDetails = function(index) {
-      $scope.detailedInfo = $scope.listings[index];
-    };
+          //Gets class object given its id
+          $scope.getClassByID = function(id){
+            for(let i = 0; i < $scope.classes.length; i++){
+              if ($scope.classes[i]._id == id){
+                return $scope.classes[i];
+              }
+            }
+          }
+          $scope.getLocationByID = function(id){
+            for(var i = 0; i < $scope.buildings.length; i++){
+              if ($scope.buildings[i]._id == id){
+                return $scope.buildings[i];
+              }
+            }
+          }
+          $scope.selectProf = function(listing) {
+            console.log($scope.buildings);
+            console.log(listing);
+            //getClasses
+            //$scope.listings[index]
+            //forEach class, get location
+            for(let i = 0; i < listing.classes.length; i++){
+                course = $scope.getClassByID(listing.classes[i]);
+                console.log(course.location);
+                //location = $scope.getLocationByID(course.location);
+            }
+          };
 
 
 
