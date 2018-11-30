@@ -120,55 +120,56 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
-          //Adds marker to map given coordinates
-          $scope.addMark = function(id,description){
-            for(let i = 0; i < $scope.buildings.length; i++){
-              if($scope.buildings[i]._id == id){
-                var latitude =$scope.buildings[i].coordinates.latitude;
-                var longitude =$scope.buildings[i].coordinates.longitude;
-                var marker = L.marker([latitude, longitude]).addTo(mymap)
-                .bindPopup(description);
-              }
-            }
-          };
-        //TODO JSON API to store all avaiable classes into an array
-        $scope.signOut = function(){
-          Listings.signOut();
-          window.location.replace('/logout');
-          }
+    //Adds marker to map given coordinates
+    $scope.addMark = function(id,description){
+      for(let i = 0; i < $scope.buildings.length; i++){
+        if($scope.buildings[i]._id == id){
+          var latitude =$scope.buildings[i].coordinates.latitude;
+          console.log(latitude);
+          var longitude =$scope.buildings[i].coordinates.longitude;
+          var marker = L.marker([latitude, longitude]).addTo(mymap)
+          .bindPopup(description);
+        }
+      }
+    };
+  //TODO JSON API to store all avaiable classes into an array
+  $scope.signOut = function(){
+    Listings.signOut();
+    window.location.replace('/logout');
+    }
 
 
-          $scope.deleteListing = function(index) {
-             Listings.delete($scope.listings[index]._id);
-          };
+    $scope.deleteListing = function(index) {
+       Listings.delete($scope.listings[index]._id);
+    };
 
-          //Gets class object given its id
-          $scope.getClassByID = function(id){
-            for(let i = 0; i < $scope.classes.length; i++){
-              if ($scope.classes[i]._id == id){
-                return $scope.classes[i];
-              }
-            }
-          }
-          $scope.getLocationByID = function(id){
-            for(var i = 0; i < $scope.buildings.length; i++){
-              if ($scope.buildings[i]._id == id){
-                return $scope.buildings[i];
-              }
-            }
-          }
-          $scope.selectProf = function(listing) {
-            console.log($scope.buildings);
-            console.log(listing);
-            //getClasses
-            //$scope.listings[index]
-            //forEach class, get location
-            for(let i = 0; i < listing.classes.length; i++){
-                course = $scope.getClassByID(listing.classes[i]);
-                console.log(course.location);
-                //location = $scope.getLocationByID(course.location);
-            }
-          };
+    //Gets class object given its id
+    $scope.getClassByID = function(id){
+      for(let i = 0; i < $scope.classes.length; i++){
+        if ($scope.classes[i]._id == id){
+          return $scope.classes[i];
+        }
+      }
+    }
+    $scope.getLocationByID = function(id){
+      for(var i = 0; i < $scope.buildings.length; i++){
+        if ($scope.buildings[i]._id == id){
+          return $scope.buildings[i];
+        }
+      }
+    }
+    $scope.selectProf = function(listing) {
+      //getClasses
+      //$scope.listings[index]
+      //forEach class, get location
+      //mymap._layers.clearLayers();
+
+      for(let i = 0; i < listing.classes.length; i++){
+          var course = $scope.getClassByID(listing.classes[i]);
+          var location = $scope.getLocationByID(course.location);
+          $scope.addMark(location._id, " Description" );
+      }
+    };
 
 
 
