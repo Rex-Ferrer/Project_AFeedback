@@ -105,8 +105,8 @@
                     <div class="form-row align-items-center">
                       <div class="form-group col-md-6">
                         <label>Course Code</label>
-                        <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530" ng-model="courseCode"
-                          ng-change="getCourseNameFromCode(courseCode)">
+                        <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
+                          ng-model="courseCode" ng-change="getCourseNameFromCode(courseCode)">
                       </div>
                       <div class="form-group col-md-6">
                         <label>Course Name</label>
@@ -115,255 +115,112 @@
                       </div>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="form-group col-md-8">
-                            <label for="typeSelect">Select a Type</label>
-                            <select class="form-control" id="" ng-model="classType">
-                              <option>Lecture</option>
-                              <option>Office Hour</option>
-                              <option>Discussion</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                          <label>Location</label>
-                          <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
-                            ng-model="location">
-                        </div>
+                      <div class="form-group col-md-8">
+                        <label for="typeSelect">Select a Type</label>
+                        <select class="form-control" id="" ng-model="classType">
+                          <option>Lecture</option>
+                          <option>Office Hour</option>
+                          <option>Discussion</option>
+                        </select>
                       </div>
+                      <div class="form-group col-md-4">
+                        <label>Location</label>
+                        <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
+                          ng-model="location">
+                      </div>
+                    </div>
                     <div class="form-row align-items-center">
                       <div class="form-check-input col-md-4" id="mondayChecker">
-                        <input class="form-check-input" type = "checkbox"ng-model="mondayCheck">
-                        <label class = "form-check-label" for="mondayCheck">
+                        <input class="form-check-input" type="checkbox" ng-model="mondayCheck">
+                        <label class="form-check-label" for="mondayCheck">
                           Monday
                         </label>
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="mondayStartTime">
-                          <option>7:25AM</option>
-                          <option>8:30AM</option>
-                          <option>9:35AM</option>
-                          <option>10:40AM</option>
-                          <option>11:45AM</option>
-                          <option>12:50PM</option>
-                          <option>1:55PM</option>
-                          <option>3:00PM</option>
-                          <option>4:05PM</option>
-                          <option>5:10PM</option>
-                          <option>6:15PM</option>
-                          <option>7:20PM</option>
-                          <option>8:20PM</option>
-                          <option>9:20PM</option>
+                        <select class="form-control" ng-model="mondayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="mondayEndTime">
-                          <option>8:15AM</option>
-                          <option>9:20AM</option>
-                          <option>10:25AM</option>
-                          <option>11:30AM</option>
-                          <option>12:35PM</option>
-                          <option>1:40PM</option>
-                          <option>2:45PM</option>
-                          <option>3:50PM</option>
-                          <option>4:55PM</option>
-                          <option>6:00PM</option>
-                          <option>7:05PM</option>
-                          <option>8:10PM</option>
-                          <option>9:10PM</option>
-                          <option>10:10PM</option>
-
+                        <select class="form-control" ng-model="mondayEndTime" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="form-check-input col-md-4" id="tuesdayChecker">
-                          <input class="form-check-input" type = "checkbox" ng-model="tuesdayCheck">
-                          <label class = "form-check-label" for="mondayCheck">
-                            Tuesday
-                          </label>
-                        </div>
+                      <div class="form-check-input col-md-4" id="tuesdayChecker">
+                        <input class="form-check-input" type="checkbox" ng-model="tuesdayCheck">
+                        <label class="form-check-label" for="mondayCheck">
+                          Tuesday
+                        </label>
+                      </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="tuesdayStartTime">
-                          <option>7:25AM</option>
-                          <option>8:30AM</option>
-                          <option>9:35AM</option>
-                          <option>10:40AM</option>
-                          <option>11:45AM</option>
-                          <option>12:50AM</option>
-                          <option>1:55PM</option>
-                          <option>3:00PM</option>
-                          <option>4:05PM</option>
-                          <option>5:10PM</option>
-                          <option>6:15PM</option>
-                          <option>7:20PM</option>
-                          <option>8:20PM</option>
-                          <option>9:20PM</option>
+                        <select class="form-control" ng-model="tuesdayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="tuesdayEndTime">
-                          <option>8:15AM</option>
-                          <option>9:20AM</option>
-                          <option>10:25AM</option>
-                          <option>11:30AM</option>
-                          <option>12:35AM</option>
-                          <option>1:40PM</option>
-                          <option>2:45PM</option>
-                          <option>3:50PM</option>
-                          <option>4:55PM</option>
-                          <option>6:00PM</option>
-                          <option>7:05PM</option>
-                          <option>8:10PM</option>
-                          <option>9:10PM</option>
-                          <option>10:10PM</option>
-
+                        <select class="form-control" ng-model="tuesdayEndTime" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="form-check-input col-md-4" id="wednesdayChecker">
-                          <input class="form-check-input" type = "checkbox" ng-model="wednesdayCheck">
-                          <label class = "form-check-label" for="">
-                            Wednesday
-                          </label>
-                        </div>
+                      <div class="form-check-input col-md-4" id="wednesdayChecker">
+                        <input class="form-check-input" type="checkbox" ng-model="wednesdayCheck">
+                        <label class="form-check-label" for="">
+                          Wednesday
+                        </label>
+                      </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="wednesdayStartTime">
-                          <option>7:25AM</option>
-                          <option>8:30AM</option>
-                          <option>9:35AM</option>
-                          <option>10:40AM</option>
-                          <option>11:45AM</option>
-                          <option>12:50AM</option>
-                          <option>1:55PM</option>
-                          <option>3:00PM</option>
-                          <option>4:05PM</option>
-                          <option>5:10PM</option>
-                          <option>6:15PM</option>
-                          <option>7:20PM</option>
-                          <option>8:20PM</option>
-                          <option>9:20PM</option>
+                        <select class="form-control" ng-model="wednesdayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="wednesdayEndTime">
-                          <option>8:15AM</option>
-                          <option>9:20AM</option>
-                          <option>10:25AM</option>
-                          <option>11:30AM</option>
-                          <option>12:35AM</option>
-                          <option>1:40PM</option>
-                          <option>2:45PM</option>
-                          <option>3:50PM</option>
-                          <option>4:55PM</option>
-                          <option>6:00PM</option>
-                          <option>7:05PM</option>
-                          <option>8:10PM</option>
-                          <option>9:10PM</option>
-                          <option>10:10PM</option>
-
+                        <select class="form-control" ng-model="wednesdayEndTime" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="form-check-input col-md-4" id="thursdayChecker">
-                          <input class="form-check-input" type = "checkbox" ng-model="thursdayCheck">
-                          <label class = "form-check-label" for="">
-                            Thursday
-                          </label>
-                        </div>
+                      <div class="form-check-input col-md-4" id="thursdayChecker">
+                        <input class="form-check-input" type="checkbox" ng-model="thursdayCheck">
+                        <label class="form-check-label" for="">
+                          Thursday
+                        </label>
+                      </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="thursdayStartTime">
-                          <option>7:25AM</option>
-                          <option>8:30AM</option>
-                          <option>9:35AM</option>
-                          <option>10:40AM</option>
-                          <option>11:45AM</option>
-                          <option>12:50AM</option>
-                          <option>1:55PM</option>
-                          <option>3:00PM</option>
-                          <option>4:05PM</option>
-                          <option>5:10PM</option>
-                          <option>6:15PM</option>
-                          <option>7:20PM</option>
-                          <option>8:20PM</option>
-                          <option>9:20PM</option>
+                        <select class="form-control" ng-model="thursdayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model ="thursdayEndTime">
-                          <option>8:15AM</option>
-                          <option>9:20AM</option>
-                          <option>10:20AM</option>
-                          <option>11:30AM</option>
-                          <option>12:35AM</option>
-                          <option>1:40PM</option>
-                          <option>2:45PM</option>
-                          <option>3:50PM</option>
-                          <option>4:55PM</option>
-                          <option>6:00PM</option>
-                          <option>7:05PM</option>
-                          <option>8:10PM</option>
-                          <option>9:10PM</option>
-                          <option>10:10PM</option>
+                        <select class="form-control" ng-model="thursdayEndTime" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
                     <div class="form-row align-items-center">
-                        <div class="form-check-input col-md-4" id="fridayChecker">
-                          <input class="form-check-input" type = "checkbox" ng-model="fridayCheck">
-                          <label class = "form-check-label" for="mondayCheck">
-                            Friday
-                          </label>
-                        </div>
+                      <div class="form-check-input col-md-4" id="fridayChecker">
+                        <input class="form-check-input" type="checkbox" ng-model="fridayCheck">
+                        <label class="form-check-label" for="mondayCheck">
+                          Friday
+                        </label>
+                      </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="fridayStartTime">
-                          <option>7:25AM</option>
-                          <option>8:30AM</option>
-                          <option>9:35AM</option>
-                          <option>10:40AM</option>
-                          <option>11:45AM</option>
-                          <option>12:50AM</option>
-                          <option>1:55PM</option>
-                          <option>3:00PM</option>
-                          <option>4:05PM</option>
-                          <option>5:10PM</option>
-                          <option>6:15PM</option>
-                          <option>7:20PM</option>
-                          <option>8:20PM</option>
-                          <option>9:20PM</option>
+                        <select class="form-control" ng-model="fridayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control"ng-model="fridayEndTime">
-                          <option>8:15AM</option>
-                          <option>9:20AM</option>
-                          <option>10:25AM</option>
-                          <option>11:30AM</option>
-                          <option>12:35AM</option>
-                          <option>1:40PM</option>
-                          <option>2:45PM</option>
-                          <option>3:50PM</option>
-                          <option>4:55PM</option>
-                          <option>6:00PM</option>
-                          <option>7:05PM</option>
-                          <option>8:10PM</option>
-                          <option>9:10PM</option>
-                          <option>10:10PM</option>
-
+                        <select class="form-control" ng-model="fridayEndTime" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary" ng-click = "addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime)" >Submit Course</button>
+                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime)">Submit
+                      Course</button>
                   </form>
                   <br>
                   <!-- <pre>code = {{courseCode| json}}</pre>
