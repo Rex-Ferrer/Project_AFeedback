@@ -59,7 +59,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
         if (student.role != 'TA'){//is always true because user isnt changed to ta
           var newTA = {
-            "name": student.firstname + "-" + student.lastname,
+            "name": student.firstname + " " + student.lastname,
             "email": student.username,
             "role": 'TA',
             "password": student.password,
@@ -101,26 +101,26 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
       var times =[];
       if(mondayCheck){
-        times.push('M ' + mondayStartTime + ' ' + mondayEndTime);
+        times.push('M ' + mondayStartTime + '-' + mondayEndTime);
         console.log(times);
       }
       if(tuesdayCheck){
-        times.push('T ' + tuesdayStartTime + ' ' + tuesdayEndTime);
+        times.push('T ' + tuesdayStartTime + '-' + tuesdayEndTime);
         console.log(times);
 
       }
       if(wednesdayCheck){
-        times.push('W ' + wednesdayStartTime + ' ' + wednesdayEndTime);
+        times.push('W ' + wednesdayStartTime + '-' + wednesdayEndTime);
         console.log(times);
 
       }
       if(thursdayCheck){
-        times.push('R ' +thursdayStartTime + ' ' + thursdayEndTime);
+        times.push('R ' +thursdayStartTime + '-' + thursdayEndTime);
         console.log(times);
 
       }
       if(fridayCheck){
-        times.push('F ' + fridayStartTime + ' ' + fridayEndTime);
+        times.push('F ' + fridayStartTime + '-' + fridayEndTime);
         console.log(times);
 
       }
