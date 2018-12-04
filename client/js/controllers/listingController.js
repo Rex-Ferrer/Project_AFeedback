@@ -128,7 +128,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           console.log(latitude);
           var longitude =$scope.buildings[i].coordinates.longitude;
           var marker = L.marker([latitude, longitude]).addTo(mymap)
-          .bindPopup(description);
+          .bindPopup(description).openPopup();;
         }
       }
     };
