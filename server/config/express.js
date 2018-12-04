@@ -9,7 +9,6 @@ var path = require('path');
     session = require('express-session'),
     cookieParser = require('cookie-parser'),
     listingsRouter = require('../routes/listings.routes');
-
 module.exports.init = function() {
   //connect to database
   mongoose.connect(config.db.uri);

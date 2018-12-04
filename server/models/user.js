@@ -21,7 +21,6 @@ var userSchema = new Schema({//Both of these will have to be compared with regex
         required : [true, "Need a role"]
     },
 
-    //classes : [Schema.Types.ObjectId]
     class: [{type: ObjectID, ref: "courseTaught"}]
 
 });

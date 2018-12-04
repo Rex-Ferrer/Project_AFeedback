@@ -5,18 +5,18 @@ var mongoose = require('mongoose'),
 
 /* Create a listing */
 exports.create = function(req, res) {
-      console.log("ttt");
+      console.log("create listing");
   /* Instantiate a Listing */
-  var listing = new Listing(req.body);
-  listing.createdBy.push(req.user.username);
+  var newListing = new Listing(req.body);
+  console.log(newListing);
 
   /* Then save the listing */
-  listing.save(function(err) {
+  newListing.save(function(err) {
     if(err) {
       console.log(err);
       res.status(400).send(err);
     } else {
-      res.json(listing);
+      res.json(newListing);
     }
   });
 };
@@ -38,9 +38,7 @@ exports.update = function(req, res) {
   listing.linkedin = req.body.linkedin;
   listing.email = req.body.email;
   listing.information = req.body.information;
-  if(!listing.createdBy.includes(req.user.username)){
-    lisitngs.createdBy.push(req.user.username);
-  }
+  listing.createdBy = req.body.createdBy;
   // Then save the listing
   listing.save(function(err) {
     if(err) {
@@ -87,6 +85,20 @@ exports.listingByID = function(req, res, next, id) {
     if(err) {
       res.status(400).send(err);
     } else {
+      req.listing = listing;
+      next();
+    }
+  });
+};
+
+exports.listingByEmail = function(req, res, next, email) {
+  console.log('temail ' + email);
+  Listing.findOne({'email' : email}).exec(function(err, listing) {
+    if(err) {
+      res.status(400).send(err);
+      console.log(listing);
+    } else {
+      console.log(listing);
       req.listing = listing;
       next();
     }

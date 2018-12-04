@@ -14,7 +14,7 @@ var listings = require('../controllers/listing.server.controller.js'),
 router.route('/listings')
   .get(listings.list)
   .post(listings.create);
-  
+
 router.route('/classes')
   .get(classes.list)
   .post(classes.create);
@@ -27,6 +27,12 @@ router.route('/listings/:listingId')
   .put(listings.update)
   .delete(listings.delete);
 
+
+
+router.route('/listings/:listingEmail')
+    .get(users.read);
+
+router.param('listingEmail', listings.listingByEmail);
 router.param('listingId', listings.listingByID);
 
 /*
@@ -43,9 +49,16 @@ router.param('listingId', listings.listingByID);
 router.route('/users/getCurrentUser')
   .get(users.currentUser);
 
+
+router.route('/users')
+  .get(users.list);
+
+router.route('/users/:userId')
+    .put(users.update);
+router.param('userId', users.userByID);
+
 router.route('/users/:userEmail')
     .get(users.read);
-
 router.param('userEmail', users.UserByEmail);
 
 router.route('/buildings')
