@@ -93,7 +93,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     //TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime) {
+    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime, listing) {
 
       var locationID;
       for (let i = 0; i < $scope.buildings.length; i++) {
@@ -149,10 +149,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         $scope.updateListing(listing);
       });
     }
-
-
-
-
 
     //Adds marker to map given coordinates
     $scope.addMarker = function (buildingName, description) {
