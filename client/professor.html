@@ -26,14 +26,11 @@
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
 </head>
 
-<body ng-app="directoryApp" ng-controller="ListingsController">
+<body ng-app="directoryApp" ng-controller="ListingsController" style = "background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
   <div id="titleWrapper">
-    <h1 id="title">Gator Placer</h1>
+    <h1 id = "title"> Gator Placer <img class = "logo" src="/images/gator.png"></img></h1>
     <button type="button" class="btn btn-primary" id="signOut" ng-click=signOut()>Sign Out</button>
   </div>
-
-  <img src="./images/ufcampus.jpg" style="width:100%;height:400px;">
-
   <div class="row" id="wrapper">
     <!--wraps search bar, accordion, and map-->
     <div class="col-md-6">

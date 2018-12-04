@@ -1,54 +1,52 @@
-<!-- views/login.ejs -->
 <!doctype html>
+
 <html>
+    <head>
+    <link rel="stylesheet" href="/styles/main.css">
+        <title>GatorPlacer Login</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    </head>
 
-<head>
-    <title>GatorPlacer Login</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
-</head>
+<body style = "background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
 
-<body>
-    <div class="container">
+<div class = "loginOverlay">
 
-        <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-md-4" div id="loginContainer">
 
-            <h1><span class="fa fa-sign-in"></span> Login</h1>
-
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-            <div class="alert alert-danger">
-                <%= message %>
-            </div>
-            <% } %>
-
-            <!-- LOGIN FORM -->
-            <form action="/login" method="post">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control" name="username">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-
-                <button type="submit" class="btn btn-warning btn-lg">Login</button>
-            </form>
-
-            <hr>
-
-            <p>Need an account? <a href="/signup">Signup</a></p>
-            <p>Or go <a href="/">home</a>.</p>
-
+        <div>
+            <h3 style = "text-align: center;">Welcome to GatorPlacer!</h3>
         </div>
 
+        <img src="/images/gator.png" style = "width:100px; height:100px; margin-left: 35%;"></img>
+
+        <!-- show any messages that come back with authentication -->
+        <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+
+        <!-- LOGIN FORM -->
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg" id="loginBtn">Login</button>
+        </form>
+
+        <hr>
+        <p>Need an account? Sign up <a href="/signup">here.</a></p>
+        
     </div>
+
+</div>
+
 </body>
 
 </html>
