@@ -3,6 +3,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.detailedInfo = undefined;
     $scope.profCourses = [];
     $scope.buildings = [];
+    $scope.courseCodeRegex = '[A-Z]{3}[0-9]{4}'
     $scope.ta = undefined;
     $scope.startTimes = [{ time: '7:25AM' }, { time: '8:30AM' }, { time: '9:35AM' }, { time: '10:40AM' }, { time: '11:45AM' }, { time: '12:50PM' }, { time: '1:55PM' }, { time: '3:00PM' }, { time: '4:05PM' }, { time: '5:10PM' }, { time: '6:15PM' }, { time: '7:20PM' }, { time: '8:20PM' }, { time: '9:20PM' }],
       $scope.endTimes = [{ time: '8:15AM' }, { time: '9:20AM' }, { time: '10:25AM' }, { time: '11:30AM' }, { time: '12:35PM' }, { time: '1:40PM' }, { time: '2:45PM' }, { time: '3:50PM' }, { time: '4:55PM' }, { time: '6:00PM' }, { time: '7:05PM' }, { time: '8:10PM' }, { time: '9:10PM' }, { time: '10:10PM' }],

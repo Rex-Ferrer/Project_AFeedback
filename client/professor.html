@@ -103,7 +103,7 @@
                       <div class="form-group col-md-6">
                         <label>Course Code</label>
                         <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
-                          ng-model="courseCode" ng-change="getCourseNameFromCode(courseCode)">
+                          ng-model="courseCode" ng-pattern="courseCodeRegex"ng-change="getCourseNameFromCode(courseCode)">
                       </div>
                       <div class="form-group col-md-6">
                         <label>Course Name</label>
@@ -220,7 +220,7 @@
                       Course</button>
                   </form>
                   <br>
-                  <!-- <pre>code = {{courseCode| json}}</pre>
+                  <pre>code = {{courseCode| json}}</pre>
                   <pre>name = {{courseName | json}}</pre>
                   <pre>type = {{classType | json}}</pre>
                   <pre>location = {{location | json}}</pre>
@@ -238,7 +238,7 @@
                   <pre>thursdayCheck={{thursdayCheck | json}}</pre>
                   <pre>fridayStartTime = {{fridayStartTime | json}}</pre>
                   <pre>fridayEndTime={{fridayEndTime | json}}</pre>
-                  <pre>fridayCheck={{fridayCheck | json}}</pre> -->
+                  <pre>fridayCheck={{fridayCheck | json}}</pre>
 
 
 
