@@ -1,15 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-#mapid {
-  height: 600px;
-  margin: 20px;
+.logo{
+  width:50px;
+  height: 35px;
 }
+
+#mapid {
+  height: 575px;
+  margin: 38px;
+  border-radius: 5px;
+}
+
 #mapInput1, #mapInput2{
   margin-bottom: 20px;
+  width: 100%;
 }
 
 #mapInput{
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 50px;
+  width:88%;
 }
 
 #accordion_search {
@@ -24,10 +32,11 @@
   margin-bottom:10px;
   margin-right: 25px;
 }
+
 #signOut{
   position: absolute;
-  right: 0px;
-  margin: 5px;
+  right: 10px;
+  margin-top: 5px;
 }
 
   #accordion{
@@ -42,12 +51,20 @@
     overflow: auto;
   }
 
-
   #panelHeading{
-    background-color: hsl(209, 100%, 30%);
+    background-color: #D7DBDD;
+
   }
   .panel-heading{
     background-color: white;
+  }
+
+  #panel-group-professor{
+    overflow:hidden;
+  }
+
+  .panel-group{
+    height: 515px;
   }
 
   #title{
@@ -58,29 +75,26 @@
     margin-top: 0px;
     margin-right: 50px;
     margin-bottom: 0px;
-    color: white;
     float: left;
-  }
-
-  body{
-    background:#f2f2f2;;
-  }
+    color: #D7DBDD;
+    }
 
   #titleWrapper{
     width:100%;
-    background-color: hsl(209, 100%, 30%);
+    padding: 10px;
+    background-color: #263238;
     float:left;
     margin-top: 0px;
   }
 
   #formWrapper{
     width:100%;
-    background-color: hsl(209, 100%, 30%);
+    background-color: #D7DBDD;
     margin-top: 0px;
   }
 
   .panel-title{
-    color: white;
+    color: black;
   }
   .fa{
     font-size: 30px;
@@ -118,23 +132,24 @@
   float: right;
 }
 
+#loginContainer{
+  background-color: #D7DBDD;
+  margin-left: 33%;
+  margin-top: 10%;
+  border-radius: 25px;
+  box-shadow: 8px 8px 15px black;
+}
 
+#loginBtn{
+  margin-left: 38%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#signUpContainer{
+  margin-top: 50px;
+  background-color: #D7DBDD;
+  border-radius: 25px;
+  box-shadow: 8px 8px 15px black;
+}
 
 
 

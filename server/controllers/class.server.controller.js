@@ -1,11 +1,11 @@
 
 /* Dependencies */
 var mongoose = require('mongoose'),
-    Class = require('../models/class.js'),
-    Building = require('../models/building')
+  Class = require('../models/class.js'),
+  Building = require('../models/building')
 
 /* Create a listing */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
 
   /* Instantiate a Listing */
   var newClass = new Class(req.body);
@@ -19,8 +19,8 @@ exports.create = function(req, res) {
 
 
   /* Then save the listing */
-  newClass.save(function(err) {
-    if(err) {
+  newClass.save(function (err) {
+    if (err) {
       console.log(err);
       res.status(400).send(err);
     } else {
@@ -30,15 +30,15 @@ exports.create = function(req, res) {
 };
 
 /* Retreive all the directory listings, sorted alphabetically by listing code */
-exports.list = function(req, res) {
-  Class.find({}, function(err,classes) {
-    if(err) throw err;
+exports.list = function (req, res) {
+  Class.find({}, function (err, classes) {
+    if (err) throw err;
     res.json(classes);
   })
 };
 
-exports.read = function(req,res){
-    res.json(req.classes);
+exports.read = function (req, res) {
+  res.json(req.classes);
 }
 
 
@@ -49,9 +49,9 @@ exports.read = function(req,res){
         bind it to the request object as the property 'listing',
         then finally call next
  */
-exports.ClassByID = function(req, res, next, id) {
-  Class.findById(id).exec(function(err, classes) {
-    if(err) {
+exports.ClassByID = function (req, res, next, id) {
+  Class.findById(id).exec(function (err, classes) {
+    if (err) {
       res.status(400).send(err);
     } else {
       req.classes = classes;

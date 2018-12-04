@@ -3,21 +3,22 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.detailedInfo = undefined;
     $scope.profCourses = [];
     $scope.buildings = [];
+    $scope.courseCodeRegex = '[A-Z]{3}[0-9]{4}'
     $scope.ta = undefined;
-    $scope.startTimes = [{time:'7:25AM'},{time:'8:30AM'},{time:'9:35AM'},{time:'10:40AM'},{time:'11:45AM'},{time:'12:50PM'},{time:'1:55PM'}, {time:'3:00PM'}, {time:'4:05PM'}, {time:'5:10PM'},{time: '6:15PM'}, {time:'7:20PM'}, {time:'8:20PM'}, {time:'9:20PM'}],
-    $scope.endTimes = [{time:'8:15AM'},{time:'9:20AM'},{time:'10:25AM'},{time:'11:30AM'},{time:'12:35PM'},{time:'1:40PM'},{time:'2:45PM'}, {time:'3:50PM'}, {time:'4:55PM'}, {time:'6:00PM'},{time: '7:05PM'}, {time:'8:10PM'}, {time:'9:10PM'}, {time:'10:10PM'}],
+    $scope.startTimes = [{ time: '7:25AM' }, { time: '8:30AM' }, { time: '9:35AM' }, { time: '10:40AM' }, { time: '11:45AM' }, { time: '12:50PM' }, { time: '1:55PM' }, { time: '3:00PM' }, { time: '4:05PM' }, { time: '5:10PM' }, { time: '6:15PM' }, { time: '7:20PM' }, { time: '8:20PM' }, { time: '9:20PM' }],
+      $scope.endTimes = [{ time: '8:15AM' }, { time: '9:20AM' }, { time: '10:25AM' }, { time: '11:30AM' }, { time: '12:35PM' }, { time: '1:40PM' }, { time: '2:45PM' }, { time: '3:50PM' }, { time: '4:55PM' }, { time: '6:00PM' }, { time: '7:05PM' }, { time: '8:10PM' }, { time: '9:10PM' }, { time: '10:10PM' }],
 
-    $scope.getCourseNameFromCode = function (courseCode) {
-      console.log("Trying to get course name...");
-      if (courseCode.length != 7) {
-        $scope.courseName = "";
-      } else {
-        Listings.getCourseNameFromCode(courseCode).then(function (result) {
-          $scope.courseName = result.data[0].COURSES[0].name;
-          console.log(result.data[0].COURSES[0].name);
-        });
+      $scope.getCourseNameFromCode = function (courseCode) {
+        console.log("Trying to get course name...");
+        if (courseCode.length != 7) {
+          $scope.courseName = "";
+        } else {
+          Listings.getCourseNameFromCode(courseCode).then(function (result) {
+            $scope.courseName = result.data[0].COURSES[0].name;
+            console.log(result.data[0].COURSES[0].name);
+          });
+        }
       }
-    }
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
     Listings.getAll().then(function (response) {
@@ -49,7 +50,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     }, function (error) {
       console.log('Unable to retrieve listings:', error);
     });
-
     //Creates a new professor with inputted user info
     $scope.addTA = function (tEmail, course) {
       Listings.findByEmail(tEmail).then(function (response) {
@@ -93,7 +93,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     //TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime) {
+    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime, listing) {
 
       var locationID;
       for (let i = 0; i < $scope.buildings.length; i++) {
@@ -150,10 +150,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       });
     }
 
-
-
-
-
     //Adds marker to map given coordinates
     $scope.addMarker = function (buildingName, description) {
       for (let i = 0; i < $scope.buildings.length; i++) {
@@ -171,13 +167,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       window.location.replace('/logout');
     }
     //TODO Professor obj has a list of markers for TAs on map
-    $scope.deleteListing = function (index) {
-      /**TODO
-         Delete the article using the Listings factory. If the removal is successful,
-     navigate back to 'listing.list'. Otherwise, display the error.
-        */
-      console.log($scope.listings[index]._id);
-
     //Adds marker to map given coordinates
     $scope.addMark = function(id,description){
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -186,7 +175,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           console.log(latitude);
           var longitude =$scope.buildings[i].coordinates.longitude;
           var marker = L.marker([latitude, longitude]).addTo(mymap)
-          .bindPopup(description);
+          .bindPopup(description).openPopup();;
         }
       }
     };
@@ -195,9 +184,6 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     Listings.signOut();
     window.location.replace('/logout');
     }
-
-      console.log($scope.listings[index]._id);
-
     $scope.deleteListing = function(index) {
        Listings.delete($scope.listings[index]._id);
     };
@@ -232,9 +218,16 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
 
+
     $scope.canEdit = function (listing) {
-      var username = $scope.user.username;
-      $scope.isUser = username == listing.email;
+      if($scope.user.username){
+        var username = $scope.user.username;
+
+      }
+      if(username){
+        $scope.isUser = username == listing.email;
+
+      }
       return (username == listing.email);//is causing error
 
     };
