@@ -8,9 +8,7 @@ var path = require('path');
     flash = require('connect-flash'),
     session = require('express-session'),
     cookieParser = require('cookie-parser'),
-    listingsRouter = require('../routes/listings.routes'),
-    cors = require('cors');
-
+    listingsRouter = require('../routes/listings.routes');
 module.exports.init = function() {
   //connect to database
   mongoose.connect(config.db.uri);
@@ -36,7 +34,6 @@ app.use(session({ secret : 'thisisasecretsession' , resave: true, saveUninitiali
 app.use(passport.initialize());
 app.use(passport.session()); //Persistent login sessions
 app.use(flash());// message storing in session?
-app.use(cors());
 
 require('../routes/authentication.routes.js')(app, passport);//Adds in routing file for routing users that have been authenticated
 

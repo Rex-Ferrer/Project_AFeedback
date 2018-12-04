@@ -41,7 +41,7 @@
           </div><!--end of search bar-->
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!--accordion menu-->
             <div class="panel panel-default" ng-repeat = "listing in listings | orderBy: 'name'" ng-show= "searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase());">
-                <div class="panel-heading" id = "panelHeading" data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}} >
+                <div ng-click="selectProf(listing)" class="panel-heading" id = "panelHeading" data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}} >
                   <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href= #{{listing._id}}> <!--needs a unique identifier without spaces(name is not good enough)-->
                     {{listing.name}}<span> <a href = "" class="glyphicon glyphicon-edit" ng-show = canEdit(listing)></a></span><div style = "float: right">{{listing.role}}</div></a>

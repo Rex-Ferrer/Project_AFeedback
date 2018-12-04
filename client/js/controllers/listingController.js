@@ -22,6 +22,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     }, function(error) {
       console.log('Unable to retrieve listings:', error);
     });
+
+    Listings.getAllUsers().then(function(response) {
+      $scope.users = response.data;
+    }, function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
 //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
 
@@ -49,12 +55,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 //Creates a new professor with inputted user info
     $scope.addTA = function(tEmail, course) {
+      console.log($scope.user);
+      console.log("test");
       Listings.findByEmail(tEmail).then(function(response) {
-       var student = {"username": response.data[0].username,
-                      "firstname": response.data[0].firstname,
-                      "lastname": response.data[0].lastname,
-                      "password": response.data[0].password
-                    }
+       var student = response.data[0];
+       console.log(student);//student is a user
+
 
 
         if (student.role != 'TA'){//is always true because user isnt changed to ta
@@ -62,24 +68,43 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
             "name": student.firstname + "-" + student.lastname,
             "email": student.username,
             "role": 'TA',
-            "password": student.password,
+            "email": student.username,
+            "classes": [],
             "createdBy": [],
-            "class": []
+            "twitter": null,
+            "slack": null,
+            "linkedin": null,
+            "information": null
+
           }
+          console.log(newTA);
           Listings.createProf(newTA).then(function(response){
-            newTA.createdBy.push($scope.user.username)
-            newTA.class.push(course)
-            $scope.updateListing(newTA);
+
+            var theTA = response.data;
+            theTA.createdBy.push($scope.user.username);
+            //theTA.class.push(course);
+
+            Listings.update(theTA._id, theTA);
+            student.role = 'TA';
+            $scope.updateUser(student);
           });
         }
         else{
+          console.log('im in else');
+          console.log(tEmail);
+          Listings.findListingByEmail(tEmail).then(function(response) {//isnt working!!!!!!!!!!!!!!!!!!!!!!!
+            var student = response.data[0];
+            console.log(response.data);
+            //student.createdBy.push($scope.user.username)
+            //student.classes.push(course)
+            //Listings.update(student._id, student);
 
-        newTA.createdBy.push($scope.user.username)
-        newTA.classes.push(course)
-        $scope.updateListing(newTA);
+          },function(error) {
+            console.log('Unable to retrieve listings:', error);
+          });
 
       }
-      window.location.replace('/professor');
+      //window.location.replace('/professor');
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
@@ -137,18 +162,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
     Listings.createCourse(newCourse).then(function(response){
-      console.log(response)
-      console.log(response.data)
+
       //$scope.user.classes.push(response.data) needs update User function
       listing.classes.push(response.data)
       $scope.newListing.classes = listing.classes;
       $scope.updateListing(listing);
     });
     }
-
-
-
-
 
     //Adds marker to map given coordinates
     $scope.addMarker = function(buildingName, description){
@@ -176,14 +196,55 @@ $scope.signOut = function(){
 
        Listings.delete($scope.listings[index]._id);
 
-      console.log($scope.listings[index]._id);
+          //Adds marker to map given coordinates
+          $scope.addMark = function(id,description){
+            for(let i = 0; i < $scope.buildings.length; i++){
+              if($scope.buildings[i]._id == id){
+                var latitude =$scope.buildings[i].coordinates.latitude;
+                var longitude =$scope.buildings[i].coordinates.longitude;
+                var marker = L.marker([latitude, longitude]).addTo(mymap)
+                .bindPopup(description);
+              }
+            }
+          };
+        //TODO JSON API to store all avaiable classes into an array
+        $scope.signOut = function(){
+          Listings.signOut();
+          window.location.replace('/logout');
+          }
 
 
-    };
+          $scope.deleteListing = function(index) {
+             Listings.delete($scope.listings[index]._id);
+          };
 
-    $scope.showDetails = function(index) {
-      $scope.detailedInfo = $scope.listings[index];
-    };
+          //Gets class object given its id
+          $scope.getClassByID = function(id){
+            for(let i = 0; i < $scope.classes.length; i++){
+              if ($scope.classes[i]._id == id){
+                return $scope.classes[i];
+              }
+            }
+          }
+          $scope.getLocationByID = function(id){
+            for(var i = 0; i < $scope.buildings.length; i++){
+              if ($scope.buildings[i]._id == id){
+                return $scope.buildings[i];
+              }
+            }
+          }
+          $scope.selectProf = function(listing) {
+            console.log($scope.buildings);
+            console.log(listing);
+            //getClasses
+            //$scope.listings[index]
+            //forEach class, get location
+            for(let i = 0; i < listing.classes.length; i++){
+                course = $scope.getClassByID(listing.classes[i]);
+                console.log(course.location);
+                //location = $scope.getLocationByID(course.location);
+            }
+          };
 
 
 
@@ -203,9 +264,10 @@ $scope.signOut = function(){
 
     $scope.updateListing = function(listing){
       var index = $scope.listings.indexOf(listing);
+      console.log(index);
       //console.log('index: ' + index);
       var id = $scope.listings[index];
-      //console.log('id: ' + id);
+      console.log('id: ' + id);
 
       var list = {
         name: listing.name,
@@ -242,11 +304,32 @@ $scope.signOut = function(){
       listing.information = list.information
 
       //$scope.listings.push($scope.newListing);
-      //console.log(id);
+      console.log(id);
       //console.log("list " + list);
       Listings.update(id._id, list);
       window.location.replace('/');
    };
+
+
+   $scope.updateUser = function(user){
+
+
+    console.log(user);
+    var list = {
+      username: user.username,
+      password: user.password,
+      classes: user.classes,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      role: user.role,
+      class: user.class,
+    };
+
+    console.log(list);
+
+    Listings.updateUser(user._id, list);
+    window.location.replace('/');
+ };
 
 
 
