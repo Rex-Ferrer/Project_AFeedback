@@ -26,10 +26,10 @@ var courseTaught = new Schema({
             F:  9:35 - 10:25
         ]
     */,
-    classType :{
-        type : String,
-        enum : ['Office Hour', 'Lecture', 'Discussion'],
-        required : [true, "Need a class type"]
+    classType: {
+        type: String,
+        enum: ['Office Hour', 'Lecture', 'Discussion'],
+        required: [true, "Need a class type"]
     }
 });
 

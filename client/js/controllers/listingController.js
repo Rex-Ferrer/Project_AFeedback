@@ -4,20 +4,20 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.profCourses = [];
     $scope.buildings = [];
     $scope.ta = undefined;
-    $scope.startTimes = [{time:'7:25AM'},{time:'8:30AM'},{time:'9:35AM'},{time:'10:40AM'},{time:'11:45AM'},{time:'12:50PM'},{time:'1:55PM'}, {time:'3:00PM'}, {time:'4:05PM'}, {time:'5:10PM'},{time: '6:15PM'}, {time:'7:20PM'}, {time:'8:20PM'}, {time:'9:20PM'}],
-    $scope.endTimes = [{time:'8:15AM'},{time:'9:20AM'},{time:'10:25AM'},{time:'11:30AM'},{time:'12:35PM'},{time:'1:40PM'},{time:'2:45PM'}, {time:'3:50PM'}, {time:'4:55PM'}, {time:'6:00PM'},{time: '7:05PM'}, {time:'8:10PM'}, {time:'9:10PM'}, {time:'10:10PM'}],
+    $scope.startTimes = [{ time: '7:25AM' }, { time: '8:30AM' }, { time: '9:35AM' }, { time: '10:40AM' }, { time: '11:45AM' }, { time: '12:50PM' }, { time: '1:55PM' }, { time: '3:00PM' }, { time: '4:05PM' }, { time: '5:10PM' }, { time: '6:15PM' }, { time: '7:20PM' }, { time: '8:20PM' }, { time: '9:20PM' }],
+      $scope.endTimes = [{ time: '8:15AM' }, { time: '9:20AM' }, { time: '10:25AM' }, { time: '11:30AM' }, { time: '12:35PM' }, { time: '1:40PM' }, { time: '2:45PM' }, { time: '3:50PM' }, { time: '4:55PM' }, { time: '6:00PM' }, { time: '7:05PM' }, { time: '8:10PM' }, { time: '9:10PM' }, { time: '10:10PM' }],
 
-    $scope.getCourseNameFromCode = function (courseCode) {
-      console.log("Trying to get course name...");
-      if (courseCode.length != 7) {
-        $scope.courseName = "";
-      } else {
-        Listings.getCourseNameFromCode(courseCode).then(function (result) {
-          $scope.courseName = result.data[0].COURSES[0].name;
-          console.log(result.data[0].COURSES[0].name);
-        });
+      $scope.getCourseNameFromCode = function (courseCode) {
+        console.log("Trying to get course name...");
+        if (courseCode.length != 7) {
+          $scope.courseName = "";
+        } else {
+          Listings.getCourseNameFromCode(courseCode).then(function (result) {
+            $scope.courseName = result.data[0].COURSES[0].name;
+            console.log(result.data[0].COURSES[0].name);
+          });
+        }
       }
-    }
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
     Listings.getAll().then(function (response) {
