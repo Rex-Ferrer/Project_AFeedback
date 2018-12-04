@@ -59,7 +59,7 @@
     background-color: white;
   }
 
-  .panel-group-professor{
+  #panel-group-professor{
     overflow:hidden;
   }
 
@@ -76,12 +76,13 @@
     margin-right: 50px;
     margin-bottom: 0px;
     float: left;
-  }
+    color: #D7DBDD;
+    }
 
   #titleWrapper{
     width:100%;
     padding: 10px;
-    background-color: #D7DBDD;
+    background-color: #263238;
     float:left;
     margin-top: 0px;
   }

@@ -26,9 +26,9 @@
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
 </head>
 
-<body ng-app="directoryApp" ng-controller="ListingsController" style = "background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
+<body ng-app="directoryApp" ng-controller="ListingsController" style="background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
   <div id="titleWrapper">
-    <h1 id = "title"> Gator Placer <img class = "logo" src="/images/gator.png"></img></h1>
+    <h1 id="title"> Gator Placer <img class="logo" src="/images/gator.png"></img></h1>
     <button type="button" class="btn btn-primary" id="signOut" ng-click=signOut()>Sign Out</button>
   </div>
   <div class="row" id="wrapper">
@@ -41,7 +41,7 @@
         <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
       </div>
       <!--end of search bar-->
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel-group"  id="accordion" id="panel-group-professor" role="tablist" aria-multiselectable="true">
         <!--accordion menu-->
         <div class="panel panel-default" ng-repeat="listing in listings | orderBy: 'name'" ng-show="(searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase())) && listing.createdBy == user.username;">
           <div class="panel-heading" id="panelHeading" data-toggle="collapse" data-parent="#accordion" href=#{{listing._id}}>
@@ -288,25 +288,27 @@
           <input type="text" class="form-control" placeholder="course" ng-model="course"><br>
           <button type="button" class="btn btn-primary" ng-click=addTA(ta_Email,course)>Submit TA</button><br>
         </div>
+
+        <div id="mapInput">
+          <h3 style="color:white;"> Update your location on the map </h3>
+          <input type="text" id="mapInput1" class="form-control" placeholder="Building Code" ng-model="buildingName">
+          <!-- 29.6499  -82.3486 -->
+          <input type="text" id="mapInput2" class="form-control" placeholder="Description" ng-model="description">
+          <button type="button" class="btn btn-primary" ng-click=addMarker(buildingName,description)>Add Marker</button>
+        </div>
       </div>
     </div>
     <!--col md left-->
-        <div class = "col-md-6">
-          <!-- Make sure you put this AFTER Leaflet's CSS -->
-        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-        <div id="mapid"></div>
-        <div id="mapInput">
-          <input type="text" id = "mapInput1" class="form-control" placeholder="Building Code" ng-model = "buildingName">
-          <!-- 29.6499  -82.3486 -->
-          <input type="text" id = "mapInput2" class="form-control" placeholder="Description" ng-model = "description">
-          <button type="button" class="btn btn-primary" ng-click = addMarker(buildingName,description) >Add Marker</button>
-        </div>
-          <script type="text/javascript">
-            var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(mymap);
-          </script>
+    <div class="col-md-6">
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+      <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+      <div id="mapid"></div>
+      <script type="text/javascript">
+        var mymap = L.map('mapid').setView([29.648, -82.3440], 13);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+      </script>
     </div>
     <!--col md 6 right side-->
   </div>
