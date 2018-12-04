@@ -34,9 +34,13 @@ angular.module('listings', []).factory('Listings', function($http) {
       },
     createCourse: function(newCourse) {
        return $http.post('/api/classes', newCourse);
+      },
+      getCourseNameFromCode: function(classCode) {
+        return $http.get('https://cors-anywhere.herokuapp.com/https://one.ufl.edu/apix/soc/schedule?category=CWSP&term=2188&course-code=' +
+        classCode , {
+          headers: {'x-requested-with': 'foo'}
+        });
       }
-
-
 };
 
   return methods;

@@ -4,6 +4,17 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.profCourses = [];
     $scope.buildings = [];
     $scope.ta = undefined;
+    $scope.getCourseNameFromCode = function(courseCode){
+      console.log("Trying to get course name...");
+      if(courseCode.length != 7){
+        $scope.courseName="";
+      }else{
+        Listings.getCourseNameFromCode(courseCode).then(function(result) {
+          $scope.courseName=result.data[0].COURSES[0].name;
+          console.log(result.data[0].COURSES[0].name);
+        });
+      }
+    }
     /* Get all the listings, then bind it to the scope */
     //TODO View Professors from Mongo DB on api/listings
     Listings.getAll().then(function(response) {
@@ -48,7 +59,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
         if (student.role != 'TA'){//is always true because user isnt changed to ta
           var newTA = {
-            "name": student.firstname + " " + student.lastname,
+            "name": student.firstname + "-" + student.lastname,
             "email": student.username,
             "role": 'TA',
             "password": student.password,
@@ -78,7 +89,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
   //TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function(courseCode, days, startTime,endTime, location,listing){
+    $scope.addCourse = function(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime){
 
      var locationID;
       for(let i = 0; i < $scope.buildings.length; i++){
@@ -88,14 +99,41 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
          // console.log(locationID);
         }
       }
+      var times =[];
+      if(mondayCheck){
+        times.push('M ' + mondayStartTime + ' ' + mondayEndTime);
+        console.log(times);
+      }
+      if(tuesdayCheck){
+        times.push('T ' + tuesdayStartTime + ' ' + tuesdayEndTime);
+        console.log(times);
+
+      }
+      if(wednesdayCheck){
+        times.push('W ' + wednesdayStartTime + ' ' + wednesdayEndTime);
+        console.log(times);
+
+      }
+      if(thursdayCheck){
+        times.push('R ' +thursdayStartTime + ' ' + thursdayEndTime);
+        console.log(times);
+
+      }
+      if(fridayCheck){
+        times.push('F ' + fridayStartTime + ' ' + fridayEndTime);
+        console.log(times);
+
+      }
 
 
       var newCourse = {
         "code": courseCode,
-        "name": "test",
+        "name": courseName,
         "location": locationID,
-        //"time": startTime + endTime + days
+        "time": times,
+        "classType" : classType,
       }
+      console.log(newCourse)
     //  $scope.profCourses.push(newCourse);
     //Use Listings.update to apply changes to old professor
     Listings.createCourse(newCourse).then(function(response){
@@ -129,9 +167,6 @@ $scope.signOut = function(){
   window.location.replace('/logout');
   }
 //TODO Professor obj has a list of markers for TAs on map
-
-
-
     $scope.deleteListing = function(index) {
 	   /**TODO
         Delete the article using the Listings factory. If the removal is successful,
