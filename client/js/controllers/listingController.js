@@ -3,6 +3,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.detailedInfo = undefined;
     $scope.profCourses = [];
     $scope.buildings = [];
+    $scope.markers = [];
     $scope.courseCodeRegex = '[A-Z]{3}[0-9]{4}'
     $scope.ta = undefined;
     $scope.startTimes = [{ time: '7:25AM' }, { time: '8:30AM' }, { time: '9:35AM' }, { time: '10:40AM' }, { time: '11:45AM' }, { time: '12:50PM' }, { time: '1:55PM' }, { time: '3:00PM' }, { time: '4:05PM' }, { time: '5:10PM' }, { time: '6:15PM' }, { time: '7:20PM' }, { time: '8:20PM' }, { time: '9:20PM' }],
@@ -149,7 +150,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         $scope.updateListing(listing);
       });
     }
-
+    //Useless in liu of addMark
     //Adds marker to map given coordinates
     $scope.addMarker = function (buildingName, description) {
       for (let i = 0; i < $scope.buildings.length; i++) {
@@ -166,24 +167,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       Listings.signOut();
       window.location.replace('/logout');
     }
-    //TODO Professor obj has a list of markers for TAs on map
-    //Adds marker to map given coordinates
-    $scope.addMark = function(id,description){
-      for(let i = 0; i < $scope.buildings.length; i++){
-        if($scope.buildings[i]._id == id){
-          var latitude =$scope.buildings[i].coordinates.latitude;
-          console.log(latitude);
-          var longitude =$scope.buildings[i].coordinates.longitude;
-          var marker = L.marker([latitude, longitude]).addTo(mymap)
-          .bindPopup(description).openPopup();;
-        }
-      }
-    };
+
   //TODO JSON API to store all avaiable classes into an array
   $scope.signOut = function(){
     Listings.signOut();
     window.location.replace('/logout');
     }
+
     $scope.deleteListing = function(index) {
        Listings.delete($scope.listings[index]._id);
     };
@@ -203,12 +193,27 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         }
       }
     }
-    $scope.selectProf = function(listing) {
-      //getClasses
-      //$scope.listings[index]
-      //forEach class, get location
-      //mymap._layers.clearLayers();
+    //Adds marker to map given coordinates
+    $scope.addMark = function(id,description){
+      for(let i = 0; i < $scope.buildings.length; i++){
+        if($scope.buildings[i]._id == id){
+          var latitude =$scope.buildings[i].coordinates.latitude;
+          var longitude =$scope.buildings[i].coordinates.longitude;
+          var marker = L.marker([latitude, longitude]).addTo(mymap)
+          .bindPopup(description).openPopup();;
+          $scope.markers.push(marker);
+        }
+      }
+    };
+    $scope.removeMarkers = function(){
 
+      for(let i = 0; i < $scope.markers.length; i++){
+        mymap.removeLayer($scope.markers[i]);
+      }
+    }
+    $scope.selectProf = function(listing) {
+      //mymap._layers.clearLayers();
+      $scope.removeMarkers();
       for(let i = 0; i < listing.classes.length; i++){
           var course = $scope.getClassByID(listing.classes[i]);
           var location = $scope.getLocationByID(course.location);
