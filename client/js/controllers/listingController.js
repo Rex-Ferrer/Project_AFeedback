@@ -225,7 +225,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
     $scope.canEdit = function (listing) {
       var username = $scope.user.username;
-      $scope.isUser = username == listing.email;
+      if(username){
+        $scope.isUser = username == listing.email;
+
+      }
       return (username == listing.email);//is causing error
 
     };
