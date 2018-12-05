@@ -11,7 +11,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       $scope.getCourseNameFromCode = function (courseCode) {
         console.log("Trying to get course name...");
-        if (courseCode.length != 7 | courseCode.length!=8) {
+        if (courseCode.length != 7 || courseCode.length!=8) {
           $scope.courseName = "";
         } else {
           Listings.getCourseNameFromCode(courseCode).then(function (result) {
