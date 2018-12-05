@@ -212,6 +212,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         mymap.removeLayer($scope.markers[i]);
       }
     }
+    $scope.selectCourse = function(course) {
+      //mymap._layers.clearLayers();
+      $scope.removeMarkers();
+          var location = $scope.getLocationByID(course.location);
+          var description = course.code + " - " + course.classType +" - " +"Room: "+ course.room;
+          $scope.addMark(location._id, description );
+    };
     $scope.selectProf = function(listing) {
       //mymap._layers.clearLayers();
       $scope.removeMarkers();
