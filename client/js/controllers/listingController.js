@@ -11,10 +11,10 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       $scope.getCourseNameFromCode = function (courseCode) {
         console.log("Trying to get course name...");
-        if (courseCode.length != 7 || courseCode.length!=8) {
+        if (courseCode.length != 7 ||courseCode.length !=8) {
           $scope.courseName = "";
         } else {
-          Listings.getCourseNameFromCode(courseCode).then(function (result) {
+          Listings.getCourseNameFromCode(courseCode.toUpperCase()).then(function (result) {
             $scope.courseName = result.data[0].COURSES[0].name;
             console.log(result.data[0].COURSES[0].name);
           });
