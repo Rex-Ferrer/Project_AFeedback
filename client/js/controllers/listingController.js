@@ -94,7 +94,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
 
     //TODO Add courses and their Meeting times into array to be used by prof object
-    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime, listing) {
+    $scope.addCourse = function (courseCode, courseName, location, classType, mondayCheck, mondayStartTime, mondayEndTime, tuesdayCheck, tuesdayStartTime, tuesdayEndTime, wednesdayCheck, wednesdayStartTime, wednesdayEndTime, thursdayCheck, thursdayStartTime, thursdayEndTime, fridayCheck, fridayStartTime, fridayEndTime, listing,courseRoom) {
 
       var locationID;
       for (let i = 0; i < $scope.buildings.length; i++) {
@@ -130,11 +130,13 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       }
 
+      console.log(courseRoom);
 
       var newCourse = {
         "code": courseCode,
         "name": courseName,
         "location": locationID,
+        "room" : courseRoom,
         "time": times,
         "classType": classType,
       }

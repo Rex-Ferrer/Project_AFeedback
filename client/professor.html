@@ -126,7 +126,13 @@
                         <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
                           ng-model="location">
                       </div>
+                      <div class="form-group col-md-12">
+                        <label>Room</label>
+                        <input type="text" class="form-control text-uppercase" id="inputCourseRoom" placeholder="Room Number" ng-model="courseRoom">
+                      </div>
                     </div>
+
+
                     <div class="form-row align-items-center">
                       <div class="form-check-input col-md-4" id="mondayChecker">
                         <input class="form-check-input" type="checkbox" ng-model="mondayCheck">
@@ -217,7 +223,7 @@
                         </select>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing)">Submit
+                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
                       Course</button>
                   </form>
                   <br>
@@ -239,7 +245,8 @@
                   <pre>thursdayCheck={{thursdayCheck | json}}</pre>
                   <pre>fridayStartTime = {{fridayStartTime | json}}</pre>
                   <pre>fridayEndTime={{fridayEndTime | json}}</pre>
-                  <pre>fridayCheck={{fridayCheck | json}}</pre>-->
+                  <pre>fridayCheck={{fridayCheck | json}}</pre>
+                  <pre>type = {{courseRoom | json}}</pre>-->
                 </div>
               </div>
 
