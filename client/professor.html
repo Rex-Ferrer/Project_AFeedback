@@ -41,10 +41,11 @@
         <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
       </div>
       <!--end of search bar-->
-      <div class="panel-group"  id="accordion" id="panel-group-professor" role="tablist" aria-multiselectable="true">
+      <div class="panel-group" id="accordion" id="panel-group-professor" role="tablist" aria-multiselectable="true">
         <!--accordion menu-->
         <div class="panel panel-default" ng-repeat="listing in listings | orderBy: 'name'" ng-show="(searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase())) && listing.createdBy == user.username;">
-          <div ng-click = "selectProf(listing)" class="panel-heading" id="panelHeading" data-toggle="collapse" data-parent="#accordion" href=#{{listing._id}}>
+          <div ng-click="selectProf(listing)" class="panel-heading" id="panelHeading" data-toggle="collapse"
+            data-parent="#accordion" href=#{{listing._id}}>
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href=#{{listing._id}}>
                 <!--needs a unique identifier without spaces(name is not good enough)-->
@@ -103,7 +104,7 @@
                       <div class="form-group col-md-6">
                         <label>Course Code</label>
                         <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
-                          ng-model="courseCode" ng-pattern="courseCodeRegex"ng-change="getCourseNameFromCode(courseCode)">
+                          ng-model="courseCode" ng-pattern="courseCodeRegex" ng-change="getCourseNameFromCode(courseCode)">
                       </div>
                       <div class="form-group col-md-6">
                         <label>Course Name</label>
@@ -135,12 +136,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="mondayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="mondayStartTime" ng-disabled="!mondayCheck" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="mondayEndTime" ng-options="endTime.time for endTime in endTimes">
+                        <select class="form-control" ng-model="mondayEndTime" ng-disabled="!mondayCheck" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
@@ -153,12 +154,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="tuesdayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="tuesdayStartTime" ng-disabled="!tuesdayCheck" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="tuesdayEndTime" ng-options="endTime.time for endTime in endTimes">
+                        <select class="form-control" ng-model="tuesdayEndTime" ng-disabled="!tuesdayCheck" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
@@ -171,12 +172,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="wednesdayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="wednesdayStartTime" ng-disabled="!wednesdayCheck" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="wednesdayEndTime" ng-options="endTime.time for endTime in endTimes">
+                        <select class="form-control" ng-model="wednesdayEndTime" ng-disabled="!wednesdayCheck" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
@@ -189,12 +190,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="thursdayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="thursdayStartTime" ng-disabled="!thursdayCheck" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="thursdayEndTime" ng-options="endTime.time for endTime in endTimes">
+                        <select class="form-control" ng-model="thursdayEndTime" ng-disabled="!thursdayCheck" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
@@ -207,12 +208,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" ng-model="fridayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="fridayStartTime" ng-disabled="!fridayCheck" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
                         <label>End Time</label>
-                        <select class="form-control" ng-model="fridayEndTime" ng-options="endTime.time for endTime in endTimes">
+                        <select class="form-control" ng-model="fridayEndTime" ng-disabled="!fridayCheck" ng-options="endTime.time for endTime in endTimes">
                         </select>
                       </div>
                     </div>
@@ -220,7 +221,7 @@
                       Course</button>
                   </form>
                   <br>
-                  <pre>code = {{courseCode| json}}</pre>
+                  <!-- <pre>code = {{courseCode| json}}</pre>
                   <pre>name = {{courseName | json}}</pre>
                   <pre>type = {{classType | json}}</pre>
                   <pre>location = {{location | json}}</pre>
@@ -238,10 +239,7 @@
                   <pre>thursdayCheck={{thursdayCheck | json}}</pre>
                   <pre>fridayStartTime = {{fridayStartTime | json}}</pre>
                   <pre>fridayEndTime={{fridayEndTime | json}}</pre>
-                  <pre>fridayCheck={{fridayCheck | json}}</pre>
-
-
-
+                  <pre>fridayCheck={{fridayCheck | json}}</pre>-->
                 </div>
               </div>
 
