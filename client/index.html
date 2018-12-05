@@ -87,8 +87,13 @@
                       <div ng-repeat="class in listing.classes">
                           <div ng-repeat="course in classes" ng-show="class == course._id">
                               <li class = "list-group-item">
+<<<<<<< HEAD
                                   <div ng-click="selectCourse(course)" class="alert alert-info" role="alert">{{course.classType}}</div>
                                 <h5>{{course.code}} {{course.name}}</h5>
+=======
+                                  <div class="alert alert-info" role="alert">{{course.classType}}</div>
+                                <h4>{{course.code}}  - {{course.name}}</h4>
+>>>>>>> 66206500c238a045958e7ea27bb32c14d8d0da92
                                 <!-- <div ng-repeat="building in buildings" ng-show = "course.location == building._id">
                                     <h5>{{building.code}} {{course.room}}</h5>
                                   </div> -->
@@ -107,7 +112,7 @@
                   </ul>
                   <!-- <div ng-repeat = "class in listing.classes">
                         <div ng-repeat = "course in classes" ng-show = "class == course._id">
-                          {{course.code}} {{course.name}} {{course.time}} {{course.classType}}
+                          {{course.code}} {{course.name}} {{course.time}} {{course.classType}}The 
                         </div>
                       </div> -->
                 </div>
@@ -138,7 +143,6 @@
                         <label for="typeSelect">Select a Type</label>
                         <select class="form-control" id="" ng-model="classType">
                           <option>Lecture</option>
-                          <option>Office Hour</option>
                           <option>Discussion</option>
                         </select>
                       </div>
@@ -197,7 +201,7 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label>Start Time</label>
-                        <select class="form-control" nng-model="wednesdayStartTime" ng-options="startTime.time for startTime in startTimes">
+                        <select class="form-control" ng-model="wednesdayStartTime" ng-options="startTime.time for startTime in startTimes">
                         </select>
                       </div>
                       <div class="form-group col-md-4">
