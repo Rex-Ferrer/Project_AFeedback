@@ -28,7 +28,7 @@
 <body ng-app="directoryApp" ng-controller="ListingsController" style="background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
   <div id="titleWrapper">
     <h1 id="title"> Gator Placer <img class="logo" src="/images/gator.png"></img></h1>
-    <button type="button" class="btn btn-primary" id="signOut" ng-click=signOut()>Sign Out</button>
+    <button type="button" class="btn btn-default" id="signOut" ng-click=signOut()>Sign Out</button>
   </div>
 
   <div class="row" id="wrapper">
@@ -70,7 +70,7 @@
 
                 <div ng-show="isUser && !listing.information">
                   <br><br>
-                  <button href="" class="btn btn-primary btn-sm" ng-click="editInfo = !editInfo">Add Info</button>
+                  <button href="" class="btn btn-default btn-sm" ng-click="editInfo = !editInfo">Add Info</button>
                 </div>
                 <hr>
 
@@ -78,7 +78,7 @@
                   <form novalidate class="simple-form">
                     <br>
                     <input type="text" class="form-control" ng-model="newListing.information" />
-                    <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
+                    <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
                   </form>
                 </div>
                 <div ng-show="listing.classes.length > 0">
@@ -114,7 +114,7 @@
                 <div ng-show="isUser">
                   <!--add course button-->
                   <br>
-                  <button href="" class="btn btn-primary btn-sm" ng-click="addCourseForm = !addCourseForm">Add Course</button>
+                  <button href="" class="btn btn-default btn-sm" ng-click="addCourseForm = !addCourseForm">Add Course</button>
                 </div>
 
                 <div ng-show="isUser && addCourseForm">
@@ -242,13 +242,13 @@
                         </select>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
+                    <button type="button" class="btn btn-default" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
                       Course</button>
                   </form>
                 </div>
                 <div ng-show="isUser">
                   <br>
-                  <button href="" class="btn btn-primary btn-sm" ng-click="editSocial = !editSocial">Edit Social Media
+                  <button href="" class="btn btn-default btn-sm" ng-click="editSocial = !editSocial">Edit Social Media
                   </button>
                 </div>
                 <div ng-show="editSocial && isUser">
@@ -257,7 +257,7 @@
                     Twitter <input type="text" placeholder={{listing.twitter}} class="form-control" ng-model="newListing.twitter" />
                     Slack <input type="text" placeholder={{listing.slack}} class="form-control" ng-model="newListing.slack" />
                     LinkedIn <input type="text" placeholder={{listing.linkedin}} class="form-control" ng-model="newListing.linkedin" /><br>
-                    <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
+                    <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
                   </form>
                 </div>
             </div>

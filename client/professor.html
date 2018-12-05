@@ -29,7 +29,7 @@
 <body ng-app="directoryApp" ng-controller="ListingsController" style="background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
   <div id="titleWrapper">
     <h1 id="title"> Gator Placer <img class="logo" src="/images/gator.png"></img></h1>
-    <button type="button" class="btn btn-primary" id="signOut" ng-click=signOut()>Sign Out</button>
+    <button type="button" class="btn btn-default" id="signOut" ng-click=signOut()>Sign Out</button>
   </div>
   <div class="row" id="wrapper">
     <!--wraps search bar, accordion, and map-->
@@ -59,190 +59,201 @@
             <!--panel collapse-->
             <div class="panel-body">
               <!--panel body-->
-              <div>Email: {{listing.email}}</div>
-              <div ng-show="isUser && !listing.information">
-                <!--Add Info Button-->
-                <br><br>
-                <button href="" class="btn btn-primary btn-sm" ng-click="editInfo = !editInfo">Add Info</button>
-                <br><br>
-              </div>
-              <div ng-show=listing.information>
-                <!--displays listing info and edit info icon-->
-                <br><br>
-                Information: {{listing.information}}
-                <a href="" ng-show="isUser && listing.information" ng-click="editInfo = !editInfo" class="glyphicon glyphicon-edit"></a>
-              </div>
-              <div ng-show="editInfo && isUser">
-                <!--info form-->
-                <form novalidate class="simple-form">
+              <h3>About Me</h3>
+              <a href="mailto:{{listing.email}}">{{listing.email}}</p>
+                <div ng-show="listing.linkedin || listing.twitter || listing.slack">
+                  <a href={{listing.linkedin}} target="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
+                  <a href={{listing.twitter}} target="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
+                  <a href={{listing.slack}} target="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
+                </div>
+                <div ng-show=listing.information>
                   <br>
-                  <input type="text" class="form-control" ng-model="newListing.information" />
-                  <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
-                </form>
-              </div>
-              <div ng-show="listing.classes.length > 0 ">
-                <br>
-                Courses Taught
-                <div ng-repeat="class in listing.classes">
-                  <div ng-repeat="course in classes" ng-show="class == course._id">
-                    <li class = "list-group-item">
-                                  <div class="alert alert-info" role="alert">{{course.classType}}</div>
-                                <h5>{{course.code}} {{course.name}}</h5>
-                                <div ng-repeat="building in buildings" ng-show = "course.location == building._id">
-                                    <h5>{{building.code}} {{course.room}}</h5>
-                                  </div>
-                                <div>
-                                  <ul class = "list-group">
-                                    <div ng-repeat="time in course.time">
-                                      <li class ="list-group-item">
-                                        {{time}}
-                                      </li>
-                                    </div>
-                                  </ul>
-                                </div>
+                  <p>{{listing.information}}</p>
+                  <a href="" ng-show="isUser && listing.information" ng-click="editInfo = !editInfo" class="glyphicon glyphicon-edit"></a>
+                </div>
+                <div ng-show="editInfo && isUser">
+                    <!--info form-->
+                    <form novalidate class="simple-form">
+                      <input type="text" class="form-control" ng-model="newListing.information" />
+                      <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
+                    </form>
+                </div>
+                <div ng-show="isUser && !listing.information">
+                    <button href="" class="btn btn-default btn-sm" ng-click="editInfo = !editInfo">Add Info</button>
+                </div>
+
+
+
+                <hr>
+                <div ng-show="listing.classes.length > 0 ">
+                  <br>
+                  Courses Taught
+                  <div ng-repeat="class in listing.classes">
+                    <div ng-repeat="course in classes" ng-show="class == course._id">
+                      <li class="list-group-item">
+                        <div class="alert alert-info" role="alert">{{course.classType}}</div>
+                        <h5>{{course.code}} {{course.name}}</h5>
+                        <div ng-repeat="building in buildings" ng-show="course.location == building._id">
+                          <h5>{{building.code}} {{course.room}}</h5>
+                        </div>
+                        <div>
+                          <ul class="list-group">
+                            <div ng-repeat="time in course.time">
+                              <li class="list-group-item">
+                                {{time}}
                               </li>
+                            </div>
+                          </ul>
+                        </div>
+                      </li>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div ng-show="isUser">
-                <!--add course button-->
-                <br>
-                <button href="" class="btn btn-primary btn-sm" ng-click="addCourseForm = !addCourseForm">Add Course</button>
-              </div>
-
-
-              <div ng-show="isUser && addCourseForm">
-                <!--add course form-->
-                <div>
-                  <form>
-                    <div class="form-row align-items-center">
-                      <div class="form-group col-md-6">
-                        <label>Course Code</label>
-                        <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
-                          ng-model="courseCode" ng-pattern="courseCodeRegex" ng-change="getCourseNameFromCode(courseCode)">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Course Name</label>
-                        <input type="text" class="form-control" id="inputCourseName" placeholder="Course" readonly
-                          ng-model="courseName">
-                      </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                      <div class="form-group col-md-8">
-                        <label for="typeSelect">Select a Type</label>
-                        <select class="form-control" id="" ng-model="classType">
-                          <option>Lecture</option>
-                          <option>Office Hour</option>
-                          <option>Discussion</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Location</label>
-                        <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
-                          ng-model="location">
-                      </div>
-                      <div class="form-group col-md-12">
-                        <label>Room</label>
-                        <input type="text" class="form-control text-uppercase" id="inputCourseRoom" placeholder="Room Number" ng-model="courseRoom">
-                      </div>
-                    </div>
-
-
-                    <div class="form-row align-items-center">
-                      <div class="form-check-input col-md-4" id="mondayChecker">
-                        <input class="form-check-input" type="checkbox" ng-model="mondayCheck">
-                        <label class="form-check-label" for="mondayCheck">
-                          Monday
-                        </label>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Start Time</label>
-                        <select class="form-control" ng-model="mondayStartTime" ng-disabled="!mondayCheck" ng-options="startTime.time for startTime in startTimes">
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>End Time</label>
-                        <select class="form-control" ng-model="mondayEndTime" ng-disabled="!mondayCheck" ng-options="endTime.time for endTime in endTimes">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                      <div class="form-check-input col-md-4" id="tuesdayChecker">
-                        <input class="form-check-input" type="checkbox" ng-model="tuesdayCheck">
-                        <label class="form-check-label" for="mondayCheck">
-                          Tuesday
-                        </label>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Start Time</label>
-                        <select class="form-control" ng-model="tuesdayStartTime" ng-disabled="!tuesdayCheck" ng-options="startTime.time for startTime in startTimes">
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>End Time</label>
-                        <select class="form-control" ng-model="tuesdayEndTime" ng-disabled="!tuesdayCheck" ng-options="endTime.time for endTime in endTimes">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                      <div class="form-check-input col-md-4" id="wednesdayChecker">
-                        <input class="form-check-input" type="checkbox" ng-model="wednesdayCheck">
-                        <label class="form-check-label" for="">
-                          Wednesday
-                        </label>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Start Time</label>
-                        <select class="form-control" ng-model="wednesdayStartTime" ng-disabled="!wednesdayCheck" ng-options="startTime.time for startTime in startTimes">
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>End Time</label>
-                        <select class="form-control" ng-model="wednesdayEndTime" ng-disabled="!wednesdayCheck" ng-options="endTime.time for endTime in endTimes">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                      <div class="form-check-input col-md-4" id="thursdayChecker">
-                        <input class="form-check-input" type="checkbox" ng-model="thursdayCheck">
-                        <label class="form-check-label" for="">
-                          Thursday
-                        </label>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Start Time</label>
-                        <select class="form-control" ng-model="thursdayStartTime" ng-disabled="!thursdayCheck" ng-options="startTime.time for startTime in startTimes">
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>End Time</label>
-                        <select class="form-control" ng-model="thursdayEndTime" ng-disabled="!thursdayCheck" ng-options="endTime.time for endTime in endTimes">
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-row align-items-center">
-                      <div class="form-check-input col-md-4" id="fridayChecker">
-                        <input class="form-check-input" type="checkbox" ng-model="fridayCheck">
-                        <label class="form-check-label" for="mondayCheck">
-                          Friday
-                        </label>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>Start Time</label>
-                        <select class="form-control" ng-model="fridayStartTime" ng-disabled="!fridayCheck" ng-options="startTime.time for startTime in startTimes">
-                        </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label>End Time</label>
-                        <select class="form-control" ng-model="fridayEndTime" ng-disabled="!fridayCheck" ng-options="endTime.time for endTime in endTimes">
-                        </select>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
-                      Course</button>
-                  </form>
+                <div ng-show="isUser">
+                  <!--add course button-->
                   <br>
-                  <!-- <pre>code = {{courseCode| json}}</pre>
+                  <button href="" class="btn btn-default btn-sm" ng-click="addCourseForm = !addCourseForm">Add Course</button>
+                </div>
+
+
+                <div ng-show="isUser && addCourseForm">
+                  <!--add course form-->
+                  <div>
+                    <form>
+                      <div class="form-row align-items-center">
+                        <div class="form-group col-md-6">
+                          <label>Course Code</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
+                            ng-model="courseCode" ng-pattern="courseCodeRegex" ng-change="getCourseNameFromCode(courseCode)">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Course Name</label>
+                          <input type="text" class="form-control" id="inputCourseName" placeholder="Course" readonly
+                            ng-model="courseName">
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-group col-md-8">
+                          <label for="typeSelect">Select a Type</label>
+                          <select class="form-control" id="" ng-model="classType">
+                            <option>Lecture</option>
+                            <option>Office Hour</option>
+                            <option>Discussion</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label>Location</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
+                            ng-model="location">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label>Room</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseRoom" placeholder="EX 007"
+                            ng-model="courseRoom">
+                        </div>
+                      </div>
+
+
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="mondayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="mondayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Monday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="mondayStartTime" ng-disabled="!mondayCheck" ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="mondayEndTime" ng-disabled="!mondayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="tuesdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="tuesdayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Tuesday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="tuesdayStartTime" ng-disabled="!tuesdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="tuesdayEndTime" ng-disabled="!tuesdayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="wednesdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="wednesdayCheck">
+                          <label class="form-check-label" for="">
+                            Wednesday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="wednesdayStartTime" ng-disabled="!wednesdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="wednesdayEndTime" ng-disabled="!wednesdayCheck"
+                            ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="thursdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="thursdayCheck">
+                          <label class="form-check-label" for="">
+                            Thursday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="thursdayStartTime" ng-disabled="!thursdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="thursdayEndTime" ng-disabled="!thursdayCheck"
+                            ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="fridayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="fridayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Friday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="fridayStartTime" ng-disabled="!fridayCheck" ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="fridayEndTime" ng-disabled="!fridayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-default" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
+                        Course</button>
+                    </form>
+                    <br>
+                    <!-- <pre>code = {{courseCode| json}}</pre>
                   <pre>name = {{courseName | json}}</pre>
                   <pre>type = {{classType | json}}</pre>
                   <pre>location = {{location | json}}</pre>
@@ -262,34 +273,24 @@
                   <pre>fridayEndTime={{fridayEndTime | json}}</pre>
                   <pre>fridayCheck={{fridayCheck | json}}</pre>
                   <pre>type = {{courseRoom | json}}</pre>-->
+                  </div>
                 </div>
-              </div>
-
-
-
-              <div ng-show="listing.linkedin || listing.twitter || listing.slack">
-                <!--displays social media-->
-                <br><br>
-                <a href={{listing.linkedin}} target="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
-                <a href={{listing.twitter}} target="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
-                <a href={{listing.slack}} target="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
-              </div>
-              <div ng-show="isUser">
-                <!--edit social media button-->
-                <br>
-                <button href="" class="btn btn-primary btn-sm" ng-click="editSocial = !editSocial">Edit Social Media
-                </button>
-              </div>
-              <div ng-show="editSocial && isUser">
-                <!--social media form-->
-                <br>
-                <form novalidate class="simple-form">
-                  Twitter <input type="text" placeholder={{listing.twitter}} class="form-control" ng-model="newListing.twitter" />
-                  Slack <input type="text" placeholder={{listing.slack}} class="form-control" ng-model="newListing.slack" />
-                  LinkedIn <input type="text" placeholder={{listing.linkedin}} class="form-control" ng-model="newListing.linkedin" /><br>
-                  <button class="btn btn-primary" ng-click="updateListing(listing)">Submit</button>
-                </form>
-              </div>
+                <div ng-show="isUser">
+                  <!--edit social media button-->
+                  <br>
+                  <button href="" class="btn btn-default btn-sm" ng-click="editSocial = !editSocial">Edit Social Media
+                  </button>
+                </div>
+                <div ng-show="editSocial && isUser">
+                  <!--social media form-->
+                  <br>
+                  <form novalidate class="simple-form">
+                    Twitter <input type="text" placeholder={{listing.twitter}} class="form-control" ng-model="newListing.twitter" />
+                    Slack <input type="text" placeholder={{listing.slack}} class="form-control" ng-model="newListing.slack" />
+                    LinkedIn <input type="text" placeholder={{listing.linkedin}} class="form-control" ng-model="newListing.linkedin" /><br>
+                    <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
+                  </form>
+                </div>
             </div>
             <!--panel body-->
           </div>
@@ -300,13 +301,13 @@
       <!--panel group-->
       <div id="addTaForm">
         <!--add ta button and form-->
-        <button class="btn btn-primary" ng-click="TaForm = !TaForm">Add a TA</button><br>
+        <button class="btn btn-default" ng-click="TaForm = !TaForm">Add a TA</button><br>
         <div ng-show="TaForm">
           <!--add ta form-->
           <br>
           <input type="text" class="form-control" placeholder="TA Email" ng-model="ta_Email">
           <input type="text" class="form-control" placeholder="course" ng-model="course"><br>
-          <button type="button" class="btn btn-primary" ng-click=addTA(ta_Email,course)>Submit TA</button><br>
+          <button type="button" class="btn btn-default" ng-click=addTA(ta_Email,course)>Submit TA</button><br>
         </div>
 
         <div id="mapInput">
@@ -314,7 +315,7 @@
           <input type="text" id="mapInput1" class="form-control" placeholder="Building Code" ng-model="buildingName">
           <!-- 29.6499  -82.3486 -->
           <input type="text" id="mapInput2" class="form-control" placeholder="Description" ng-model="description">
-          <button type="button" class="btn btn-primary" ng-click=addMarker(buildingName,description)>Add Marker</button>
+          <button type="button" class="btn btn-default" ng-click=addMarker(buildingName,description)>Add Marker</button>
         </div>
       </div>
     </div>
