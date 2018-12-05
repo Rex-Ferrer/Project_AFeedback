@@ -130,7 +130,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
 
       }
 
-      console.log(courseRoom);
+      //console.log(courseRoom);
 
       var newCourse = {
         "code": courseCode,
@@ -201,8 +201,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
         if($scope.buildings[i]._id == id){
           var latitude =$scope.buildings[i].coordinates.latitude;
           var longitude =$scope.buildings[i].coordinates.longitude;
-          var marker = L.marker([latitude, longitude]).addTo(mymap)
-          .bindPopup(description).openPopup();;
+          var marker = L.marker([latitude, longitude]).addTo(mymap).bindPopup(description).openPopup();
           $scope.markers.push(marker);
         }
       }
@@ -219,7 +218,8 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       for(let i = 0; i < listing.classes.length; i++){
           var course = $scope.getClassByID(listing.classes[i]);
           var location = $scope.getLocationByID(course.location);
-          $scope.addMark(location._id, " Description" );
+          var description = course.code + " - " + course.classType +" - " +"Room: "+ course.room;
+          $scope.addMark(location._id, description );
       }
     };
 

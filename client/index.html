@@ -89,6 +89,9 @@
                               <li class = "list-group-item">
                                   <div class="alert alert-info" role="alert">{{course.classType}}</div>
                                 <h5>{{course.code}} {{course.name}}</h5>
+                                <div ng-repeat="building in buildings" ng-show = "course.location == building._id">
+                                    <h5>{{building.code}} {{course.room}}</h5>
+                                  </div>
                                 <div>
                                   <ul class = "list-group">
                                     <div ng-repeat="time in course.time">
@@ -143,6 +146,10 @@
                         <label>Location</label>
                         <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
                           ng-model="location">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Room</label>
+                        <input type="text" class="form-control text-uppercase" id="inputCourseRoom" placeholder="Room Number" ng-model="courseRoom">
                       </div>
                     </div>
                     <div class="form-row align-items-center">
@@ -235,7 +242,7 @@
                         </select>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing)">Submit
+                    <button type="button" class="btn btn-primary" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
                       Course</button>
                   </form>
                 </div>
