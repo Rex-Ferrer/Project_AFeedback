@@ -1,18 +1,45 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
-    $scope.companyName = "SwampHacks2019s";
+
+    //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
+    Listings.getUser().then(function(response) {
+      $scope.user = response.data[0];
+
+    },function(error) {
+      console.log('Unable to retrieve listings:', error);
+    });
     $scope.jobs = [
         {
             name: "Software Eng. II",
             totalApplicants: 5,
-            unreviewedApplicants: 2
+            unreviewedApplicants: 2,
+            createdBy: "Google"
         },
         {
             name: "Software Eng. IV",
             totalApplicants: 15,
-            unreviewedApplicants: 1
+            unreviewedApplicants: 1,
+            createdBy: "Google"
         }
     ];
+    //Displays jobs for a specific company
+    $scope.displayJobs = function(){
+      for (i = 0; i < $scope.jobs.length; i++) {
+        if($scope.user.firstname == $scope.jobs[i].company){
+          $scope.listedJobs.push($scope.jobs[i])
+        }
+      }
+    };
+
+    //Displays jobs for a specific company
+    $scope.displayJobs = function(){
+      for (i = 0; i < $scope.jobs.length; i++) {
+        if($scope.companyName == $scope.jobs[i].company){
+          $scope.listedJobs.push($scope.jobs[i])
+        }
+      }
+    };
+
 
 
     /*

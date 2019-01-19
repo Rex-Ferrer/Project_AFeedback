@@ -1,107 +1,331 @@
-<!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Employer Portal</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+<!doctype html>
+<html lang="en">
 
-		<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/factories/listingFactory.js"></script>
-		<script src="js/controllers/listingController.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title>Gator Placer</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Leaflet Link to access api-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/factories/listingFactory.js"></script>
+  <script src="js/controllers/listingController.js"></script>
+  <script src="js/controllers/classFormController.js"></script>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+    crossorigin=""></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+</head>
 
-
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body ng-app="AllHigher"  ng-controller="ListingsController" class="is-preload">
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>{{companyName}}'s hiring portal</h1>
-					</header>
-
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><button class="header_buttons">Open Jobs</button></li>
-							<li><button class="header_buttons">a Job</button></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Tables -->
-							<article id="table" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<ul class="header_buttons" ng-repeat="job in jobs">
-											<button class="job_button">{{job.name}}</button>
-											<table style="visibility: hidden" id="{{job + 'table'}}" class="table">
-												<thead>
-													<tr>
-														<th scope="col">Rank</th>
-														<th scope="col">Applicant</th>
-														<th *ngfor="let param of job.params" scope="col">{{param}}</th>
-													</tr>
-												</thead>
-												<tbody *ngfor="let row of reviewedApplications">
-													<tr>
-														<td>{{job.name}}</td>
-														<td>{{job.totalApplicants}}</td>
-														<td>{{job.unreviewedApplicants}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</ul>
-									</div>
-								</div>
-							</article>
-
-							<!-- <article id="" class="">
-								<div class="spotlight">
-									<div class="content">
-										<form>
-											<div class="form-group">
-												<label for="jobName">Job Title/Position</label>
-												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
-											</div>
-											<label>List what parameters you will judge candidates on:</label>
-											<div class="form-group">
-												<label for="exampleInputPassword1">Password</label>
-												<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-											</div>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">Check me out</label>
-											</div>
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</form>
-									</div>
-								</div>
-							</article> -->
-					</div>
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<body ng-app="directoryApp" ng-controller="ListingsController" style="background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url('/images/campus.png');">
+  <div id="titleWrapper">
+    <h1 id="title"> Gator Placer <img class="logo" src="/images/gator.png"></img></h1>
+    <button type="button" class="btn btn-default" id="signOut" ng-click=signOut()>Sign Out</button>
+  </div>
+  <div class="row" id="wrapper">
+    <!--wraps search bar, accordion, and map-->
+    <div class="col-md-6">
+      <!--search bar and accordion on the left-->
+      <div class="input-group" id="accordion_search">
+        <!--search bar-->
+        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+      </div>
+      <!--end of search bar-->
+      <div class="panel-group" id="accordion" id="panel-group-professor" role="tablist" aria-multiselectable="true">
+        <!--accordion menu-->
+        <div class="panel panel-default" ng-repeat="listing in listings | orderBy: 'name'" ng-show="(searchText == null || listing.name.toLowerCase().includes(searchText.toLowerCase())) && listing.createdBy == user.username;">
+          <div ng-click="selectProf(listing)" class="panel-heading" id="panelHeading" data-toggle="collapse"
+            data-parent="#accordion" href=#{{listing._id}}>
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href=#{{listing._id}}>
+                <!--needs a unique identifier without spaces(name is not good enough)-->
+                {{listing.name}} <span> <a href="" class="glyphicon glyphicon-edit" ng-show=canEdit(listing)></a></span>
+                <div style="float: right">{{listing.role}}</div>
+              </a>
+            </h4>
+          </div>
+          <!--panel-heading-->
+          <div id={{listing._id}} class="panel-collapse collapse">
+            <!--panel collapse-->
+            <div class="panel-body">
+              <!--panel body-->
+              <h3>About Me</h3>
+              <a href="mailto:{{listing.email}}">{{listing.email}}</p>
+                <div ng-show="listing.linkedin || listing.twitter || listing.slack">
+                  <a href={{listing.linkedin}} target="_blank" class="fa fa-linkedin" ng-show="listing.linkedin"></a>
+                  <a href={{listing.twitter}} target="_blank" class="fa fa-twitter" ng-show="listing.twitter"></a>
+                  <a href={{listing.slack}} target="_blank" class="fa fa-slack" ng-show="listing.slack"></a>
+                </div>
+                <div ng-show=listing.information>
+                  <br>
+                  <p>{{listing.information}}</p>
+                  <a href="" ng-show="isUser && listing.information" ng-click="editInfo = !editInfo" class="glyphicon glyphicon-edit"></a>
+                </div>
+                <div ng-show="editInfo && isUser">
+                    <!--info form-->
+                    <form novalidate class="simple-form">
+                      <input type="text" class="form-control" ng-model="newListing.information" />
+                      <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
+                    </form>
+                </div>
+                <div ng-show="isUser && !listing.information">
+                    <button href="" class="btn btn-default btn-sm" ng-click="editInfo = !editInfo">Add Info</button>
+                </div>
 
 
-	</body>
+
+                <hr>
+                <div ng-show="listing.classes.length > 0 ">
+                  <br>
+                  Courses Taught
+                  <div ng-repeat="class in listing.classes">
+                    <div ng-repeat="course in classes" ng-show="class == course._id">
+                      <li class="list-group-item">
+                        <div class="alert alert-info" role="alert">{{course.classType}}</div>
+                        <h5>{{course.code}} {{course.name}}</h5>
+                        <!-- <div ng-repeat="building in buildings" ng-show="course.location == building._id">
+                          <h5>{{building.code}} {{course.room}}</h5>
+                        </div> -->
+                        <div>
+                          <ul class="list-group">
+                            <div ng-repeat="time in course.time">
+                              <li class="list-group-item">
+                                {{time}}
+                              </li>
+                            </div>
+                          </ul>
+                        </div>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+                <div ng-show="isUser">
+                  <!--add course button-->
+                  <br>
+                  <button href="" class="btn btn-default btn-sm" ng-click="addCourseForm = !addCourseForm">Add Course</button>
+                </div>
+
+
+                <div ng-show="isUser && addCourseForm">
+                  <!--add course form-->
+                  <div>
+                    <form>
+                      <div class="form-row align-items-center">
+                        <div class="form-group col-md-6">
+                          <label>Course Code</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseCode" placeholder="EX: COP3530"
+                            ng-model="courseCode" ng-pattern="courseCodeRegex" ng-change="getCourseNameFromCode(courseCode)">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label>Course Name</label>
+                          <input type="text" class="form-control" id="inputCourseName" placeholder="Course" readonly
+                            ng-model="courseName">
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-group col-md-8">
+                          <label for="typeSelect">Select a Type</label>
+                          <select class="form-control" id="" ng-model="classType">
+                            <option>Lecture</option>
+                            <option>Office Hour</option>
+                            <option>Discussion</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label>Location</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseName" placeholder="EX: TUR"
+                            ng-model="location">
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label>Room</label>
+                          <input type="text" class="form-control text-uppercase" id="inputCourseRoom" placeholder="EX 007"
+                            ng-model="courseRoom">
+                        </div>
+                      </div>
+
+
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="mondayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="mondayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Monday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="mondayStartTime" ng-disabled="!mondayCheck" ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="mondayEndTime" ng-disabled="!mondayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="tuesdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="tuesdayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Tuesday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="tuesdayStartTime" ng-disabled="!tuesdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="tuesdayEndTime" ng-disabled="!tuesdayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="wednesdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="wednesdayCheck">
+                          <label class="form-check-label" for="">
+                            Wednesday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="wednesdayStartTime" ng-disabled="!wednesdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="wednesdayEndTime" ng-disabled="!wednesdayCheck"
+                            ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="thursdayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="thursdayCheck">
+                          <label class="form-check-label" for="">
+                            Thursday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="thursdayStartTime" ng-disabled="!thursdayCheck"
+                            ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="thursdayEndTime" ng-disabled="!thursdayCheck"
+                            ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-row align-items-center">
+                        <div class="form-check-input col-md-4" id="fridayChecker">
+                          <input class="form-check-input" type="checkbox" ng-model="fridayCheck">
+                          <label class="form-check-label" for="mondayCheck">
+                            Friday
+                          </label>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>Start Time</label>
+                          <select class="form-control" ng-model="fridayStartTime" ng-disabled="!fridayCheck" ng-options="startTime.time for startTime in startTimes">
+                          </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label>End Time</label>
+                          <select class="form-control" ng-model="fridayEndTime" ng-disabled="!fridayCheck" ng-options="endTime.time for endTime in endTimes">
+                          </select>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-default" ng-click="addCourse(courseCode,courseName,location,classType,mondayCheck,mondayStartTime,mondayEndTime,tuesdayCheck,tuesdayStartTime,tuesdayEndTime,wednesdayCheck,wednesdayStartTime,wednesdayEndTime,thursdayCheck,thursdayStartTime,thursdayEndTime,fridayCheck, fridayStartTime,fridayEndTime,listing,courseRoom)">Submit
+                        Course</button>
+                    </form>
+                    <br>
+                    <!-- <pre>code = {{courseCode| json}}</pre>
+                  <pre>name = {{courseName | json}}</pre>
+                  <pre>type = {{classType | json}}</pre>
+                  <pre>location = {{location | json}}</pre>
+                  <pre>mondayStartTime = {{mondayStartTime | json}}</pre>
+                  <pre>mondayEndTime={{mondayEndTime | json}}</pre>
+                  <pre>mondayCheck={{mondayCheck | json}}</pre>
+                  <pre>tuesdayStartTime = {{tuesdayStartTime | json}}</pre>
+                  <pre>tuesdayEndTime={{tuesdayEndTime | json}}</pre>
+                  <pre>tuesdayCheck={{tuesdayCheck | json}}</pre>
+                  <pre>wednesdayStartTime = {{wednesdayStartTime | json}}</pre>
+                  <pre>wednesdayEndTime={{wednesdayEndTime | json}}</pre>
+                  <pre>wednesdayCheck={{wednesdayCheck | json}}</pre>
+                  <pre>thursdayStartTime = {{thursdayStartTime | json}}</pre>
+                  <pre>thursdayEndTime ={{ thursdayEndTime | json}}</pre>
+                  <pre>thursdayCheck={{thursdayCheck | json}}</pre>
+                  <pre>fridayStartTime = {{fridayStartTime | json}}</pre>
+                  <pre>fridayEndTime={{fridayEndTime | json}}</pre>
+                  <pre>fridayCheck={{fridayCheck | json}}</pre>
+                  <pre>type = {{courseRoom | json}}</pre>-->
+                  </div>
+                </div>
+                <div ng-show="isUser">
+                  <!--edit social media button-->
+                  <br>
+                  <button href="" class="btn btn-default btn-sm" ng-click="editSocial = !editSocial">Edit Social Media
+                  </button>
+                </div>
+                <div ng-show="editSocial && isUser">
+                  <!--social media form-->
+                  <br>
+                  <form novalidate class="simple-form">
+                    Twitter <input type="text" placeholder={{listing.twitter}} class="form-control" ng-model="newListing.twitter" />
+                    Slack <input type="text" placeholder={{listing.slack}} class="form-control" ng-model="newListing.slack" />
+                    LinkedIn <input type="text" placeholder={{listing.linkedin}} class="form-control" ng-model="newListing.linkedin" /><br>
+                    <button class="btn btn-default" ng-click="updateListing(listing)">Submit</button>
+                  </form>
+                </div>
+            </div>
+            <!--panel body-->
+          </div>
+          <!--panel collapse-->
+        </div>
+        <!--panel default-->
+      </div>
+      <!--panel group-->
+      <div id="addTaForm">
+        <!--add ta button and form-->
+        <button class="btn btn-default" ng-click="TaForm = !TaForm">Add a TA</button><br>
+        <div ng-show="TaForm">
+          <!--add ta form-->
+          <br>
+          <input type="text" class="form-control" placeholder="TA Email" ng-model="ta_Email">
+          <input type="text" class="form-control" placeholder="course" ng-model="course"><br>
+          <button type="button" class="btn btn-default" ng-click=addTA(ta_Email,course)>Submit TA</button><br>
+        </div>
+      </div>
+    </div>
+    <!--col md left-->
+    <div class="col-md-6">
+      <!-- Make sure you put this AFTER Leaflet's CSS -->
+      <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+      <div id="mapid"></div>
+      <script type="text/javascript">
+        var mymap = L.map('mapid').setView([29.646927, -82.347035], 16);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+      </script>
+    </div>
+    <!--col md 6 right side-->
+  </div>
+  <!--row-->
+</body>
+
 </html>
