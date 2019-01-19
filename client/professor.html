@@ -16,82 +16,81 @@
 		<script src="js/factories/listingFactory.js"></script>
 		<script src="js/controllers/listingController.js"></script>
 
-
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body ng-app="AllHigher"  ng-controller="ListingsController" class="is-preload">
+	<body ng-app="AllHigher"   ng-controller="ListingsController" class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+				<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>{{companyName}}'s hiring portal</h1>
-					</header>
+					<!-- Header -->
+						<header id="header" class="alt">
+							<span class="logo"><img src="images/logo.svg" alt="" /></span>
+							<h1>{{companyName}}'s hiring portal</h1>
+						</header>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><button class="header_buttons">Open Jobs</button></li>
-							<li><button class="header_buttons">a Job</button></li>
-						</ul>
-					</nav>
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><button class="header_buttons">Open Jobs</button></li>
+								<li><button class="header_buttons">a Job</button></li>
+							</ul>
+						</nav>
 
-				<!-- Main -->
-					<div id="main">
+					<!-- Main -->
+						<div id="main">
 
-						<!-- Tables -->
-							<article id="table" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<ul class="header_buttons" ng-repeat="job in jobs">
-											<button class="job_button">{{job.name}}</button>
-											<table style="visibility: hidden" id="{{job + 'table'}}" class="table">
-												<thead>
-													<tr>
-														<th scope="col">Rank</th>
-														<th scope="col">Applicant</th>
-														<th *ngfor="let param of job.params" scope="col">{{param}}</th>
-													</tr>
-												</thead>
-												<tbody *ngfor="let row of reviewedApplications">
-													<tr>
-														<td>{{job.name}}</td>
-														<td>{{job.totalApplicants}}</td>
-														<td>{{job.unreviewedApplicants}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</ul>
+							<!-- Tables -->
+								<article id="table" class="main">
+									<div class="spotlight">
+										<div class="content">
+											<ul>
+												<li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
+													<button data-toggle="collapse" data-target="#{{job.id}}" class="button job_button">{{job.name}}</button>
+													<table id="{{job.id}}" class="applicantTable collapse table">
+														<thead>
+															<tr>
+																<th scope="col">Rank</th>
+																<th scope="col">Applicant</th>
+																<th ng-repeat="param in job.params" scope="col">{{param}}</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="applicant in job.applications">
+																<td ng-repeat="col in applicant">{{col}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</li>
+											</ul>
+										</div>
 									</div>
-								</div>
-							</article>
-							
-							<!-- <article id="" class="">
-								<div class="spotlight">
-									<div class="content">
-										<form>
-											<div class="form-group">
-												<label for="jobName">Job Title/Position</label>
-												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
-											</div>
-											<label>List what parameters you will judge candidates on:</label>
-											<div class="form-group">
-												<label for="exampleInputPassword1">Password</label>
-												<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-											</div>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">Check me out</label>
-											</div>
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</form>
+								</article>
+
+								<!-- <article id="" class="">
+									<div class="spotlight">
+										<div class="content">
+											<form>
+												<div class="form-group">
+													<label for="jobName">Job Title/Position</label>
+													<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
+												</div>
+												<label>List what parameters you will judge candidates on:</label>
+												<div class="form-group">
+													<label for="exampleInputPassword1">Password</label>
+													<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+												</div>
+												<div class="form-check">
+													<input type="checkbox" class="form-check-input" id="exampleCheck1">
+													<label class="form-check-label" for="exampleCheck1">Check me out</label>
+												</div>
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</form>
+										</div>
 									</div>
-								</div>
-							</article> -->
-					</div>
-			</div>
+								</article> -->
+						</div>
+				</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
