@@ -10,12 +10,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+	  <script src="js/app.js"></script>
+	  <script src="js/factories/listingFactory.js"></script>
+	  <script src="js/controllers/listingController.js"></script>
+
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+			<div ng-app="directoryApp" ng-controller="ListingsController" id="wrapper">
 
 				<!-- Header -->
 					<header id="header" class="alt">
