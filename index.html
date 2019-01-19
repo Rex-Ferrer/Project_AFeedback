@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body ng-app="AllHigher" ng-controller="ListingsController" class="is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -26,8 +26,8 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><button>Open Jobs</button></li>
-							<li><button>a Job</button></li>
+							<li><button class="header_buttons">Open Jobs</button></li>
+							<li><button class="header_buttons">a Job</button></li>
 						</ul>
 					</nav>
 
@@ -35,24 +35,24 @@
 					<div id="main">
 
 						<!-- Tables -->
-							<article id="intro" class="main">
+							<article id="table" class="main">
 								<div class="spotlight">
 									<div class="content">
-										<ul *ngfor="let job of $jobs">
-											<button ng-click="toggleItem({{job + '_table'}}); getApplicants(job.name, job.company)" class="job_button">{{job.name}}</button>
-											<table id="{{$job + 'table'}}" class="table">
+										<ul class="header_buttons" ng-repeat="job in jobs">
+											<button class="job_button">{{job.name}}</button>
+											<table style="visibility: hidden" id="{{job + 'table'}}" class="table">
 												<thead>
 													<tr>
 														<th scope="col">Rank</th>
 														<th scope="col">Applicant</th>
-														<th *ngfor="let param of $job.params" scope="col">{{param}}</th>
+														<th *ngfor="let param of job.params" scope="col">{{param}}</th>
 													</tr>
 												</thead>
 												<tbody *ngfor="let row of reviewedApplications">
 													<tr>
 														<td>{{job.name}}</td>
 														<td>{{job.totalApplicants}}</td>
-														<td>{{job.unreviwedApplicants}}</td>
+														<td>{{job.unreviewedApplicants}}</td>
 													</tr>
 												</tbody>
 											</table>
@@ -60,11 +60,33 @@
 									</div>
 								</div>
 							</article>
+
+							<!-- <article id="" class="">
+								<div class="spotlight">
+									<div class="content">
+										<form>
+											<div class="form-group">
+												<label for="jobName">Job Title/Position</label>
+												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
+											</div>
+											<label>List what parameters you will judge candidates on:</label>
+											<div class="form-group">
+												<label for="exampleInputPassword1">Password</label>
+												<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+											</div>
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<label class="form-check-label" for="exampleCheck1">Check me out</label>
+											</div>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</form>
+									</div>
+								</div>
+							</article> -->
 					</div>
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/tablemanager.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -72,6 +94,9 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+			<script src="app.js"></script>
+			<script src="listingsController.js"></script>
 
 	</body>
 </html>
