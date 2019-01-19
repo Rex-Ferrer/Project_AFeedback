@@ -26,8 +26,8 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><a href="#intro" class="active">Open Jobs</a></li>
-							<li><a href="#first">Create a Job</a></li>
+							<li><button>Open Jobs</button></li>
+							<li><button>a Job</button></li>
 						</ul>
 					</nav>
 
@@ -38,18 +38,18 @@
 							<article id="intro" class="main">
 								<div class="spotlight">
 									<div class="content">
-										<ul *ngfor="let job of jobs">
-											<button ng-click="toggleItem({{job + '_table'}})" class="job_button">{{job.name}}</button>
-											<table class="table">
+										<ul *ngfor="let job of $jobs">
+											<button ng-click="toggleItem({{job + '_table'}}); getApplicants(job.name, job.company)" class="job_button">{{job.name}}</button>
+											<table id="{{$job + 'table'}}" class="table">
 												<thead>
 													<tr>
 														<th scope="col">Rank</th>
 														<th scope="col">Applicant</th>
-														<th *ngfor="let param of job.params" scope="col">{{param}}</th>
+														<th *ngfor="let param of $job.params" scope="col">{{param}}</th>
 													</tr>
 												</thead>
-												<tbody *ngfor="let job of jobs">
-													<tr ng-click="toggleElement()">
+												<tbody *ngfor="let row of reviewedApplications">
+													<tr>
 														<td>{{job.name}}</td>
 														<td>{{job.totalApplicants}}</td>
 														<td>{{job.unreviwedApplicants}}</td>
@@ -64,7 +64,7 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/tablemanager"></script>
+			<script src="assets/js/tablemanager.js"></script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
