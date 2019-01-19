@@ -23,7 +23,7 @@ angular.module('listings').controller('ListingsController', ['$scope',
 
     // Data Tables
     $(document).ready(function() {
-        $('#example').DataTable( {
+        $('.applicantTable').DataTable( {
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],
