@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="assets/js/passwordConfirm.js"></script>
+
 <style type="text/css">
 	body {
 		color: #fff;
@@ -85,10 +87,14 @@
 	}
 	.login-form form a {
 		color: #7a7a7a;
-		text-decoration: none;
-	}
-    .dropdown{
-        text-align: center
+        text-decoration: none;
+    }
+    .registrationFormAlert{
+        padding-bottom: 2em;
+        padding-top: 0em;
+    }
+    .text-center small{
+        padding-bottom: 0em;
     }
 </style>
 </head>
@@ -99,23 +105,32 @@
 			<img src="images/logoplane.png" alt="Avatar">
 		</div>
         <h2 class="text-center">Signup</h2>
-          
-
-    <div class="dropdown">
-
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Please select <b class="caret"></b></a>
-    
-            <ul class="dropdown-menu">
-    
-                <li><a href="./signupCompany.html">Company</a></li>
-    
-                <li><a href="#">Applicant</a></li>
-    
-            </ul>
-    
-        </div><br>
-    </form>
-    <p class="text-center small">Already have an account? <a href="./login.html">Login here!</a></p>
-</div>
-</body>
-</html>                            
+        <div class="form-group">
+            <label for="role">Please Select</label>
+            <select class="form-control" id="role" name="role">
+                <option>Company</option>
+                <option>Applicant</option>
+            </select>
+        </div>
+        <div class="form-group">
+                <input type="text" class="form-control" name="Email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Name" placeholder="Name" required="required">
+            </div>
+             <div class="form-group">
+                        <input type="password" class="form-control" name="Password" placeholder="Password" required="required" id="password">
+                </div>
+            <div class="form-group">
+                    <input type="password" class="form-control" name="Confirm Password" placeholder="Confirm Password" required="required" id="confirmPassword">
+                    <class="registrationFormAlert" id="divCheckPasswordMatch">
+                </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button>
+            </div>
+        </form>
+        <p class="text-center small">Already have an account? <a href="./login.html">Login here!</a></p>
+    </div>
+    </body>
+    </html>       
