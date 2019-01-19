@@ -3,7 +3,7 @@ var path = require('path'),
 module.exports = function (app, passport) {
 
     app.get('/', isLoggedIn, function (req, res, next) {//Checks if user is logged in and then...
-        if (req.user.role == "Professor") {//Redirects based off of user roles
+        if (req.user.role == "Company") {//Redirects based off of user roles
             if (isLoggedIn) {
                 res.redirect('/professor');
             };//TODO: Change to professor view
@@ -14,7 +14,7 @@ module.exports = function (app, passport) {
     //=================
     //LOGIN
 
-    //================= 
+    //=================
     app.get('/login', function (req, res) {//Does login
         res.render('login.ejs', { message: req.flash('loginMessage') });//Loads login view
     });
@@ -28,7 +28,7 @@ module.exports = function (app, passport) {
     //PROFESSOR
     //====================
     app.get('/professor', isLoggedIn, function (req, res, next) {
-        if (req.user.role == "Professor") {
+        if (req.user.role == "Company") {
             res.sendFile(path.resolve('client/professor.html'), req.user);//This is a bad idea
         } else {
             res.send("You must be a professor to access this page!")
