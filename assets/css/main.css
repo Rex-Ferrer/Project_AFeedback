@@ -3771,3 +3771,5 @@ input, select, textarea {
 .header_buttons {
 	color: black !important;
 }
+
+.collapse.in {display:table !important}

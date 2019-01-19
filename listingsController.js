@@ -3,6 +3,8 @@ angular.module('listings').controller('ListingsController', ['$scope',
     $scope.companyName = "SwampHacks2019s";
     $scope.jobs = [
         {
+            id: 123456,
+            company: "Google",
             name: "Software Eng. II",
             totalApplicants: 5,
             unreviewedApplicants: 2,
@@ -13,6 +15,8 @@ angular.module('listings').controller('ListingsController', ['$scope',
             ]
         },
         {
+            id: 654321,
+            company: "Google",
             name: "Software Eng. IV",
             totalApplicants: 15,
             unreviewedApplicants: 1,
@@ -24,6 +28,7 @@ angular.module('listings').controller('ListingsController', ['$scope',
     // Data Tables
     $(document).ready(function() {
         $('.applicantTable').DataTable( {
+            lengthChange: false,
             columnDefs: [
                 {
                     targets: [ 0, 1, 2 ],
@@ -35,6 +40,7 @@ angular.module('listings').controller('ListingsController', ['$scope',
 
     $scope.toggleElement = function(element){
         var toggleElement = element.children('.applicantTable');
+        console.log(toggleElement);
         if(toggleElement.style.display != "none"){
             toggleElement.style.display = "none";
         }else{
