@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css"/>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body ng-app="AllHigher" ng-controller="ListingsController" class="is-preload">
@@ -38,24 +39,24 @@
 							<article id="table" class="main">
 								<div class="spotlight">
 									<div class="content">
-										<ul class="header_buttons" ng-repeat="job in jobs">
-											<button class="job_button">{{job.name}}</button>
-											<table style="visibility: hidden" id="{{job + 'table'}}" class="table">
-												<thead>
-													<tr>
-														<th scope="col">Rank</th>
-														<th scope="col">Applicant</th>
-														<th *ngfor="let param of job.params" scope="col">{{param}}</th>
-													</tr>
-												</thead>
-												<tbody *ngfor="let row of reviewedApplications">
-													<tr>
-														<td>{{job.name}}</td>
-														<td>{{job.totalApplicants}}</td>
-														<td>{{job.unreviewedApplicants}}</td>
-													</tr>
-												</tbody>
-											</table>
+										<ul>
+											<li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
+												<button ng-click="toggleElement($this)"class="job_button">{{job.name}}</button>
+												<table class="applicantTable" style="visibility: none" class="table">
+													<thead>
+														<tr>
+															<th scope="col">Rank</th>
+															<th scope="col">Applicant</th>
+															<th ng-repeat="param in job.params" scope="col">{{param}}</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="applicant in job.applications">
+															<td ng-repeat="col in applicant">{{col}}</td>
+														</tr>
+													</tbody>
+												</table>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -90,13 +91,14 @@
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dataTables.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 			<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 			<script src="app.js"></script>
 			<script src="listingsController.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
