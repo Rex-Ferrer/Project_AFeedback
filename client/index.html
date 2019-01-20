@@ -68,9 +68,9 @@
 										</div>
 									</div>
 								</article>
-								
+
 								<div class="container">
-									<canvas id="myChart" width = 300px height= 300px></canvas>
+									<canvas id="myChart" width = 150px height= 50px></canvas>
 								</div>
 								<!-- <article id="" class="">
 									<div class="spotlight">
@@ -112,12 +112,13 @@
 				let massPopChart = new Chart(myChart, {
 					type: 'bar',
 					data: {
-						labels:['Boston','Worcester'],
+						labels:['Critical Thinking','Teamwork', 'Personality'],
 						datasets:[{
-							label: 'Population',
+							label: 'Points',
 							data:[
-								612,
-								321
+								5,
+								7,
+								6
 							]
 						}]
 					},
