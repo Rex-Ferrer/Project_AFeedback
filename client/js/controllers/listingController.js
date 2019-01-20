@@ -22,15 +22,55 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
             ]
         },
         {
-            id: 654321,
-            company: "Google",
-            name: "Software Eng. IV",
-            totalApplicants: 15,
-            unreviewedApplicants: 1,
-            params: ["Problem Solving", "Teamwork"],
-            applications: []
+            id: 1234526,
+            company: "Real Truck",
+            name: "Database Specialist",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Positivity", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Positivity": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Rex", "Positivity": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 1232456,
+            company: "Real Truck",
+            name: "Front End Developer",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Tom", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Michael", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 1243456,
+            company: "Infinite Energy",
+            name: "Data Analyst",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Rex", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 123456,
+            company: "Infinite Energy",
+            name: "Software Engineering Intern",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Raymond", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
         }
     ];
+
     //Displays jobs for a specific company
     $scope.displayJobs = function(){
       for (i = 0; i < $scope.jobs.length; i++) {
@@ -84,6 +124,25 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
           // console.log(elem1);
           // console.log(elem2);
       };
+
+    
+      $scope.addRole = function( _role_name){
+        var paramList = $scope.paramString.match(/[^\s,]+/g);
+        var entry = {
+            id: 123456,
+            company: "Google",
+            name: _role_name,
+            totalApplicants: 0,
+            unreviewedApplicants: 0,
+            params: paramList,
+            applications: []
+        }
+
+        if(entry.params != -1){
+            $scope.jobs.push(entry);
+        }
+    };
+
   /*
       Implement these functions in the controller to make your application function
       as described in the assignment spec.

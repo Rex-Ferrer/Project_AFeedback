@@ -1,6 +1,7 @@
 angular.module('listings').controller('ListingsController', ['$scope',
   function($scope) {
     $scope.companyName = "SwampHacks2019s";
+    console.log($scope.jobs);
     $scope.jobs = [
         {
             id: 123456,
@@ -15,13 +16,52 @@ angular.module('listings').controller('ListingsController', ['$scope',
             ]
         },
         {
-            id: 654321,
-            company: "Google",
-            name: "Software Eng. IV",
-            totalApplicants: 15,
-            unreviewedApplicants: 1,
-            params: ["Problem Solving", "Teamwork"],
-            applications: []
+            id: 1234526,
+            company: "Real Truck",
+            name: "Database Specialist",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Positivity", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Positivity": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Rex", "Positivity": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 1232456,
+            company: "Real Truck",
+            name: "Front End Developer",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Tom", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Michael", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 1243456,
+            company: "Infinite Energy",
+            name: "Data Analyst",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Rex", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
+        },
+        {
+            id: 123456,
+            company: "Infinite Energy",
+            name: "Software Engineering Intern",
+            totalApplicants: 5,
+            unreviewedApplicants: 2,
+            params: ["Critical Thinking", "Leadership", "Teamwork"],
+            applications: [
+                {"rank": 2, "applicantName": "Luis", "Critical Thinking": 1, "Leadership": 2, "Teamwork": 3 },
+                {"rank": 1, "applicantName": "Raymond", "Critical Thinking": 7, "Leadership": 2, "Teamwork": 5 }
+            ]
         }
     ];
 
