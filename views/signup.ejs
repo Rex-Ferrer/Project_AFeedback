@@ -10,11 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="assets/js/passwordConfirm.js"></script>
-
 <style type="text/css">
-	body {
+body {
 		color: #fff;
-		background: #d47677;
+		background: #6dbbda;
 	}
 	.form-control {
         min-height: 41px;
@@ -30,8 +29,10 @@
     }
 	.login-form {
 		width: 350px;
-		margin: 0 auto;
-		padding: 100px 0 30px;
+        margin-top: 5vh;
+        margin-left: auto;
+        margin-right: auto;
+		padding: 26px 0 30px;
 	}
 	.login-form form {
 		color: #7a7a7a;
@@ -42,6 +43,7 @@
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         padding: 30px;
         position: relative;
+
     }
 	.login-form h2 {
 		font-size: 22px;
@@ -53,12 +55,12 @@
 		left: 0;
 		right: 0;
 		top: -50px;
-		width: 95px;
-		height: 95px;
+		width: 115px;
+		height: 105px;
 		border-radius: 50%;
 		z-index: 9;
-		background: #70c5c0;
-		padding: 15px;
+		background: #6dbbda;
+		padding: 25px;
 		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 	}
 	.login-form .avatar img {
@@ -70,17 +72,18 @@
     .login-form .btn {
         font-size: 16px;
         font-weight: bold;
-		background: #70c5c0;
+		background: #cb9ecf;
 		border: none;
 		margin-bottom: 20px;
     }
 	.login-form .btn:hover, .login-form .btn:focus {
-		background: #50b8b3;
+        background: #a07da3;
         outline: none !important;
 	}
 	.login-form a {
 		color: #fff;
-		text-decoration: underline;
+        text-decoration: underline;
+        padding-top: 0em;
 	}
 	.login-form a:hover {
 		text-decoration: none;
@@ -88,14 +91,14 @@
 	.login-form form a {
 		color: #7a7a7a;
         text-decoration: none;
+
+	}
+	.login-form form a:hover {
+		text-decoration: underline;
     }
-    .registrationFormAlert{
-        padding-bottom: 2em;
-        padding-top: 0em;
-    }
-    .text-center small{
-        padding-bottom: 0em;
-    }
+    html {
+        overflow: hidden;
+        }
 </style>
 </head>
 <body>
@@ -118,9 +121,9 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="firstname" placeholder="First Name (Or Company Name)" required="required">
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="lastname" placeholder="Name" required="required">
-            </div>
+						<div class="form-group">
+								<input type="text" class="form-control" name="lastname" placeholder="First Name (Or Company Name)" required="required">
+						</div>
              <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password" required="required" id="password">
                 </div>
