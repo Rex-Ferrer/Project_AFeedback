@@ -40,6 +40,14 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
+    $scope.setChart = function(){
+      for (i = 0; i < $scope.jobs.length; i++) {
+        if($scope.user.firstname == $scope.jobs[i].company){
+          $scope.listedJobs.push($scope.jobs[i])
+        }
+      }
+    };
+
   // Data Tables
       $(document).ready(function() {
           $('.applicantTable').DataTable( {
