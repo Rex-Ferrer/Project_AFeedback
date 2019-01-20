@@ -13,11 +13,10 @@
 		<link rel="stylesheet" href="assets/css/dataTables.material.min.css"/>
 		<link rel="stylesheet" href="assets/css/material.min.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
-		<!-- <link rel="stylesheet" href="assets/css/bootstrap_2.3.2_css.min.css"/> -->
-		<!-- <link rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
-		<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"/> -->
+		<link rel="stylesheet" href="assets/css/bootstrap_2.3.2_css.min.css"/>
+		<link rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
+		<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"/>
 		<link rel="stylesheet" href="assets/css/bootstrap.css"/>
-		<!-- <link rel="stylesheet" href="assets/css/bootstrap-tagsinput.css"/> -->
 
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -77,10 +76,9 @@
 											<div class="form-group">
 												<label for="jobName">Job Title/Position</label>
 												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
-											</div>
-											<div class="form-group">
+					
 												<label>List what parameters you will judge candidates on:</label>
-												<input type="text" data-role="tagsinput" class="form-control" id="Attributes" placeholder="Attributes"> </input>
+												<input ng-model="paramString" type="text" data-role="tagsinput" class="form-control" placeholder="Enter a comma separated list of attributes"> </input>
 											</div>
 											<button type="submit" class="btn btn-primary" ng-click="addRole()">Submit</button>
 										</form>
@@ -105,9 +103,6 @@
 			<script src="assets/js/main.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 			<script src="assets/js/markup.min.js"></script>
-			<script src="assets/js/bootstrap_2.3.2_js.min.js"></script>
-			<!-- <script src="assets/js/bootstrap-tagsinput.js"></script>
-			<script src="assets/js/bootstrap-tagsinput-angular.js"></script> -->
 		
 
 

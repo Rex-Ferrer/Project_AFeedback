@@ -1,7 +1,6 @@
 angular.module('listings').controller('ListingsController', ['$scope',
   function($scope) {
     $scope.companyName = "SwampHacks2019s";
-    // document.getElementById("Attributes").tagsinput('items')
     $scope.jobs = [
         {
             id: 123456,
@@ -26,6 +25,8 @@ angular.module('listings').controller('ListingsController', ['$scope',
         }
     ];
 
+    $scope.paramString;
+
     // Data Tables
     $(document).ready(function() {
         $('.applicantTable').DataTable( {
@@ -37,14 +38,6 @@ angular.module('listings').controller('ListingsController', ['$scope',
                 }
             ]
         } );
-
-        $(function() {
-            $('#Attributes').tagsinput({
-                maxTags: 10
-            });
-        });
-
-
     } );
 
     $scope.toggleElement = function(element){
@@ -67,23 +60,21 @@ angular.module('listings').controller('ListingsController', ['$scope',
         document.getElementById("new-listing").style.display = "none" ;
     };
     
-    $scope.addRole = function( _role_name, _attributes){
-        console.log(document.getElementById("Attributes"));
-        
+    $scope.addRole = function( _role_name){
+        var paramList = $scope.paramString.match(/[^\s,]+/g);
         var entry = {
             id: 123456,
             company: "Google",
             name: _role_name,
             totalApplicants: 0,
             unreviewedApplicants: 0,
-            params: [],
+            params: paramList,
             applications: []
         }
 
-        $scope.jobs.push(entry);
-
-        console.log($scope.jobs);
-        
+        if(entry.params != -1){
+            $scope.jobs.push(entry);
+        }
     };
   }
 ]);
