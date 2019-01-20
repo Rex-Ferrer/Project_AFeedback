@@ -46,6 +46,20 @@ angular.module('listings').controller('ListingsController', ['$scope',
         }else{
             toggleElement.style.display = "block";
         }
+    }
+
+    $scope.showForm = function(){
+        document.getElementById("table").style.display = "none";
+        document.getElementById("new-listing").style.display = "block";
+        // console.log(elem1);
+        // console.log(elem2);
+    };
+
+    $scope.showRoles = function(){
+        document.getElementById("table").style.display = "block";
+        document.getElementById("new-listing").style.display = "none" ;
+        // console.log(elem1);
+        // console.log(elem2);
     };
     
   }

@@ -29,8 +29,8 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul>
-							<li><button class="header_buttons">Open Jobs</button></li>
-							<li><button class="header_buttons">a Job</button></li>
+							<li><button class="header_buttons" ng-click="showRoles()">Open Roles</button></li>
+							<li><button class="header_buttons" ng-click="showForm()">Add a Role</button></li>
 						</ul>
 					</nav>
 
@@ -64,7 +64,7 @@
 								</div>
 							</article>
 
-							<!-- <article id="" class="">
+							<article id="new-listing" class="">
 								<div class="spotlight">
 									<div class="content">
 										<form>
@@ -72,20 +72,15 @@
 												<label for="jobName">Job Title/Position</label>
 												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
 											</div>
-											<label>List what parameters you will judge candidates on:</label>
 											<div class="form-group">
-												<label for="exampleInputPassword1">Password</label>
-												<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-											</div>
-											<div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">Check me out</label>
+												<label>List what parameters you will judge candidates on:</label>
+												<input type="text" data-role="tagsinput" class="form-control" id="Attributes" placeholder="Attributes">
 											</div>
 											<button type="submit" class="btn btn-primary">Submit</button>
 										</form>
 									</div>
 								</div>
-							</article> -->
+							</article>
 					</div>
 			</div>
 
