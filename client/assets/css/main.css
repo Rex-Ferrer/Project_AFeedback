@@ -3767,6 +3767,11 @@ input, select, textarea {
 
 .collapse.in {display:table !important}
 
+#myChart {
+	width: 500px !important;
+	height: 150px !important;
+}
+
 #new-listing {
 	display: none;
 }

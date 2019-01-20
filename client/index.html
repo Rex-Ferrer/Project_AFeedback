@@ -5,22 +5,27 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
+<head>
 		<title>Applicant Portal</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/dataTables.material.min.css"/>
+		<link rel="stylesheet" href="assets/css/material.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Chart.js import-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
 		<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/factories/listingFactory.js"></script>
 		<script src="js/controllers/listingController.js"></script>
-
-		<!-- Chart.js import-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+
 	<body ng-app="AllHigher"   ng-controller="ListingsController" class="is-preload">
+
 
 		<!-- Wrapper -->
 				<div id="wrapper">
@@ -42,88 +47,171 @@
 					<!-- Main -->
 						<div id="main">
 
-							<!-- Tables -->
-								<article id="table" class="main">
-									<div class="spotlight">
-										<div class="content">
-											<ul>
-												<li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
-													<button data-toggle="collapse" data-target="#{{job.id}}" class="button job_button">{{job.name}}</button>
-													<table id="{{job.id}}" class="applicantTable collapse table">
-														<thead>
-															<tr>
-																<th scope="col">Rank</th>
-																<th scope="col">Applicant</th>
-																<th ng-repeat="param in job.params" scope="col">{{param}}</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr ng-repeat="applicant in job.applications">
-																<td ng-repeat="col in applicant">{{col}}</td>
-															</tr>
-														</tbody>
-													</table>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</article>
+            <!-- Tables -->
+              <article id="table" class="main">
+                <div class="spotlight">
+                  <div class="content">
+                    <ul>
+                      <li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
+                        <button data-toggle="collapse" data-target="#{{job.id}}" class="button job_button">{{job.name}}</button>
+                        <table id="{{job.id}}" class="applicantTable collapse table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Rank</th>
+                              <th scope="col">Applicant</th>
+                              <th ng-repeat="param in job.params" scope="col">{{param}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="applicant in job.applications">
+                              <td ng-repeat="col in applicant">{{col}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
 
-								<div class="container">
-									<canvas id="myChart" width = 150px height= 50px></canvas>
-								</div>
-								<!-- <article id="" class="">
-									<div class="spotlight">
-										<div class="content">
-											<form>
-												<div class="form-group">
-													<label for="jobName">Job Title/Position</label>
-													<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
-												</div>
-												<label>List what parameters you will judge candidates on:</label>
-												<div class="form-group">
-													<label for="exampleInputPassword1">Password</label>
-													<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-												</div>
-												<div class="form-check">
-													<input type="checkbox" class="form-check-input" id="exampleCheck1">
-													<label class="form-check-label" for="exampleCheck1">Check me out</label>
-												</div>
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</form>
-										</div>
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/logo.svg" alt="" /></span>
+						<h1>{{companyName}}'s hiring portal</h1>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><button class="header_buttons" ng-click="showRoles()">Open Roles</button></li>
+							<li><button class="header_buttons" ng-click="showForm()">Add a Role</button></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Tables -->
+							<article id="table" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<ul>
+											<li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
+												<button data-toggle="collapse" data-target="#{{job.id}}" class="button job_button">{{job.name}}</button>
+											</li>
+										</ul>
 									</div>
-								</article> -->
-						</div>
-				</div>
+								</div>
+
+										<div text-align="center">
+											<canvas id="myChart" ></canvas>
+										</div>
+
+							</article>
+
+							<article id="new-listing" class="">
+								<div class="spotlight">
+									<div class="content">
+										<form>
+											<div class="form-group">
+												<label for="jobName">Job Title/Position</label>
+												<input type="text" class="form-control" id="jobName" placeholder="Enter job title/position">
+											</div>
+											<div class="form-group">
+												<label>List what parameters you will judge candidates on:</label>
+												<input type="text" data-role="tagsinput" class="form-control" id="Attributes" placeholder="Attributes">
+											</div>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</form>
+									</div>
+								</div>
+							</article>
+					</div>
+			</div>
+
+
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script type="text/javascript">
+			let myChart = document.getElementById('myChart').getContext('2d');
+/*
+			Tries to make the fontsize bigger
+			Chart.defaults.global.defaultFontFamily:'Lato',
+			Chart.defaults.global.defaultFontSize: 18,
+*/
 
-			<script type="text/javascript">
-				let chart = document.getElementById('myChart').getContext('2d');
-
-				let massPopChart = new Chart(myChart, {
-					type: 'bar',
-					data: {
-						labels:['Critical Thinking','Teamwork', 'Personality'],
-						datasets:[{
-							label: 'Points',
-							data:[
-								5,
-								7,
-								6
-							]
-						}]
+			let massPopChart = new Chart(myChart, {
+				type: 'horizontalBar',
+				data: {
+					labels:['ProblemSolving','Teamwork', 'Personality'],
+					datasets:[{
+						label: 'Points',
+						data:[
+							5.5,
+							7,
+							6
+						],
+						backgroundColor: [
+							'rgba(255,99,132,.6)',
+							'rgba(54,162,235,.6)',
+							'rgba(255,206,86,.6)',
+						],
+						borderWidth:4,
+						borderColor:'#777'
+					}]
+				},
+				options: {
+					title:{
+						display:true,
+						text: ' How did you do?',
+						fontSize:25
 					},
-					options: {}
-				});
-			</script>
+					legend:{
+						display: false,
+						position: 'right',
+						labels:{
+							fontColor:'#000'
+						}
+					},
+					layout:{
+						padding:{
+							left:50,
+							right:0,
+							bottom:0,
+							top:0
+						}
+					},
+					tooltips:{
+						enabled:false
+					},
+					scales: {
+			        yAxes: [{
+			            ticks: {
+			                fontSize: 18
+			            }
+        }],
+				xAxes: [{
+						ticks: {
+								fontSize: 18
+								}
+							}]
+    				}
+				}
+			});
+		</script>
+
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/dataTables.material.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
 	</body>
 </html>
