@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+.logo{
+  width:50px;
+  height: 35px;
+}
+
+#mapid {
+  height: 575px;
+  margin: 38px;
+  border-radius: 5px;
+}
+
+#mapInput1, #mapInput2{
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#mapInput{
+  margin-left: 50px;
+  width:88%;
+}
+
+#accordion_search {
+    margin-right: 25px;
+    margin-left: 50px;
+    margin-bottom:25px;
+    padding-top:40px;
+}
+
+#addTaForm{
+  margin-left: 50px;
+  margin-bottom:10px;
+  margin-right: 25px;
+}
+
+#signOut{
+  position: absolute;
+  right: 10px;
+  margin-top: 5px;
+}
+
+  #accordion{
+    margin-left:50px;
+    margin-right: 25px;
+    max-height: 600px;
+    overflow: auto;
+  }
+
+  #timeContainer{
+    max-height: 50px;
+    overflow: auto;
+  }
+
+  #panelHeading{
+    background-color: #D7DBDD;
+
+  }
+  .panel-heading{
+    background-color: white;
+  }
+
+  #panel-group-professor{
+    overflow:hidden;
+  }
+
+  .panel-group{
+    height: 515px;
+  }
+
+  #title{
+    font-family: 'palatino', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-top: 0px;
+    margin-right: 50px;
+    margin-bottom: 0px;
+    float: left;
+    color: #D7DBDD;
+    }
+
+  #titleWrapper{
+    width:100%;
+    padding: 10px;
+    background-color: #263238;
+    float:left;
+    margin-top: 0px;
+  }
+
+  #formWrapper{
+    width:100%;
+    background-color: #D7DBDD;
+    margin-top: 0px;
+  }
+
+  .panel-title{
+    color: black;
+  }
+  .fa{
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    }
+  .fa:hover {
+    opacity: 0.7;
+  }
+
+  .needs-validation{
+    margin-left: 15%;
+    margin-top: 5%;
+  }
+
+  body{
+    font-family: 'Ubuntu';
+   }
+
+    #formTitle{
+    font-family: 'palatino', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    margin-top: 0px;
+    margin-right: 50px;
+    margin-bottom: 0px;
+    color: white;
+  }
+
+#editBtn{
+  margin-top: 0px;
+  float: right;
+}
+
+#loginContainer{
+  background-color: #D7DBDD;
+  margin-left: 33%;
+  margin-top: 10%;
+  border-radius: 25px;
+  box-shadow: 8px 8px 15px black;
+}
+
+#loginBtn{
+  margin-left: 38%;
+}
+
+#signUpContainer{
+  margin-top: 50px;
+  background-color: #D7DBDD;
+  border-radius: 25px;
+  box-shadow: 8px 8px 15px black;
+}
+
+
+
+
+
+
