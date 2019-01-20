@@ -16,6 +16,8 @@
 		<script src="js/factories/listingFactory.js"></script>
 		<script src="js/controllers/listingController.js"></script>
 
+		<!-- Chart.js import-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body ng-app="AllHigher"   ng-controller="ListingsController" class="is-preload">
@@ -101,6 +103,26 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<div class="container">
+				<canvas id="myChart" width="300" height="300"></canvas>
+			</div>
+			<script type="text/javascript">
+				let chart = document.getElementById('myChart').getContext('2d');
 
+				let massPopChart = new Chart(mychart, {
+					type: 'bar',
+					data: {
+						labels:['Boston','Worcester'],
+						datasets:[{
+							label: 'Population',
+							data:[
+								612,
+								321
+							]
+						}]
+					},
+					options: {}
+				});
+			</script>
 	</body>
 </html>

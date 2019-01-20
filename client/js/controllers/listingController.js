@@ -1,9 +1,8 @@
 angular.module('listings').controller('ListingsController', ['$scope', 'Listings',
   function($scope, Listings) {
-
     //Stores Variable for Current User Info, Role/Lastname/FirstName/etc.
     Listings.getUser().then(function(response) {
-      $scope.user = response.data[0];
+      $scope.companyName = response.data[0].firstname;
 
     },function(error) {
       console.log('Unable to retrieve listings:', error);
