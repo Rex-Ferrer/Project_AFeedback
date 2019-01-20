@@ -1,6 +1,7 @@
 angular.module('listings').controller('ListingsController', ['$scope',
   function($scope) {
     $scope.companyName = "SwampHacks2019s";
+    // document.getElementById("Attributes").tagsinput('items')
     $scope.jobs = [
         {
             id: 123456,
@@ -36,6 +37,14 @@ angular.module('listings').controller('ListingsController', ['$scope',
                 }
             ]
         } );
+
+        $(function() {
+            $('#Attributes').tagsinput({
+                maxTags: 10
+            });
+        });
+
+
     } );
 
     $scope.toggleElement = function(element){
@@ -51,16 +60,30 @@ angular.module('listings').controller('ListingsController', ['$scope',
     $scope.showForm = function(){
         document.getElementById("table").style.display = "none";
         document.getElementById("new-listing").style.display = "block";
-        // console.log(elem1);
-        // console.log(elem2);
     };
 
     $scope.showRoles = function(){
         document.getElementById("table").style.display = "block";
         document.getElementById("new-listing").style.display = "none" ;
-        // console.log(elem1);
-        // console.log(elem2);
     };
     
+    $scope.addRole = function( _role_name, _attributes){
+        console.log(document.getElementById("Attributes"));
+        
+        var entry = {
+            id: 123456,
+            company: "Google",
+            name: _role_name,
+            totalApplicants: 0,
+            unreviewedApplicants: 0,
+            params: [],
+            applications: []
+        }
+
+        $scope.jobs.push(entry);
+
+        console.log($scope.jobs);
+        
+    };
   }
 ]);
