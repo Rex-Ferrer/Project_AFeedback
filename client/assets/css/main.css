@@ -99,28 +99,13 @@ input, select, textarea {
 	}
 
 	body {
-		background-color: #935d8c;
-		background-image: url("images/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), -ms-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
-		background-image: url("images/overlay.png"), linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
+		background-color: #6dbbda;
 	}
-
-		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
-			-moz-animation: none !important;
-			-webkit-animation: none !important;
-			-ms-animation: none !important;
-			animation: none !important;
-			-moz-transition: none !important;
-			-webkit-transition: none !important;
-			-ms-transition: none !important;
-			transition: none !important;
-		}
 
 /* Type */
 
 	body {
-		background-color: #935d8c;
+		background-color: #6dbbda !important;
 		color: rgba(255, 255, 255, 0.65);
 	}
 
@@ -3068,8 +3053,16 @@ input, select, textarea {
 			padding: 7em 5em 4em 5em ;
 		}
 
-			#header.alt h1 {
+			#header.alt h1{
 				font-size: 3.25em;
+				font-family: 'Courier New', Courier, monospace;
+				color: white;
+				font-style: Bold;
+			}
+			#header.alt h2{
+				font-family: 'Courier New', Courier, monospace;
+				color: white;
+				font-style: Bold;
 			}
 
 			#header.alt > * {
@@ -3201,8 +3194,8 @@ input, select, textarea {
 		max-width: calc(100% - 4em);
 		padding: 1em;
 		background-color: #f7f7f7;
-		border-top-left-radius: 0.25em;
-		border-top-right-radius: 0.25em;
+		border-top-left-radius: 1em;
+		border-top-right-radius: 1em;
 		cursor: default;
 		text-align: center;
 	}
@@ -3315,7 +3308,7 @@ input, select, textarea {
 	#main {
 		background-color: #ffffff;
 		color: #636363;
-		border-radius: 0.25em;
+		border-radius: 1em;
 	}
 
 		#main input, #main select, #main textarea {
@@ -3777,4 +3770,8 @@ input, select, textarea {
 #myChart {
 	width: 500px !important;
 	height: 150px !important;
+}
+
+#new-listing {
+	display: none;
 }

@@ -28,7 +28,51 @@
 
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+				<div id="wrapper">
+
+					<!-- Header -->
+						<header id="header" class="alt">
+							<span class="logo"><img src="images/logoplane.png" alt="" /></span>
+							<h1>{{companyName}}'s hiring portal</h1>
+						</header>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><button class="header_buttons">Open Jobs</button></li>
+								<li><button class="header_buttons">a Job</button></li>
+							</ul>
+						</nav>
+
+					<!-- Main -->
+						<div id="main">
+
+            <!-- Tables -->
+              <article id="table" class="main">
+                <div class="spotlight">
+                  <div class="content">
+                    <ul>
+                      <li style="list-style: none" class="header_buttons" ng-repeat="job in jobs">
+                        <button data-toggle="collapse" data-target="#{{job.id}}" class="button job_button">{{job.name}}</button>
+                        <table id="{{job.id}}" class="applicantTable collapse table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Rank</th>
+                              <th scope="col">Applicant</th>
+                              <th ng-repeat="param in job.params" scope="col">{{param}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="applicant in job.applications">
+                              <td ng-repeat="col in applicant">{{col}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
 
 				<!-- Header -->
 					<header id="header" class="alt">

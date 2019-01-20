@@ -3767,3 +3767,9 @@ input, select, textarea {
 .job_button {
 	width: 100%;
 }
+
+.header_buttons {
+	color: black !important;
+}
+
+.collapse.in {display:table !important}
