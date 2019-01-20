@@ -68,7 +68,10 @@
 										</div>
 									</div>
 								</article>
-
+								
+								<div class="container">
+									<canvas id="myChart" width = 300px height= 300px></canvas>
+								</div>
 								<!-- <article id="" class="">
 									<div class="spotlight">
 										<div class="content">
@@ -103,13 +106,10 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-			<div class="container">
-				<canvas id="myChart" width="300" height="300"></canvas>
-			</div>
 			<script type="text/javascript">
 				let chart = document.getElementById('myChart').getContext('2d');
 
-				let massPopChart = new Chart(mychart, {
+				let massPopChart = new Chart(myChart, {
 					type: 'bar',
 					data: {
 						labels:['Boston','Worcester'],
