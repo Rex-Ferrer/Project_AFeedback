@@ -8,7 +8,7 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     },function(error) {
       console.log('Unable to retrieve listings:', error);
     });
-    
+
     $scope.jobs = [
         {
             id: 123456,
@@ -41,30 +41,43 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
       }
     };
 
+  // Data Tables
+      $(document).ready(function() {
+          $('.applicantTable').DataTable( {
+              lengthChange: false,
+              columnDefs: [
+                  {
+                      targets: [ 0, 1, 2 ],
+                      className: 'mdl-data-table__cell--non-numeric'
+                  }
+              ]
+          } );
+      } );
 
-    // Data Tables
-    $(document).ready(function() {
-        $('.applicantTable').DataTable( {
-            lengthChange: false,
-            columnDefs: [
-                {
-                    targets: [ 0, 1, 2 ],
-                    className: 'mdl-data-table__cell--non-numeric'
-                }
-            ]
-        } );
-    } );
+      $scope.toggleElement = function(element){
+          var toggleElement = element.children('.applicantTable');
+          console.log(toggleElement);
+          if(toggleElement.style.display != "none"){
+              toggleElement.style.display = "none";
+          }else{
+              toggleElement.style.display = "block";
+          }
+      }
 
-    $scope.toggleElement = function(element){
-        var toggleElement = element.children('.applicantTable');
-        console.log(toggleElement);
-        if(toggleElement.style.display != "none"){
-            toggleElement.style.display = "none";
-        }else{
-            toggleElement.style.display = "block";
-        }
-    };
-    /*
+      $scope.showForm = function(){
+          document.getElementById("table").style.display = "none";
+          document.getElementById("new-listing").style.display = "block";
+          // console.log(elem1);
+          // console.log(elem2);
+      };
+
+      $scope.showRoles = function(){
+          document.getElementById("table").style.display = "block";
+          document.getElementById("new-listing").style.display = "none" ;
+          // console.log(elem1);
+          // console.log(elem2);
+      };
+  /*
       Implement these functions in the controller to make your application function
       as described in the assignment spec.
      */
